@@ -12,14 +12,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.infomaniak.designsystem.catalog.ui.theme.DesignSystemTheme
-import com.infomaniak.designsystem.compose.TestValue
+import com.infomaniak.designsystem.compose.TestValueCompose
+import com.infomaniak.designsystem.compose.TestValueView
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        TestValue.randomValue
+        // TODO: Remove
+        TestValueCompose.randomValue
+        TestValueView.randomValue
+
         setContent {
             DesignSystemTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->

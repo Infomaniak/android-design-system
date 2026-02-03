@@ -39,6 +39,7 @@ android {
 
 dependencies {
     implementation(project(":DesignSystem:Compose"))
+    implementation(project(":DesignSystem:View"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "Design System"
 include(":catalog")
 include(":DesignSystem:Compose")
+include(":DesignSystem:View")
