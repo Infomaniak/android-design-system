@@ -20,4 +20,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Design System"
-include(":app")
+include(":catalog")
