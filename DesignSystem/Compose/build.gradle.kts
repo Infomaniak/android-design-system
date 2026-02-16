@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.infomaniak.designsystem.view"
+    namespace = "com.infomaniak.designsystem.compose"
     compileSdk {
         version = release(36)
     }
