@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.infomaniak.designsystem.themedrive"
+    namespace = "com.infomaniak.designsystem.drive"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -21,5 +21,16 @@ android {
 }
 
 dependencies {
+    implementation(project(":Core"))
+    implementation(project(":PrimitiveTokens"))
+
     implementation(libs.androidx.core.ktx)
+
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.graphics)
+    implementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.compose.ui.tooling.preview)
 }

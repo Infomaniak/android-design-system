@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.infomaniak.designsystem.thememail"
+    namespace = "com.infomaniak.designsystem.mail"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
