@@ -5,17 +5,17 @@
 package com.infomaniak.designsystem.drive
 
 import com.infomaniak.designsystem.core.tokens.RadiusTokens
-import com.infomaniak.designsystem.drive.intermediate.IntermediateDarkRadius
+import com.infomaniak.designsystem.drive.intermediate.IntermediateDark
 
 val DriveDarkRadius = RadiusTokens(
-    radiusNone = IntermediateDarkRadius.RadiusNone,
-    radiusXs = IntermediateDarkRadius.RadiusXs,
-    radiusSm = IntermediateDarkRadius.RadiusSm,
-    radiusMd = IntermediateDarkRadius.RadiusMd,
-    radiusLg = IntermediateDarkRadius.RadiusLg,
-    radiusXl = IntermediateDarkRadius.RadiusXl,
-    radius2xl = IntermediateDarkRadius.Radius2xl,
-    radius3xl = IntermediateDarkRadius.Radius3xl,
-    radius4xl = IntermediateDarkRadius.Radius4xl,
-    radiusFull = IntermediateDarkRadius.RadiusFull,
+    radiusNone = IntermediateDark.RadiusNone,
+    radiusXs = IntermediateDark.RadiusXs,
+    radiusSm = IntermediateDark.RadiusSm,
+    radiusMd = IntermediateDark.RadiusMd,
+    radiusLg = IntermediateDark.RadiusLg,
+    radiusXl = IntermediateDark.RadiusXl,
+    radius2xl = IntermediateDark.Radius2xl,
+    radius3xl = IntermediateDark.Radius3xl,
+    radius4xl = IntermediateDark.Radius4xl,
+    radiusFull = IntermediateDark.RadiusFull,
 )
