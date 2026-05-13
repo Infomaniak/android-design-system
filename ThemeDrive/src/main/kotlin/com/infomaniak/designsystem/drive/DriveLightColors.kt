@@ -5,7 +5,7 @@
 package com.infomaniak.designsystem.drive
 
 import com.infomaniak.designsystem.core.tokens.ColorTokens
-import com.infomaniak.designsystem.drive.intermediate.IntermediateLight
+import com.infomaniak.designsystem.drive.internal.IntermediateLight
 
 val DriveLightColors = ColorTokens(
     backgroundElevationSurfacePressed = IntermediateLight.BackgroundElevationSurfacePressed,

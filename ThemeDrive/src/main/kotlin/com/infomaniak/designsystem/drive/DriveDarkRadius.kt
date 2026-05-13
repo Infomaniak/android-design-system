@@ -5,7 +5,7 @@
 package com.infomaniak.designsystem.drive
 
 import com.infomaniak.designsystem.core.tokens.RadiusTokens
-import com.infomaniak.designsystem.drive.intermediate.IntermediateDark
+import com.infomaniak.designsystem.drive.internal.IntermediateDark
 
 val DriveDarkRadius = RadiusTokens(
     radiusNone = IntermediateDark.RadiusNone,

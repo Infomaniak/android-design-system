@@ -24,7 +24,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "GeneratedDsTokens"
 include(":app")
-include(":Core")
+include(":Foundation")
 include(":PrimitiveTokens")
 include(":ThemeDrive")
 include(":ThemeMail")
