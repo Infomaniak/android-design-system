@@ -2,11 +2,11 @@
   To generate
 */
 
-package com.infomaniak.designsystem.core
+package com.infomaniak.designsystem.core.tokens
 
 import androidx.compose.ui.graphics.Color
 
-data class SemanticColorTokens(
+data class ColorTokens(
     val backgroundElevationSurfacePressed: Color,
     val backgroundElevationSurfaceHover: Color,
     val backgroundElevationSurfaceDefault: Color,

@@ -7,7 +7,7 @@ package com.infomaniak.designsystem.drive.intermediate
 import androidx.compose.ui.unit.Dp
 import com.infomaniak.designsystem.primitivetokens.*
 
-object IntermediateDarkSemanticRadius {
+object IntermediateLightRadius {
     internal val RadiusNone: Dp = Radius0
     internal val RadiusXs: Dp = Radius2
     internal val RadiusSm: Dp = Radius4

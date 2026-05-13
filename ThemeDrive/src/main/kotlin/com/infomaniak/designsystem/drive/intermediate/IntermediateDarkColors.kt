@@ -7,7 +7,7 @@ package com.infomaniak.designsystem.drive.intermediate
 import androidx.compose.ui.graphics.Color
 import com.infomaniak.designsystem.primitivetokens.*
 
-object IntermediateDarkSemanticColors {
+object IntermediateDarkColors {
     internal val BackgroundElevationSurfacePressed: Color = ColorRed300
     internal val BackgroundElevationSurfaceHover: Color = ColorRed300
     internal val BackgroundElevationSurfaceDefault: Color = ColorRed300

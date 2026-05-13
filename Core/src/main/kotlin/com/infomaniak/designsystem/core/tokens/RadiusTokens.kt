@@ -2,11 +2,11 @@
   To generate
 */
 
-package com.infomaniak.designsystem.core
+package com.infomaniak.designsystem.core.tokens
 
 import androidx.compose.ui.unit.Dp
 
-data class SemanticRadiusTokens(
+data class RadiusTokens(
     val radiusNone: Dp,
     val radiusXs: Dp,
     val radiusSm: Dp,
