@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -13,18 +14,23 @@ android {
     defaultConfig {
         minSdk = 27
     }
+
+    buildFeatures {
+        compose = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-
 }
 
 dependencies {
+    implementation(project(":PrimitiveTokens"))
+
     implementation(libs.androidx.core.ktx)
 
     implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)

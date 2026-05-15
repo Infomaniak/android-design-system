@@ -4,7 +4,6 @@
 
 package com.infomaniak.designsystem.core.theme
 
-import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.ProvidableCompositionLocal
@@ -20,16 +19,13 @@ object EsdsTheme {
     val radius: RadiusTokens
         @Composable @ReadOnlyComposable get() = LocalEsdsTheme.current.spacing
 
-    val LocalEsdsTheme get() = _localExtendedMaterialTheme
+    val LocalEsdsTheme: ProvidableCompositionLocal<Values> = staticCompositionLocalOf {
+        Values()
+    }
 
     @Immutable
     class Values(
-        val color: ColorTokens = ColorTokens(), // TODO
-        val spacing: RadiusTokens = RadiusTokens(), // TODO
+        val color: ColorTokens = ColorTokens(),
+        val spacing: RadiusTokens = RadiusTokens(),
     )
-}
-
-@SuppressLint("CompositionLocalNaming")
-private val _localExtendedMaterialTheme: ProvidableCompositionLocal<EsdsTheme.Values> = staticCompositionLocalOf {
-    EsdsTheme.Values()
 }

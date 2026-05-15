@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -24,6 +25,11 @@ android {
             isShrinkResources = true
         }
     }
+
+    buildFeatures {
+        compose = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -34,12 +40,14 @@ dependencies {
     implementation(project(":Foundation"))
     implementation(project(":ThemeDrive"))
     implementation(project(":ThemeMail"))
-    implementation(libs.androidx.compose.foundation)
 
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.core.ktx)
+    implementation(libs.stdlib)
 
     implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling)
