@@ -36,6 +36,7 @@ dependencies {
     implementation(project(":ThemeMail"))
     implementation(libs.androidx.compose.foundation)
 
+    implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.core.ktx)
 
     implementation(platform(libs.androidx.compose.bom))
