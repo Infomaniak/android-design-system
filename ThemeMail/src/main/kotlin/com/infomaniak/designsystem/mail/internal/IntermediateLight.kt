@@ -4,8 +4,11 @@
 
 package com.infomaniak.designsystem.mail.internal
 
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.Shape
 import com.infomaniak.designsystem.primitivetokens.*
 
 internal object IntermediateLight {
@@ -110,14 +113,14 @@ internal object IntermediateLight {
     val BorderSubtlestDefault: Color = ColorRed700
     val BorderSubtlestHover: Color = ColorRed700
     val BorderSubtlestPressed: Color = ColorRed700
-    val RadiusNone: Dp = Radius0
-    val RadiusXs: Dp = Radius2
-    val RadiusSm: Dp = Radius4
-    val RadiusMd: Dp = Radius6
-    val RadiusLg: Dp = Radius8
-    val RadiusXl: Dp = Radius12
-    val Radius2xl: Dp = Radius16
-    val Radius3xl: Dp = Radius24
-    val Radius4xl: Dp = Radius32
-    val RadiusFull: Dp = Radius1000
+    val RadiusNone: Shape = RectangleShape
+    val RadiusXs: Shape = RoundedCornerShape(Radius2)
+    val RadiusSm: Shape = RoundedCornerShape(Radius4)
+    val RadiusMd: Shape = RoundedCornerShape(Radius6)
+    val RadiusLg: Shape = RoundedCornerShape(Radius8)
+    val RadiusXl: Shape = RoundedCornerShape(Radius12)
+    val Radius2xl: Shape = RoundedCornerShape(Radius16)
+    val Radius3xl: Shape = RoundedCornerShape(Radius24)
+    val Radius4xl: Shape = RoundedCornerShape(Radius32)
+    val RadiusFull: Shape = CircleShape
 }
