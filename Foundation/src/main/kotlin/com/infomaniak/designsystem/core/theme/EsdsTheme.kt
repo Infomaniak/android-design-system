@@ -12,6 +12,10 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import com.infomaniak.designsystem.core.tokens.ColorTokens
 import com.infomaniak.designsystem.core.tokens.RadiusTokens
 
+/**
+ * Contains functions to access the current theme values provided at the call site's position in the
+ * hierarchy.
+ */
 object EsdsTheme {
     val color: ColorTokens
         @Composable @ReadOnlyComposable get() = LocalEsdsTheme.current.color
