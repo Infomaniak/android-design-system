@@ -4,19 +4,12 @@
 
 package com.infomaniak.designsystem.drive.internal
 
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.Dp
-import com.infomaniak.designsystem.primitivetokens.ColorOcean700
-import com.infomaniak.designsystem.primitivetokens.Radius0
-import com.infomaniak.designsystem.primitivetokens.Radius1000
-import com.infomaniak.designsystem.primitivetokens.Radius12
-import com.infomaniak.designsystem.primitivetokens.Radius16
-import com.infomaniak.designsystem.primitivetokens.Radius2
-import com.infomaniak.designsystem.primitivetokens.Radius24
-import com.infomaniak.designsystem.primitivetokens.Radius32
-import com.infomaniak.designsystem.primitivetokens.Radius4
-import com.infomaniak.designsystem.primitivetokens.Radius6
-import com.infomaniak.designsystem.primitivetokens.Radius8
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.Shape
+import com.infomaniak.designsystem.primitivetokens.*
 
 internal object IntermediateLight {
     val BackgroundElevationSurfacePressed: Color = ColorOcean700
@@ -120,14 +113,14 @@ internal object IntermediateLight {
     val BorderSubtlestDefault: Color = ColorOcean700
     val BorderSubtlestHover: Color = ColorOcean700
     val BorderSubtlestPressed: Color = ColorOcean700
-    val RadiusNone: Dp = Radius0
-    val RadiusXs: Dp = Radius2
-    val RadiusSm: Dp = Radius4
-    val RadiusMd: Dp = Radius6
-    val RadiusLg: Dp = Radius8
-    val RadiusXl: Dp = Radius12
-    val Radius2xl: Dp = Radius16
-    val Radius3xl: Dp = Radius24
-    val Radius4xl: Dp = Radius32
-    val RadiusFull: Dp = Radius1000
+    val RadiusNone: Shape = RectangleShape
+    val RadiusXs: Shape = RoundedCornerShape(Radius2)
+    val RadiusSm: Shape = RoundedCornerShape(Radius4)
+    val RadiusMd: Shape = RoundedCornerShape(Radius6)
+    val RadiusLg: Shape = RoundedCornerShape(Radius8)
+    val RadiusXl: Shape = RoundedCornerShape(Radius12)
+    val Radius2xl: Shape = RoundedCornerShape(Radius16)
+    val Radius3xl: Shape = RoundedCornerShape(Radius24)
+    val Radius4xl: Shape = RoundedCornerShape(Radius32)
+    val RadiusFull: Shape = CircleShape
 }
