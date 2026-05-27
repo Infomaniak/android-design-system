@@ -1,0 +1,42 @@
+/*
+    Manually written
+*/
+package com.infomaniak.designsystem.core.defaultvalues.material
+
+import androidx.compose.ui.graphics.Color
+
+internal val primaryLight = Color(0xFF8C4A60)
+internal val onPrimaryLight = Color(0xFFFFFFFF)
+internal val primaryContainerLight = Color(0xFFFFD9E2)
+internal val onPrimaryContainerLight = Color(0xFF703348)
+internal val secondaryLight = Color(0xFF74565F)
+internal val onSecondaryLight = Color(0xFFFFFFFF)
+internal val secondaryContainerLight = Color(0xFFFFD9E2)
+internal val onSecondaryContainerLight = Color(0xFF5A3F47)
+internal val tertiaryLight = Color(0xFF7C5635)
+internal val onTertiaryLight = Color(0xFFFFFFFF)
+internal val tertiaryContainerLight = Color(0xFFFFDCC1)
+internal val onTertiaryContainerLight = Color(0xFF623F20)
+internal val errorLight = Color(0xFFBA1A1A)
+internal val onErrorLight = Color(0xFFFFFFFF)
+internal val errorContainerLight = Color(0xFFFFDAD6)
+internal val onErrorContainerLight = Color(0xFF93000A)
+internal val backgroundLight = Color(0xFFFFF8F8)
+internal val onBackgroundLight = Color(0xFF22191C)
+internal val surfaceLight = Color(0xFFFFF8F8)
+internal val onSurfaceLight = Color(0xFF22191C)
+internal val surfaceVariantLight = Color(0xFFF2DDE1)
+internal val onSurfaceVariantLight = Color(0xFF514347)
+internal val outlineLight = Color(0xFF837377)
+internal val outlineVariantLight = Color(0xFFD5C2C6)
+internal val scrimLight = Color(0xFF000000)
+internal val inverseSurfaceLight = Color(0xFF372E30)
+internal val inverseOnSurfaceLight = Color(0xFFFDEDEF)
+internal val inversePrimaryLight = Color(0xFFFFB1C8)
+internal val surfaceDimLight = Color(0xFFE6D6D9)
+internal val surfaceBrightLight = Color(0xFFFFF8F8)
+internal val surfaceContainerLowestLight = Color(0xFFFFFFFF)
+internal val surfaceContainerLowLight = Color(0xFFFFF0F2)
+internal val surfaceContainerLight = Color(0xFFFAEAED)
+internal val surfaceContainerHighLight = Color(0xFFF5E4E7)
+internal val surfaceContainerHighestLight = Color(0xFFEFDFE1)
