@@ -4,9 +4,11 @@
 
 package com.infomaniak.designsystem.core.tokens
 
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 import com.infomaniak.designsystem.primitivetokens.*
 
+@Immutable
 data class ColorTokens(
     val backgroundElevationSurfacePressed: Color = ColorRed500,
     val backgroundElevationSurfaceHover: Color = ColorRed500,

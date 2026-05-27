@@ -6,10 +6,12 @@ package com.infomaniak.designsystem.core.tokens
 
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import com.infomaniak.designsystem.primitivetokens.*
 
+@Immutable
 data class RadiusTokens(
     val radiusNone: Shape = RectangleShape,
     val radiusXs: Shape = RoundedCornerShape(Radius4),
