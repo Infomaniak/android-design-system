@@ -27,5 +27,5 @@ rootProject.name = "GeneratedDsTokens"
 include(":app")
 include(":Foundation")
 include(":PrimitiveTokens")
-include(":ThemeDrive")
 include(":ThemeMail")
+include(":ThemeSwisstransfer")

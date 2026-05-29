@@ -38,8 +38,8 @@ android {
 
 dependencies {
     implementation(project(":Foundation"))
-    implementation(project(":ThemeDrive"))
     implementation(project(":ThemeMail"))
+    implementation(project(":ThemeSwisstransfer"))
 
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.core.ktx)

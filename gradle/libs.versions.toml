@@ -2,9 +2,9 @@
 activityCompose = "1.13.0"
 activityKtx = "1.13.0"
 agp = "9.2.1"
-composeBom = "2026.05.00"
+composeBom = "2026.05.01"
 coreKtx = "1.18.0"
-foundation = "1.11.1"
+foundation = "1.11.2"
 kotlin = "2.3.21"
 
 [libraries]
