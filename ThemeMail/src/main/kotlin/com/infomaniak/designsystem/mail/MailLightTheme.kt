@@ -4,7 +4,13 @@ import com.infomaniak.designsystem.core.theme.EsdsTheme
 import com.infomaniak.designsystem.mail.material.LightScheme
 
 val MailLightTheme: EsdsTheme.Values = EsdsTheme.Values(
-    color = MailLightColors,
-    spacing = MailLightRadius,
+    border = MailLightBorderTokens,
+    color = MailLightColorTokens,
+    font = MailLightFontTokens,
+    icon = MailLightIconTokens,
+    spacing = MailLightSpacingTokens,
+    radius = MailLightRadiusTokens,
+    text = MailLightTextTokens,
+    typography = MailLightTypographyTokens,
     materialColorScheme = LightScheme,
 )

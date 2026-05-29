@@ -1,10 +1,23 @@
 /*
-  To generate
+  Do not edit directly, this file was auto-generated.
 */
 
 package com.infomaniak.designsystem.primitivetokens
 
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.ui.graphics.shadow.Shadow
 
 val ColorRed50: Color = Color(0xFFFFF1F1)
 val ColorRed100: Color = Color(0xFFFFE4E5)
@@ -50,8 +63,8 @@ val ColorSky700: Color = Color(0xFF0098FF)
 val ColorSky800: Color = Color(0xFF0873C5)
 val ColorSky900: Color = Color(0xFF0D619B)
 val ColorSky950: Color = Color(0xFF0E3A5D)
-val ColorBlack: Color = Color(0xFF000)
-val ColorWhite: Color = Color(0xFFFFF)
+val ColorBlack: Color = Color(0xFF000000)
+val ColorWhite: Color = Color(0xFFFFFFFF)
 val ColorPurple50: Color = Color(0xFFF1F5FD)
 val ColorPurple100: Color = Color(0xFFDFE8FA)
 val ColorPurple200: Color = Color(0xFFC6D7F7)

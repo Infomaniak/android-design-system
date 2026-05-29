@@ -10,28 +10,46 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.infomaniak.designsystem.core.defaultvalues.DefaultColors
-import com.infomaniak.designsystem.core.defaultvalues.DefaultRadius
+import com.infomaniak.designsystem.core.defaultvalues.DefaultBorderTokens
+import com.infomaniak.designsystem.core.defaultvalues.DefaultColorTokens
+import com.infomaniak.designsystem.core.defaultvalues.DefaultFontTokens
+import com.infomaniak.designsystem.core.defaultvalues.DefaultIconTokens
+import com.infomaniak.designsystem.core.defaultvalues.DefaultRadiusTokens
+import com.infomaniak.designsystem.core.defaultvalues.DefaultSpacingTokens
+import com.infomaniak.designsystem.core.defaultvalues.DefaultTextTokens
 import com.infomaniak.designsystem.core.defaultvalues.DefaultTheme
+import com.infomaniak.designsystem.core.defaultvalues.DefaultTypographyTokens
+import com.infomaniak.designsystem.core.tokens.BorderTokens
 import com.infomaniak.designsystem.core.tokens.ColorTokens
+import com.infomaniak.designsystem.core.tokens.FontTokens
+import com.infomaniak.designsystem.core.tokens.IconTokens
 import com.infomaniak.designsystem.core.tokens.RadiusTokens
+import com.infomaniak.designsystem.core.tokens.SpacingTokens
+import com.infomaniak.designsystem.core.tokens.TextTokens
+import com.infomaniak.designsystem.core.tokens.TypographyTokens
 
 /**
  * Contains functions to access the current theme values provided at the call site's position in the
  * hierarchy.
  */
 object EsdsTheme {
+    val border: BorderTokens
+        @Composable @ReadOnlyComposable get() = LocalEsdsTheme.current.border
+
     val color: ColorTokens
         @Composable @ReadOnlyComposable get() = LocalEsdsTheme.current.color
 
-    val radius: RadiusTokens
+    val icon: IconTokens
+        @Composable @ReadOnlyComposable get() = LocalEsdsTheme.current.icon
+
+    val spacing: SpacingTokens
         @Composable @ReadOnlyComposable get() = LocalEsdsTheme.current.spacing
 
-    // val border: BorderTokens
-    //     @Composable @ReadOnlyComposable get() = LocalEsdsTheme.current.border
+    val radius: RadiusTokens
+        @Composable @ReadOnlyComposable get() = LocalEsdsTheme.current.radius
 
-    // val spacing: SpacingTokens
-    //     @Composable @ReadOnlyComposable get() = LocalEsdsTheme.current.spacing
+    val typography: TypographyTokens
+        @Composable @ReadOnlyComposable get() = LocalEsdsTheme.current.typography
 
     val LocalEsdsTheme: ProvidableCompositionLocal<Values> = staticCompositionLocalOf {
         Values()
@@ -39,11 +57,14 @@ object EsdsTheme {
 
     @Immutable
     class Values(
-        val color: ColorTokens = DefaultColors,
-        val spacing: RadiusTokens = DefaultRadius,
-        // val border: BorderTokens = BorderTokens(),
-        // val spacing: SpacingTokens = SpacingTokens(),
-        // val icon: IconTokens = IconTokens(),
+        val border: BorderTokens = DefaultBorderTokens,
+        val color: ColorTokens = DefaultColorTokens,
+        private val font: FontTokens = DefaultFontTokens,
+        val icon: IconTokens = DefaultIconTokens,
+        val spacing: SpacingTokens = DefaultSpacingTokens,
+        val radius: RadiusTokens = DefaultRadiusTokens,
+        private val text: TextTokens = DefaultTextTokens,
+        val typography: TypographyTokens = DefaultTypographyTokens,
         val materialColorScheme: ColorScheme = DefaultTheme.materialColorScheme,
     )
 }
