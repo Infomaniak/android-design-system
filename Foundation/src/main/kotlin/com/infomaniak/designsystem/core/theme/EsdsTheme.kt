@@ -10,15 +10,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.infomaniak.designsystem.core.defaultvalues.DefaultBorderTokens
-import com.infomaniak.designsystem.core.defaultvalues.DefaultColorTokens
-import com.infomaniak.designsystem.core.defaultvalues.DefaultFontTokens
-import com.infomaniak.designsystem.core.defaultvalues.DefaultIconTokens
-import com.infomaniak.designsystem.core.defaultvalues.DefaultRadiusTokens
-import com.infomaniak.designsystem.core.defaultvalues.DefaultSpacingTokens
-import com.infomaniak.designsystem.core.defaultvalues.DefaultTextTokens
 import com.infomaniak.designsystem.core.defaultvalues.DefaultTheme
-import com.infomaniak.designsystem.core.defaultvalues.DefaultTypographyTokens
 import com.infomaniak.designsystem.core.tokens.BorderTokens
 import com.infomaniak.designsystem.core.tokens.ColorTokens
 import com.infomaniak.designsystem.core.tokens.FontTokens
@@ -57,14 +49,14 @@ object EsdsTheme {
 
     @Immutable
     class Values(
-        val border: BorderTokens = DefaultBorderTokens,
-        val color: ColorTokens = DefaultColorTokens,
-        private val font: FontTokens = DefaultFontTokens,
-        val icon: IconTokens = DefaultIconTokens,
-        val spacing: SpacingTokens = DefaultSpacingTokens,
-        val radius: RadiusTokens = DefaultRadiusTokens,
-        private val text: TextTokens = DefaultTextTokens,
-        val typography: TypographyTokens = DefaultTypographyTokens,
+        val border: BorderTokens = DefaultTheme.border,
+        val color: ColorTokens = DefaultTheme.color,
+        private val font: FontTokens = DefaultTheme.font,
+        val icon: IconTokens = DefaultTheme.icon,
+        val spacing: SpacingTokens = DefaultTheme.spacing,
+        val radius: RadiusTokens = DefaultTheme.radius,
+        private val text: TextTokens = DefaultTheme.text,
+        val typography: TypographyTokens = DefaultTheme.typography,
         val materialColorScheme: ColorScheme = DefaultTheme.materialColorScheme,
     )
 }

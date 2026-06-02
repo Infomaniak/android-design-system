@@ -38,16 +38,6 @@ private fun Screen() {
             ) {
                 Text("Hello")
             }
-
-            MailTheme {
-                Button(
-                    onClick = {},
-                    colors = ButtonDefaults.buttonColors(containerColor = EsdsTheme.color.backgroundBrandDefault),
-                    shape = EsdsTheme.radius.none,
-                ) {
-                    Text("Hello")
-                }
-            }
         }
     }
 }
