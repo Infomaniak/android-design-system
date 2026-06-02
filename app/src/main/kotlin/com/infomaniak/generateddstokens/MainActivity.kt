@@ -14,7 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.infomaniak.designsystem.core.theme.EsdsTheme
+import androidx.compose.ui.unit.dp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun Screen() {
     Scaffold {
-        Column(modifier = Modifier.padding(it), verticalArrangement = Arrangement.spacedBy(EsdsTheme.spacing.eightXl)) {
+        Column(modifier = Modifier.padding(it), verticalArrangement = Arrangement.spacedBy(16.dp)) {
             Button(
                 onClick = {},
                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
