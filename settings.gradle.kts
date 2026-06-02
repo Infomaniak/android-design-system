@@ -23,7 +23,10 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "GeneratedDsTokens"
+rootProject.name = "Design System"
 include(":app")
+include(":catalog")
+include(":DesignSystem:Compose")
+include(":DesignSystem:View")
 include(":Foundation")
 include(":PrimitiveTokens")
