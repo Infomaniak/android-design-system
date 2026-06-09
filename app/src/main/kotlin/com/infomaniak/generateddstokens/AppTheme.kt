@@ -22,5 +22,4 @@ fun AppTheme(
             content = content,
         )
     }
-    content()
 }
