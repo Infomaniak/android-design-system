@@ -5,24 +5,19 @@ plugins {
 }
 
 android {
-    namespace = "com.infomaniak.designsystem.catalog"
+    namespace = "com.infomaniak.generateddstokens"
 
     defaultConfig {
-        applicationId = "com.infomaniak.designsystem.catalog"
+        applicationId = "com.infomaniak.generateddstokens"
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            isMinifyEnabled = true
+            isShrinkResources = true
         }
     }
 
@@ -32,6 +27,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":Foundation"))
+
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.core.ktx)
     implementation(libs.stdlib)
