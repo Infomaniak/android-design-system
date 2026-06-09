@@ -28,9 +28,6 @@ object EsdsTheme {
     val border: BorderTokens
         @Composable @ReadOnlyComposable get() = LocalEsdsTheme.current.border
 
-    val color: ColorTokens
-        @Composable @ReadOnlyComposable get() = LocalEsdsTheme.current.color
-
     val icon: IconTokens
         @Composable @ReadOnlyComposable get() = LocalEsdsTheme.current.icon
 
@@ -50,7 +47,7 @@ object EsdsTheme {
     @Immutable
     class Values(
         val border: BorderTokens = DefaultTheme.border,
-        val color: ColorTokens = DefaultTheme.color,
+        private val color: ColorTokens = DefaultTheme.color,
         private val font: FontTokens = DefaultTheme.font,
         val icon: IconTokens = DefaultTheme.icon,
         val spacing: SpacingTokens = DefaultTheme.spacing,
