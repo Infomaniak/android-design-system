@@ -1,23 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
+    id("com.infomaniak.designsystem.convention.android")
 }
 
 android {
     namespace = "com.infomaniak.designsystme.primitivetokens"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
-
-    defaultConfig {
-        minSdk = 27
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-
 }
 
 dependencies {

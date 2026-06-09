@@ -1,9 +1,6 @@
-import com.android.build.api.dsl.LibraryExtension
-import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
-import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 
@@ -11,24 +8,10 @@ class ThemeModuleConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         with(pluginManager) {
             apply("com.android.library")
+            apply("com.infomaniak.designsystem.convention.android")
         }
 
         val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
-
-        extensions.configure<LibraryExtension> {
-            compileSdk {
-                version = release(36) {
-                    minorApiLevel = 1
-                }
-            }
-            defaultConfig {
-                minSdk = 27
-            }
-            compileOptions {
-                sourceCompatibility = JavaVersion.VERSION_17
-                targetCompatibility = JavaVersion.VERSION_17
-            }
-        }
 
         dependencies {
             add("implementation", project(":Foundation"))

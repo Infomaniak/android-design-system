@@ -1,27 +1,14 @@
 plugins {
     alias(libs.plugins.android.library)
+    id("com.infomaniak.designsystem.convention.android")
     alias(libs.plugins.compose.compiler)
 }
 
 android {
     namespace = "com.infomaniak.designsystem.core"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
-
-    defaultConfig {
-        minSdk = 27
-    }
 
     buildFeatures {
         compose = true
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 

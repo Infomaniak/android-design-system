@@ -1,19 +1,14 @@
 plugins {
     alias(libs.plugins.android.application)
+    id("com.infomaniak.designsystem.convention.android")
     alias(libs.plugins.compose.compiler)
 }
 
 android {
     namespace = "com.infomaniak.generateddstokens"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
 
     defaultConfig {
         applicationId = "com.infomaniak.generateddstokens"
-        minSdk = 27
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -28,11 +23,6 @@ android {
 
     buildFeatures {
         compose = true
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
