@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.infomaniak.designsystme.primitivetokens"
+    namespace = "com.infomaniak.designsystem.primitivetokens"
 }
 
 dependencies {
