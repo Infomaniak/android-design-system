@@ -30,8 +30,8 @@ val repoRoot: File = generateSequence(File(System.getProperty("user.dir")).absol
  *                  (Light, Dark, and their Medium/High Contrast variants). Each role is a *reference*
  *                  to a Primitive or a Product constant, e.g. {Accent.40} or {Gray.98}.
  *
- * Only the "Schemes" group of the Theme collection maps to Material color roles. Everything else
- * (State Layers, Surfaces, Add-ons, Extended Colors ...) only matters to Figma and is ignored.
+ * Only the groups configured in `groupConfigs` are generated (currently "Schemes" and "Extended Colors").
+ * Other Theme groups (State Layers, Surfaces, Add-ons, …) are ignored.
  *
  * For every reference the script emits an intermediate `val` so the chain
  *   role -> constant (-> deeper constant)
@@ -195,15 +195,10 @@ val themeModesJson = collections.getValue("Theme")
 class ConstantVal(val name: String, val rhs: String, val deps: List<String>)
 
 /**
- * Resolves Theme references against the Primitives collection and one Product mode, registering an
- * intermediate `val` for every constant reached (recursively, in case a constant references another).
- */
-/**
- * Resolves Theme references into a single shared palette so the color primitives can live in one
+ * Resolves token references into a single shared palette so the color primitives can live in one
  * module reused by every product. Primitive constants keep their plain name (e.g. `Gray98`) while
- * product-specific accents are prefixed with the product (e.g. `CalendarAccent50`,
- * `InfomaniakAccent50`). Every reached constant is registered once, recursively, so chains stay
- * visible and can be emitted in dependency order.
+ * product-specific accents are prefixed with the product (e.g. `CalendarAccent50`). Every reached
+ * constant is registered once (recursively) so chains stay visible and can be emitted in dependency order.
  */
 class ConstantRegistry {
 
@@ -309,7 +304,10 @@ fun flattenedParameterName(path: List<String>): String {
 class GeneratedFile(val name: String, val content: String)
 
 fun header(packageName: String) = buildString {
-    appendLine("// Generated from ${inputFile.name} - do not edit by hand.")
+    appendLine("/*")
+    appendLine("  Do not edit directly, this file was auto-generated.")
+    appendLine("  Source: ${inputFile.name}")
+    appendLine("*/")
     appendLine()
     appendLine("package $packageName")
     appendLine()
