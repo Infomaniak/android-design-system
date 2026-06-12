@@ -169,10 +169,10 @@ val productConfigs = listOf(
 // Input
 // ---------------------------------------------------------------------------
 
-val scriptDir = repoRoot.resolve("scripts")
-val inputFile = File(scriptDir, "android_specific_tokens.json")
+val tokenSourceDir = repoRoot.resolve("token-source")
+val inputFile = File(tokenSourceDir, "android_specific_tokens.json")
     .takeIf { it.exists() }
-    ?: error("Could not find android_specific_tokens.json in the scripts folder.")
+    ?: error("Could not find android_specific_tokens.json in ${tokenSourceDir.path}.")
 
 val root = Json.parseToJsonElement(inputFile.readText()).jsonArray
 
