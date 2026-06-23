@@ -8,6 +8,9 @@ Infomaniak Android Design System — a Compose-based UI library providing design
 ./gradlew build   # Foundation, PrimitiveTokens, app (demo), catalog
 ```
 
+## Tests & Lint
+Test source sets exist in `catalog/src/test` and `catalog/src/androidTest`, but no GitHub Actions workflow currently runs them automatically. The only CI workflow is the token generator (`.github/workflows/generate-android-specific-tokens.yml`).
+
 ## Token Update Workflow
 1. Modify `token-source/android_specific_tokens.json`
 2. CI (`.github/workflows/generate-android-specific-tokens.yml`) auto-generates code and pushes to the PR branch — **do not manually edit generated token files**
