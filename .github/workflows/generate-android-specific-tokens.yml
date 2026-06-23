@@ -11,9 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     # Avoid re-triggering when the bot itself pushes changes
     # Manual trigger is restricted to the main branch
+    # Fork PRs are excluded as they don't have access to repository secrets
     if: |
-      github.actor != 'dev-mobile-bot' &&
-      (github.event_name != 'workflow_dispatch' || github.ref == 'refs/heads/main')
+      github.actor != 'github-actions[bot]' &&
+      (github.event_name != 'workflow_dispatch' || github.ref == 'refs/heads/main') &&
+      (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
 
     permissions:
       contents: write
@@ -34,7 +36,7 @@ jobs:
           ref: ${{ github.ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # Context: https://httgp.com/signing-commits-in-github-actions
+      # Context: https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#signing-commits-in-a-workflow
       # Link: https://github.com/crazy-max/ghaction-import-gpg/releases
       - name: Import bot's GPG key for signing commits
         id: import-gpg
@@ -58,7 +60,7 @@ jobs:
           version: 2.3.10
 
       - name: Run generateAndroidSpecificTokens script
-        run: kotlinc -script scripts/generateAndroidSpecificTokens.main.kts
+        run: kotlin scripts/generateAndroidSpecificTokens.main.kts
 
       - name: Commit and push to PR branch
         if: github.event_name == 'pull_request'
