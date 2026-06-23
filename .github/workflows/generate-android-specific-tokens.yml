@@ -10,7 +10,10 @@ jobs:
   generate-tokens:
     runs-on: ubuntu-latest
     # Avoid re-triggering when the bot itself pushes changes
-    if: github.actor != 'dev-mobile-bot'
+    # Manual trigger is restricted to the main branch
+    if: |
+      github.actor != 'dev-mobile-bot' &&
+      (github.event_name != 'workflow_dispatch' || github.ref == 'refs/heads/main')
 
     permissions:
       contents: write
@@ -18,9 +21,17 @@ jobs:
 
     steps:
       - name: Checkout PR branch
+        if: github.event_name == 'pull_request'
         uses: actions/checkout@v6.0.3
         with:
-          ref: ${{ github.event_name == 'workflow_dispatch' && github.ref || github.head_ref }}
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout branch (manual trigger)
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/checkout@v6.0.3
+        with:
+          ref: ${{ github.ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
       # Context: https://httgp.com/signing-commits-in-github-actions
