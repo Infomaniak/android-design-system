@@ -10,7 +10,7 @@ The library exposes two module types for consumption:
 
 ## Material tokens
 
-The README for the material tokens generator script can be in [`scripts/README.md`](scripts/README.md).
+The README for the material tokens generator script can be found in [`scripts/README.md`](scripts/README.md).
 
 These colors must be consumed to support material functionalities such as accessibility settings for contrasts or user's system
 colors.
