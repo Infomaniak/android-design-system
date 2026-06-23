@@ -1,75 +1,54 @@
 # Android Design System
 
-This project contains a Kotlin script that parses a Figma token export and generates Material 3 Kotlin source files.
+## Structure
 
----
+The library exposes two module types for consumption:
 
-## How it works
+- **Foundation** — Core theme infrastructure with token definitions and `EsdsTheme.Values` composition
+- **Theme*** — Theme implementations (e.g. `ThemeMail`, `ThemeCalendar`) that provide themed `EsdsTheme.Values` instances that can
+  be consumed through composition local by providing it through `LocalEsdsTheme`
 
-The script reads `token-source/android_specific_tokens.json` (a Figma token export) and produces:
+## Material tokens
 
-| Output                                           | Location                                            |
-|--------------------------------------------------|-----------------------------------------------------|
-| Shared color primitives object                   | `PrimitiveTokens/…/ColorPrimitives.kt`              |
-| `ExtendedColors` data class definition           | `Foundation/…/ExtendedColors.kt`                    |
-| Per-product color scheme instances (×6 modes)    | `Theme<Product>/…/<Product><Mode>ColorScheme.kt`    |
-| Per-product extended colors instances (×6 modes) | `Theme<Product>/…/<Product><Mode>ExtendedColors.kt` |
+The README for the material tokens generator script can be found in [`scripts/README.md`](scripts/README.md).
 
-The script auto-detects the repo root by walking up to the nearest `settings.gradle.kts`, so it can be run from any subdirectory.
+These colors must be consumed to support material functionalities such as accessibility settings for contrasts or user's system
+colors.
 
----
+## Post-generation setup
 
-## Running the script
+Tokens are generated through PRs automatically opened on this repo, but those PRs are incomplete and can't be consumed as-is.
 
-**From a terminal, anywhere inside the repo:**
+The generated code only produces internal instances for the classes defined in
+the [tokens](Foundation/src/main/kotlin/com/infomaniak/designsystem/core/tokens) folder.
 
-```bash
-kotlin scripts/generateAndroidSpecificTokens.main.kts
-```
+Each theme module also needs a **public `EsdsTheme.Values` instance** that groups those internal tokens together. One instance
+must be created manually per exposed theme (light, dark, etc.).
 
-**From Android Studio:**  
-Open `scripts/generateAndroidSpecificTokens.main.kts`, then click the ▶ run button in the gutter.
+The different dimensions for light/dark/etc. should be the following and will be used according to the user's accessibility
+settings:
 
----
+* Light
+* LightMediumContrast
+* LightHighContrast
+* Dark
+* DarkMediumContrast
+* DarkHighContrast
 
-## Configuration
+### Example
 
-All configuration lives at the top of `scripts/generateAndroidSpecificTokens.main.kts`.
-
-### Adding a new product
-
-Every time a new product is supported inside the JSON and needs to be generated, add an entry to `productConfigs`:
-
-```kotlin
-ProductConfig(
-    product = "Mail", // must match the mode name in the JSON "Product" collection
-    packageName = "com.infomaniak.designsystem.mail",
-    outputDir = repoRoot.resolve("ThemeMail/src/main/kotlin/com/infomaniak/designsystem/mail"),
-)
-```
-
-### Adding a new token group
-
-Although it should not serve very often, this can be done by adding an entry to `groupConfigs`:
+`MailLightTheme` should look like:
 
 ```kotlin
-GroupConfig(
-    jsonGroupName = "My Group", // must match the group name inside each Theme mode in the JSON
-    instanceSuffix = "MyTokens", // e.g. CalendarLightMyTokens
-    subPackage = "mytokens", // sub-folder/sub-package inside the product's output dir
-    excluded = emptySet(),
-    kind = GroupKind.GeneratedDataClass(
-        name = "MyTokens",
-        packageName = "com.infomaniak.designsystem.core.tokens",
-        outputDir = repoRoot.resolve("Foundation/src/main/kotlin/com/infomaniak/designsystem/core/tokens"),
-    ),
+val MailLightTheme: EsdsTheme.Values = EsdsTheme.Values(
+    border = MailLightBorderTokens,
+    color = MailLightColorTokens,
+    font = MailLightFontTokens,
+    icon = MailLightIconTokens,
+    spacing = MailLightSpacingTokens,
+    radius = MailLightRadiusTokens,
+    text = MailLightTextTokens,
+    typography = MailLightTypographyTokens,
+    materialColorScheme = LightScheme,
 )
 ```
-
-### Excluding roles
-
-Add role names to `excludedRoles` (global) or to a specific group's `excluded` set to omit them from generation.
-
-### Changing the token source file
-
-Replace `token-source/android_specific_tokens.json` with the new export — no script change needed.
