@@ -17,7 +17,7 @@ No special setup is required (no git submodules or .env files).
 
 ## Token Update Workflow
 1. Modify `token-source/android_specific_tokens.json`
-2. CI auto-generates code and pushes to the PR branch — **do not manually edit generated token files** under `PrimitiveTokens/src/`
+2. CI auto-generates code and pushes to the PR branch — **do not manually edit generated token files** under `PrimitiveTokens/src/`. Note: the workflow only triggers on changes to `token-source/android_specific_tokens.json` and is skipped for fork PRs (no write access to push back).
 3. After CI push, manually expose a public `EsdsTheme.Values` instance for each theme dimension (Light, LightMediumContrast, LightHighContrast, Dark, DarkMediumContrast, DarkHighContrast). The current entry point is:
    `Foundation/src/main/kotlin/com/infomaniak/designsystem/core/defaultvalues/DefaultTheme.kt`
    (If a future `Theme*` module is added to the Gradle build, update it there instead.)
