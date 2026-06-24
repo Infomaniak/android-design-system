@@ -4,6 +4,13 @@
 
 package com.infomaniak.designsystem.core.defaultvalues
 
-import com.infomaniak.designsystem.core.tokens.IconTokens
+import com.infomaniak.designsystem.core.tokens.*
+import com.infomaniak.designsystem.core.defaultvalues.internal.IntermediateDefault
 
-val DefaultIconTokens = IconTokens()
+internal val DefaultIconTokens = IconTokens(
+  sizeXs = IntermediateDefault.IconSizeXs,
+  sizeMd = IntermediateDefault.IconSizeMd,
+  sizeLg = IntermediateDefault.IconSizeLg,
+  sizeSm = IntermediateDefault.IconSizeSm,
+  sizeXl = IntermediateDefault.IconSizeXl,
+)
