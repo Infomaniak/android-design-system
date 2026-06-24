@@ -73,6 +73,20 @@ jobs:
             git push
           fi
 
+      - name: Close existing regeneration PRs and prune branches (manual trigger)
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          gh pr list --base main --state open --json number,headRefName \
+            --jq '.[] | select(.headRefName | startswith("bot/regenerate-android-specific-tokens-")) | [.number, .headRefName] | @tsv' \
+            | while IFS=$'\t' read -r PR_NUMBER BRANCH; do
+                gh pr close "$PR_NUMBER" --comment "Superseded by a new workflow_dispatch run."
+              done
+          git ls-remote --heads origin 'refs/heads/bot/regenerate-android-specific-tokens-*' \
+            | awk '{ sub("refs/heads/","",$2); print $2 }' \
+            | while IFS= read -r branch; do git push origin --delete "$branch" || true; done
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create new branch and open PR (manual trigger)
         if: github.event_name == 'workflow_dispatch'
         run: |
