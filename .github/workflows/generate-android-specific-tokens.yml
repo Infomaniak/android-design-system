@@ -76,7 +76,7 @@ jobs:
       - name: Close existing regeneration PRs and prune branches (manual trigger)
         if: github.event_name == 'workflow_dispatch'
         run: |
-          gh pr list --base main --state open --json number,headRefName \
+          gh pr list --base "${{ github.ref_name }}" --state open --json number,headRefName \
             --jq '.[] | select(.headRefName | startswith("bot/regenerate-android-specific-tokens-")) | [.number, .headRefName] | @tsv' \
             | while IFS=$'\t' read -r PR_NUMBER BRANCH; do
                 gh pr close "$PR_NUMBER" --comment "Superseded by a new workflow_dispatch run."
