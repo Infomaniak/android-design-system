@@ -9,8 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.infomaniak.generateddstokens"
-        targetSdk = 36
-        versionCode = 1
+        targetSdk = 37
         versionName = "1.0"
     }
 

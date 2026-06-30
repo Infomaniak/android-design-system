@@ -35,6 +35,8 @@ settings:
 * DarkMediumContrast
 * DarkHighContrast
 
+The new instances are stored at the module's root level like the other token instances.
+
 ### Example
 
 `MailLightTheme` should look like:
@@ -42,7 +44,6 @@ settings:
 ```kotlin
 val MailLightTheme: EsdsTheme.Values = EsdsTheme.Values(
     border = MailLightBorderTokens,
-    color = MailLightColorTokens,
     font = MailLightFontTokens,
     icon = MailLightIconTokens,
     spacing = MailLightSpacingTokens,
