@@ -35,6 +35,8 @@ settings:
 * DarkMediumContrast
 * DarkHighContrast
 
+The new instance are stored at the module's root level like the other token instances.
+
 ### Example
 
 `MailLightTheme` should look like:
