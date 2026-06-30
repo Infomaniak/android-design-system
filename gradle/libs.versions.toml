@@ -2,9 +2,8 @@
 activityCompose = "1.13.0"
 activityKtx = "1.13.0"
 agp = "9.2.1"
-composeBom = "2026.05.01"
+composeBom = "2026.06.00"
 coreKtx = "1.19.0"
-foundation = "1.11.2"
 kotlin = "2.4.0"
 
 [libraries]
@@ -12,7 +11,6 @@ android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", ve
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activityKtx" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
-androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "foundation" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
