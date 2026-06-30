@@ -5,7 +5,6 @@ import com.infomaniak.designsystem.core.theme.EsdsTheme
 
 val DefaultTheme: EsdsTheme.Values = EsdsTheme.Values(
     border = DefaultBorderTokens,
-    color = DefaultColorTokens,
     font = DefaultFontTokens,
     icon = DefaultIconTokens,
     spacing = DefaultSpacingTokens,

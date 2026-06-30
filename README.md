@@ -42,7 +42,6 @@ settings:
 ```kotlin
 val MailLightTheme: EsdsTheme.Values = EsdsTheme.Values(
     border = MailLightBorderTokens,
-    color = MailLightColorTokens,
     font = MailLightFontTokens,
     icon = MailLightIconTokens,
     spacing = MailLightSpacingTokens,
