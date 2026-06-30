@@ -35,7 +35,7 @@ settings:
 * DarkMediumContrast
 * DarkHighContrast
 
-The new instance are stored at the module's root level like the other token instances.
+The new instances are stored at the module's root level like the other token instances.
 
 ### Example
 
