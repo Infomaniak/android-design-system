@@ -4,6 +4,13 @@
 
 package com.infomaniak.designsystem.core.defaultvalues
 
-import com.infomaniak.designsystem.core.tokens.BorderTokens
+import com.infomaniak.designsystem.core.tokens.*
+import com.infomaniak.designsystem.core.defaultvalues.internal.IntermediateDefault
 
-val DefaultBorderTokens = BorderTokens()
+internal val DefaultBorderTokens = BorderTokens(
+  noneWidth = IntermediateDefault.BorderNoneWidth,
+  xsWidth = IntermediateDefault.BorderXsWidth,
+  smWidth = IntermediateDefault.BorderSmWidth,
+  mdWidth = IntermediateDefault.BorderMdWidth,
+  lgWidth = IntermediateDefault.BorderLgWidth,
+)
