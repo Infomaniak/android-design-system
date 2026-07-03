@@ -17,7 +17,8 @@ val repoRoot: File = generateSequence(File(System.getProperty("user.dir")).absol
     ?: error("Could not locate the repository root (no settings.gradle.kts found in any parent folder).")
 
 /*
- * Reads `token-source/app_themes.json` and generates one `{ThemeName}Theme.kt` file per theme.
+ * Reads `token-source/app_themes.json` and generates one `{ThemeName}Theme.kt` file per theme,
+ * containing one `val` per dimension (Light, Dark, etc.).
  *
  * Each file contains one `internal val {ThemeName}{Dimension}Theme = EsdsTheme.Values(…)` per
  * dimension. Dimensions are resolved in priority order:
@@ -204,8 +205,9 @@ val appThemesJson = repoRoot.resolve("token-source/app_themes.json")
 
 val root = json.parseToJsonElement(appThemesJson.readText()).jsonObject
 val default = root["default"]?.jsonObject
-    ?: error("Missing 'default' array in app_themes.json")
-val defaultDimensions = default["dimensions"]!!.jsonArray.map { it.jsonPrimitive.content }
+    ?: error("Missing 'default' object in app_themes.json")
+val defaultDimensions = default["dimensions"]?.jsonArray?.map { it.jsonPrimitive.content }
+    ?: error("Missing 'default.dimensions' array in app_themes.json")
 
 val themes = root["themes"]?.jsonArray
     ?: error("Missing 'themes' array in app_themes.json")
@@ -215,7 +217,8 @@ val enabledThemes = mutableListOf<String>()
 themes.forEach { themeElement ->
     val themeObj = themeElement.jsonObject
 
-    val themeName  = themeObj["name"]!!.jsonPrimitive.content
+    val themeName  = themeObj["name"]?.jsonPrimitive?.content
+        ?: error("A theme entry in app_themes.json is missing its 'name' field: $themeObj")
     val enabled    = themeObj["enabled"]?.jsonPrimitive?.content?.toBoolean() ?: true
     val dimensions = themeObj["dimensions"]?.jsonArray?.map { it.jsonPrimitive.content } ?: defaultDimensions
 
