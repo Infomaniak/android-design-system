@@ -43,13 +43,9 @@ The new instances are stored at the module's root level like the other token ins
 
 ```kotlin
 val MailLightTheme: EsdsTheme.Values = EsdsTheme.Values(
-    border = MailLightBorderTokens,
-    font = MailLightFontTokens,
     icon = MailLightIconTokens,
     spacing = MailLightSpacingTokens,
     radius = MailLightRadiusTokens,
-    text = MailLightTextTokens,
-    typography = MailLightTypographyTokens,
     materialColorScheme = LightScheme,
 )
 ```
