@@ -1,0 +1,54 @@
+{
+  "default": {
+    "dimensions": [
+      "Light",
+      "LightMediumContrast",
+      "LightHighContrast",
+      "Dark",
+      "DarkMediumContrast",
+      "DarkHighContrast"
+    ]
+  },
+  "themes": [
+    {
+      "name": "Calendar",
+      "enabled": true
+    },
+    {
+      "name": "Contacts",
+      "enabled": false
+    },
+    {
+      "name": "Euria",
+      "enabled": false
+    },
+    {
+      "name": "Infomaniak",
+      "enabled": false
+    },
+    {
+      "name": "Kchat",
+      "enabled": false
+    },
+    {
+      "name": "Kdrive",
+      "enabled": false
+    },
+    {
+      "name": "Knote",
+      "enabled": false
+    },
+    {
+      "name": "Mail",
+      "enabled": false
+    },
+    {
+      "name": "Security",
+      "enabled": false
+    },
+    {
+      "name": "Swisstransfer",
+      "enabled": false
+    }
+  ]
+}
