@@ -372,8 +372,10 @@ fun generateDataClassFile(kind: GroupKind.GeneratedDataClass, fields: List<Strin
     name = "${kind.name}.kt",
     content = buildString {
         append(header(kind.packageName))
+        appendLine("import androidx.compose.runtime.Immutable")
         appendLine("import androidx.compose.ui.graphics.Color")
         appendLine()
+        appendLine("@Immutable")
         appendLine("data class ${kind.name}(")
         fields.forEach { field -> appendLine("    val $field: Color,") }
         appendLine(")")

@@ -5,8 +5,10 @@
 
 package com.infomaniak.designsystem.core.tokens
 
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 
+@Immutable
 data class ExtendedColors(
     val warning: Color,
     val onWarning: Color,
