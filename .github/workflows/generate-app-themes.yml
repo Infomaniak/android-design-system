@@ -1,13 +1,13 @@
-name: Generate Android Specific Tokens
+name: Generate App Themes
 
 on:
   pull_request:
     paths:
-      - 'token-source/android_specific_tokens.json'
+      - 'token-source/app_themes.json'
   workflow_dispatch:
 
 jobs:
-  generate-tokens:
+  generate-themes:
     # Avoid re-triggering when the bot itself pushes changes
     # Manual trigger is restricted to the main branch
     # Fork PRs are excluded as they don't have access to repository secrets
@@ -21,10 +21,10 @@ jobs:
     uses: ./.github/workflows/reusable-generate-tokens.yml
     secrets: inherit
     with:
-      script_path: scripts/generateAndroidSpecificTokens.main.kts
-      commit_message: 'chore: Regenerate tokens from android_specific_tokens.json'
-      branch_prefix: bot/regenerate-android-specific-tokens-
-      pr_title: 'chore: Regenerate tokens from android_specific_tokens.json'
-      workflow_name: Generate Android Specific Tokens
+      script_path: scripts/generateAppThemes.main.kts
+      commit_message: 'chore: Regenerate app themes from app_themes.json'
+      branch_prefix: bot/regenerate-app-themes-
+      pr_title: 'chore: Regenerate app themes from app_themes.json'
+      workflow_name: Generate App Themes
       trigger_event_name: ${{ github.event_name }}
       head_ref: ${{ github.head_ref }}
