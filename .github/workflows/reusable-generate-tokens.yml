@@ -8,7 +8,7 @@ on:
         required: true
         type: string
       commit_message:
-        description: 'Commit message used both for direct pushes and manual-trigger PRs.'
+        description: 'Commit message used for the new automated commit containing the generated code.'
         required: true
         type: string
       branch_prefix:
@@ -16,7 +16,7 @@ on:
         required: true
         type: string
       pr_title:
-        description: 'Title used for the PR created on manual trigger.'
+        description: 'Title used for the PR created when the workflow is manually triggered.'
         required: true
         type: string
       workflow_name:
