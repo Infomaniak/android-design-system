@@ -27,6 +27,14 @@ internal object IntermediateKchatDark {
   val IconSizeLg: Dp = Scale32
   val IconSizeSm: Dp = Scale20
   val IconSizeXl: Dp = Scale40
+  val OpacityNone: Float = Opacity0
+  val OpacityGhost: Float = Opacity5
+  val OpacitySubtle: Float = Opacity10
+  val OpacitySoft: Float = Opacity25
+  val OpacityMedium: Float = Opacity50
+  val OpacityStrong: Float = Opacity75
+  val OpacityHeavy: Float = Opacity90
+  val OpacityFull: Float = Opacity100
   val RadiusNone: Shape = Radius0
   val RadiusXs: Shape = Radius2
   val RadiusSm: Shape = Radius4
