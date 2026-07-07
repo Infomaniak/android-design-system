@@ -9,12 +9,15 @@ class ThemeModuleConventionPlugin : Plugin<Project> {
         with(pluginManager) {
             apply("com.android.library")
             apply("com.infomaniak.designsystem.convention.android")
+            apply("com.infomaniak.designsystem.convention.publishing")
         }
 
         val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
         dependencies {
-            add("implementation", project(":Foundation"))
+            // Exposed as "api" because theme modules expose public vals of type EsdsTheme.Values
+            // (defined in Foundation) directly as part of their public API.
+            add("api", project(":Foundation"))
             add("implementation", project(":PrimitiveTokens"))
 
             add("implementation", libs.findLibrary("androidx-core-ktx").get())

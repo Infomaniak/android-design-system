@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     id("com.infomaniak.designsystem.convention.android")
+    id("com.infomaniak.designsystem.convention.publishing")
 }
 
 android {

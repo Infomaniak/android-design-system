@@ -1,0 +1,81 @@
+# https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions
+name: Publish to Maven Central
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (x.x.x)'
+        required: true
+        type: string
+      acknowledgement:
+        description: |
+          WARNING: Publishing a version to Maven Central is irrevocable.
+          Do you confirm (Yes/no):
+          1. You have successfully tested publishing a snapshot (with a Gradle CLEAN) just before changing the version
+          2. The version is CORRECT, and is NOT a SNAPSHOT
+          3. You are pointing this workflow run to the tag/ref that matches the version
+          4. You are not drunk or otherwise too tired
+        required: true
+        type: string
+      notify-kchat:
+        description: "Send a KChat notification once published"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check acknowledgement
+        run: test "${{ github.event.inputs.acknowledgement }}" = "Yes" || (echo "Acknowledgement missing" && exit 1)
+
+      - name: Checkout sources
+        uses: actions/checkout@v6
+        with:
+          ref: refs/tags/${{ inputs.version }}
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: 21
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+
+      - name: Perform a Gradle clean
+        run: ./gradlew clean
+
+      - name: Publish the artifacts
+        run: ./gradlew publishAggregationToCentralPortal -Pdesignsystem.version=${{ inputs.version }}
+
+      - name: List published libraries
+        id: modules
+        run: |
+          {
+            echo 'list<<EOF'
+            ./gradlew -q listPublishedModules -Pdesignsystem.version=${{ inputs.version }}
+            echo EOF
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Notify KChat
+        if: ${{ inputs.notify-kchat && env.KCHAT_DESIGN_SYSTEM_WEBHOOK_URL != '' }}
+        env:
+          KCHAT_DESIGN_SYSTEM_WEBHOOK_URL: ${{ secrets.KCHAT_DESIGN_SYSTEM_WEBHOOK_URL }}
+        run: |
+          LIBS=$(echo "${{ steps.modules.outputs.list }}" | sed -E 's#^(.*)$#implementation("\1")#')
+          TEXT=$(printf ':rocket: *Android Design System %s* is now available on Maven Central!\n:package: Available libraries:\n```\n%s\n```\n:link: https://central.sonatype.com/namespace/com.infomaniak.designsystem' \
+            "${{ inputs.version }}" "$LIBS")
+          curl -s -X POST "$KCHAT_DESIGN_SYSTEM_WEBHOOK_URL" \
+            -H "Content-Type: application/json" \
+            -d "$(jq -n --arg text "$TEXT" '{text: $text}')"
+env:
+  GRADLE_OPTS: -Dorg.gradle.jvmargs="-Xmx5g -Dfile.encoding=UTF-8"
+  ossrhUsername: ${{ secrets.SONATYPE_USERNAME }}
+  ossrhPassword: ${{ secrets.SONATYPE_PASSWORD }}
+  GPG_key_id: ${{ secrets.GPG_KEY_ID }}
+  GPG_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+  GPG_private_password: ${{ secrets.GPG_PRIVATE_PASSWORD }}
+  KCHAT_DESIGN_SYSTEM_WEBHOOK_URL: ${{ secrets.KCHAT_DESIGN_SYSTEM_WEBHOOK_URL }}
