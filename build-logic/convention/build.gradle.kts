@@ -4,6 +4,7 @@ plugins {
 
 dependencies {
     compileOnly(libs.android.gradle.plugin)
+    implementation(libs.ktlint.gradle.plugin)
 }
 
 gradlePlugin {

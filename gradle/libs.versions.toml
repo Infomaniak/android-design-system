@@ -5,6 +5,7 @@ agp = "9.2.1"
 composeBom = "2026.06.00"
 coreKtx = "1.18.0"
 kotlin = "2.4.0"
+ktlintGradle = "14.2.0"
 nmcp = "1.6.1"
 
 [libraries]
@@ -18,6 +19,7 @@ androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graph
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+ktlint-gradle-plugin = { group = "org.jlleitschuh.gradle", name = "ktlint-gradle", version.ref = "ktlintGradle" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
