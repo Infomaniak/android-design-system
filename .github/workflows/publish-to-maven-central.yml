@@ -68,6 +68,7 @@ jobs:
         run: ./gradlew clean
 
       - name: Publish the artifacts
+        id: publish
         run: ./gradlew publishAggregationToCentralPortal -Pdesignsystem.version=${{ inputs.version }}
 
       - name: Create GitHub Release
