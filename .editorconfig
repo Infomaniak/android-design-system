@@ -4,6 +4,10 @@ root = true
 # `ktlintCheck` Gradle tasks strip dead imports without reformatting/reindenting/reordering
 # anything else. Remove this restriction (or override it per-directory) if full ktlint formatting
 # is wanted later.
-[*.{kt,kts}]
+[*.kt]
+ktlint_standard = disabled
+ktlint_standard_no-unused-imports = enabled
+
+[*.kts]
 ktlint_standard = disabled
 ktlint_standard_no-unused-imports = enabled
