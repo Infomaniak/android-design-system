@@ -4,6 +4,18 @@ plugins {
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.nmcp.aggregation)
+    alias(libs.plugins.ktlint) apply false
+}
+
+// Applies ktlint to every module so `./gradlew ktlintFormat` (or `ktlintCheck`) can be run from the
+// root. The root `.editorconfig` restricts ktlint to the "no-unused-imports" rule only, so this
+// only strips dead imports and doesn't reformat/reindent/reorder anything else.
+subprojects {
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
+
+    extensions.configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+        version.set("1.8.0")
+    }
 }
 
 // Aggregates every publishable module (Foundation, PrimitiveTokens, and any Theme* module) into a

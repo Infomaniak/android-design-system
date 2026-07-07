@@ -1,0 +1,9 @@
+root = true
+
+# Only the "no-unused-imports" ktlint rule is enabled repo-wide. This lets the `ktlintFormat` /
+# `ktlintCheck` Gradle tasks strip dead imports without reformatting/reindenting/reordering
+# anything else. Remove this restriction (or override it per-directory) if full ktlint formatting
+# is wanted later.
+[*.{kt,kts}]
+ktlint_standard = disabled
+ktlint_standard_no-unused-imports = enabled
