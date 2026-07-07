@@ -13,7 +13,8 @@ on:
           Do you confirm (Yes/no):
           1. You have successfully tested publishing a snapshot (with a Gradle CLEAN) just before changing the version
           2. The version is CORRECT, and is NOT a SNAPSHOT
-          3. You are pointing this workflow run to the tag/ref that matches the version
+          3. You are running this workflow from the branch/ref you want to tag and release (a tag will be
+             created automatically from it)
           4. You are not drunk or otherwise too tired
         required: true
         type: string
@@ -23,7 +24,7 @@ on:
         default: true
 
 permissions:
-  contents: read
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -33,8 +34,26 @@ jobs:
 
       - name: Checkout sources
         uses: actions/checkout@v6
-        with:
-          ref: refs/tags/${{ inputs.version }}
+
+      - name: Check version does not already exist
+        run: |
+          if gh release view "${{ inputs.version }}" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            echo "Error: release ${{ inputs.version }} already exists"
+            exit 1
+          fi
+          if git ls-remote --tags origin "refs/tags/${{ inputs.version }}" | grep -q .; then
+            echo "Error: tag ${{ inputs.version }} already exists"
+            exit 1
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create and push tag
+        run: |
+          git config user.name "dev-mobile-bot"
+          git config user.email "mobile+github-bot@infomaniak-dev.ch"
+          git tag "${{ inputs.version }}"
+          git push origin "refs/tags/${{ inputs.version }}"
 
       - name: Setup Java
         uses: actions/setup-java@v5
@@ -50,6 +69,14 @@ jobs:
 
       - name: Publish the artifacts
         run: ./gradlew publishAggregationToCentralPortal -Pdesignsystem.version=${{ inputs.version }}
+
+      - name: Create GitHub Release
+        run: |
+          gh release create "${{ inputs.version }}" \
+            --title "${{ inputs.version }}" \
+            --generate-notes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: List published libraries
         id: modules
@@ -71,6 +98,14 @@ jobs:
           curl -s -X POST "$KCHAT_DESIGN_SYSTEM_WEBHOOK_URL" \
             -H "Content-Type: application/json" \
             -d "$(jq -n --arg text "$TEXT" '{text: $text}')"
+
+      # Runs only if a previous step failed (Gradle Kotlin DSL "if:" without a status function
+      # implies success(), so this needs to explicitly opt in with failure()). This removes the
+      # tag we just pushed so a failed publish doesn't leave a dangling/incorrect version tag.
+      - name: Delete tag on failure
+        if: failure()
+        run: git push origin --delete "refs/tags/${{ inputs.version }}" || true
+
 env:
   GRADLE_OPTS: -Dorg.gradle.jvmargs="-Xmx5g -Dfile.encoding=UTF-8"
   ossrhUsername: ${{ secrets.SONATYPE_USERNAME }}
