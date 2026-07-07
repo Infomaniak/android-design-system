@@ -54,11 +54,12 @@ class PublishingConventionPlugin : Plugin<Project> {
                                 }
                             }
                             issueManagement {
-                                system.set("Github")
+                                system.set("GitHub")
                                 url.set("https://github.com/Infomaniak/android-design-system/issues")
                             }
                             scm {
-                                connection.set("https://github.com/Infomaniak/android-design-system.git")
+                                connection.set("scm:git:https://github.com/Infomaniak/android-design-system.git")
+                                developerConnection.set("scm:git:ssh://git@github.com/Infomaniak/android-design-system.git")
                                 url.set("https://github.com/Infomaniak/android-design-system")
                             }
                             organization {

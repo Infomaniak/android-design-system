@@ -20,8 +20,12 @@ nmcpAggregation {
 }
 
 dependencies {
-    subprojects.forEach { subproject ->
-        nmcpAggregation(project(subproject.path))
+    // Foundation and PrimitiveTokens are always published; only Theme* modules are looped over
+    // since they're the ones added/enabled over time.
+    nmcpAggregation(project(":Foundation"))
+    nmcpAggregation(project(":PrimitiveTokens"))
+    subprojects.filter { it.name.startsWith("Theme") }.forEach { theme ->
+        nmcpAggregation(project(theme.path))
     }
 }
 
