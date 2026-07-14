@@ -59,14 +59,20 @@ jobs:
             echo EOF
           } >> "$GITHUB_OUTPUT"
 
+      - name: Build commit tree link
+        id: commit-link
+        if: ${{ inputs.notify-kchat && env.KCHAT_DESIGN_SYSTEM_WEBHOOK_URL != '' }}
+        uses: Infomaniak/.github/actions/commit-tree-link@v2
+
       - name: Notify KChat
         if: ${{ inputs.notify-kchat && env.KCHAT_DESIGN_SYSTEM_WEBHOOK_URL != '' }}
         env:
           KCHAT_DESIGN_SYSTEM_WEBHOOK_URL: ${{ secrets.KCHAT_DESIGN_SYSTEM_WEBHOOK_URL }}
         run: |
           LIBS=$(echo "${{ steps.modules.outputs.list }}" | sed -E 's#^(.*)$#implementation("\1")#')
-          TEXT=$(printf ':android: *Android Design System snapshot %s* is available on Maven Central Snapshots!\n:package: Available libraries:\n```\n%s\n```\n:link: https://central.sonatype.com/service/rest/repository/browse/maven-snapshots/com/infomaniak/designsystem/' \
-            "${{ env.SNAPSHOT_VERSION }}" "$LIBS")
+          COMMIT_LINK="${{ steps.commit-link.outputs.markdown-link }}"
+          TEXT=$(printf ':android: *Android Design System snapshot %s* is available on Maven Central Snapshots!\n:package: Available libraries:\n```\n%s\n```\n:link: https://central.sonatype.com/service/rest/repository/browse/maven-snapshots/com/infomaniak/designsystem/\n:pencil: Commit: %s' \
+            "${{ env.SNAPSHOT_VERSION }}" "$LIBS" "$COMMIT_LINK")
           curl -s -X POST "$KCHAT_DESIGN_SYSTEM_WEBHOOK_URL" \
             -H "Content-Type: application/json" \
             -d "$(jq -n --arg text "$TEXT" '{text: $text}')"
