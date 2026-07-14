@@ -4,9 +4,18 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version to release (x.x.x)'
-        required: true
+        description: 'Version to release (x.x.x). Leave empty to auto-bump from the latest release using "bump"'
+        required: false
         type: string
+      bump:
+        description: 'Version part to bump automatically when "version" is left empty'
+        required: true
+        default: patch
+        type: choice
+        options:
+          - major
+          - minor
+          - patch
       acknowledgement:
         description: |
           WARNING: Publishing a version to Maven Central is irrevocable.
@@ -26,7 +35,16 @@ on:
 permissions:
   contents: write
 jobs:
+  resolve-version:
+    name: Resolve version
+    uses: Infomaniak/.github/.github/workflows/resolve-next-library-version.yml@v2
+    with:
+      version: ${{ inputs.version }}
+      bump: ${{ inputs.bump }}
+
   build:
+    name: Build and publish
+    needs: resolve-version
     runs-on: ubuntu-latest
     steps:
       - name: Check acknowledgement
@@ -35,25 +53,13 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v6
 
-      - name: Check version does not already exist
-        run: |
-          if gh release view "${{ inputs.version }}" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
-            echo "Error: release ${{ inputs.version }} already exists"
-            exit 1
-          fi
-          if git ls-remote --tags origin "refs/tags/${{ inputs.version }}" | grep -q .; then
-            echo "Error: tag ${{ inputs.version }} already exists"
-            exit 1
-          fi
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Create and push tag
         run: |
+          VERSION="${{ needs['resolve-version'].outputs.version }}"
           git config user.name "dev-mobile-bot"
           git config user.email "mobile+github-bot@infomaniak-dev.ch"
-          git tag "${{ inputs.version }}"
-          git push origin "refs/tags/${{ inputs.version }}"
+          git tag "$VERSION"
+          git push origin "refs/tags/$VERSION"
 
       - name: Setup Java
         uses: actions/setup-java@v5
@@ -69,12 +75,12 @@ jobs:
 
       - name: Publish the artifacts
         id: publish
-        run: ./gradlew publishAggregationToCentralPortal -Pdesignsystem.version=${{ inputs.version }}
+        run: ./gradlew publishAggregationToCentralPortal -Pdesignsystem.version=${{ needs['resolve-version'].outputs.version }}
 
       - name: Create GitHub Release
         run: |
-          gh release create "${{ inputs.version }}" \
-            --title "${{ inputs.version }}" \
+          gh release create "${{ needs['resolve-version'].outputs.version }}" \
+            --title "${{ needs['resolve-version'].outputs.version }}" \
             --generate-notes
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -84,9 +90,14 @@ jobs:
         run: |
           {
             echo 'list<<EOF'
-            ./gradlew -q listPublishedModules -Pdesignsystem.version=${{ inputs.version }}
+            ./gradlew -q listPublishedModules -Pdesignsystem.version=${{ needs['resolve-version'].outputs.version }}
             echo EOF
           } >> "$GITHUB_OUTPUT"
+
+      - name: Export commit info
+        id: commit-link
+        if: ${{ inputs.notify-kchat && env.KCHAT_DESIGN_SYSTEM_WEBHOOK_URL != '' }}
+        uses: Infomaniak/.github/actions/export-commit-info@v2
 
       - name: Notify KChat
         if: ${{ inputs.notify-kchat && env.KCHAT_DESIGN_SYSTEM_WEBHOOK_URL != '' }}
@@ -94,8 +105,9 @@ jobs:
           KCHAT_DESIGN_SYSTEM_WEBHOOK_URL: ${{ secrets.KCHAT_DESIGN_SYSTEM_WEBHOOK_URL }}
         run: |
           LIBS=$(echo "${{ steps.modules.outputs.list }}" | sed -E 's#^(.*)$#implementation("\1")#')
-          TEXT=$(printf ':rocket: *Android Design System %s* is now available on Maven Central!\n:package: Available libraries:\n```\n%s\n```\n:link: https://central.sonatype.com/namespace/com.infomaniak.designsystem' \
-            "${{ inputs.version }}" "$LIBS")
+          COMMIT_LINK="${{ steps.commit-link.outputs.markdown-link }}"
+          TEXT=$(printf ':rocket: *Android Design System %s* is now available on Maven Central!\n:package: Available libraries:\n```\n%s\n```\n:link: https://central.sonatype.com/namespace/com.infomaniak.designsystem\n:pencil: Commit: %s' \
+            "${{ needs['resolve-version'].outputs.version }}" "$LIBS" "$COMMIT_LINK")
           curl -s -X POST "$KCHAT_DESIGN_SYSTEM_WEBHOOK_URL" \
             -H "Content-Type: application/json" \
             -d "$(jq -n --arg text "$TEXT" '{text: $text}')"
@@ -105,7 +117,7 @@ jobs:
       # tag we just pushed so a failed publish doesn't leave a dangling/incorrect version tag.
       - name: Delete tag on failure
         if: failure()
-        run: git push origin --delete "refs/tags/${{ inputs.version }}" || true
+        run: git push origin --delete "refs/tags/${{ needs['resolve-version'].outputs.version }}" || true
 
 env:
   GRADLE_OPTS: -Dorg.gradle.jvmargs="-Xmx5g -Dfile.encoding=UTF-8"
