@@ -35,7 +35,7 @@ on:
 permissions:
   contents: write
 jobs:
-  validate:
+  resolve-version:
     name: Resolve version
     uses: Infomaniak/.github/.github/workflows/resolve-next-library-version.yml@v2
     with:
@@ -44,7 +44,7 @@ jobs:
 
   build:
     name: Build and publish
-    needs: validate
+    needs: resolve-version
     runs-on: ubuntu-latest
     steps:
       - name: Check acknowledgement
@@ -55,7 +55,7 @@ jobs:
 
       - name: Create and push tag
         run: |
-          VERSION="${{ needs.validate.outputs.version }}"
+          VERSION="${{ needs['resolve-version'].outputs.version }}"
           git config user.name "dev-mobile-bot"
           git config user.email "mobile+github-bot@infomaniak-dev.ch"
           git tag "$VERSION"
@@ -75,12 +75,12 @@ jobs:
 
       - name: Publish the artifacts
         id: publish
-        run: ./gradlew publishAggregationToCentralPortal -Pdesignsystem.version=${{ needs.validate.outputs.version }}
+        run: ./gradlew publishAggregationToCentralPortal -Pdesignsystem.version=${{ needs['resolve-version'].outputs.version }}
 
       - name: Create GitHub Release
         run: |
-          gh release create "${{ needs.validate.outputs.version }}" \
-            --title "${{ needs.validate.outputs.version }}" \
+          gh release create "${{ needs['resolve-version'].outputs.version }}" \
+            --title "${{ needs['resolve-version'].outputs.version }}" \
             --generate-notes
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -90,7 +90,7 @@ jobs:
         run: |
           {
             echo 'list<<EOF'
-            ./gradlew -q listPublishedModules -Pdesignsystem.version=${{ needs.validate.outputs.version }}
+            ./gradlew -q listPublishedModules -Pdesignsystem.version=${{ needs['resolve-version'].outputs.version }}
             echo EOF
           } >> "$GITHUB_OUTPUT"
 
@@ -107,7 +107,7 @@ jobs:
           LIBS=$(echo "${{ steps.modules.outputs.list }}" | sed -E 's#^(.*)$#implementation("\1")#')
           COMMIT_LINK="${{ steps.commit-link.outputs.markdown-link }}"
           TEXT=$(printf ':rocket: *Android Design System %s* is now available on Maven Central!\n:package: Available libraries:\n```\n%s\n```\n:link: https://central.sonatype.com/namespace/com.infomaniak.designsystem\n:pencil: Commit: %s' \
-            "${{ needs.validate.outputs.version }}" "$LIBS" "$COMMIT_LINK")
+            "${{ needs['resolve-version'].outputs.version }}" "$LIBS" "$COMMIT_LINK")
           curl -s -X POST "$KCHAT_DESIGN_SYSTEM_WEBHOOK_URL" \
             -H "Content-Type: application/json" \
             -d "$(jq -n --arg text "$TEXT" '{text: $text}')"
@@ -117,7 +117,7 @@ jobs:
       # tag we just pushed so a failed publish doesn't leave a dangling/incorrect version tag.
       - name: Delete tag on failure
         if: failure()
-        run: git push origin --delete "refs/tags/${{ needs.validate.outputs.version }}" || true
+        run: git push origin --delete "refs/tags/${{ needs['resolve-version'].outputs.version }}" || true
 
 env:
   GRADLE_OPTS: -Dorg.gradle.jvmargs="-Xmx5g -Dfile.encoding=UTF-8"
