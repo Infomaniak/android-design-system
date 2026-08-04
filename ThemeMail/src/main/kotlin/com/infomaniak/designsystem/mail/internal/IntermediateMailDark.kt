@@ -23,9 +23,9 @@ import com.infomaniak.designsystem.primitivetokens.*
 
 internal object IntermediateMailDark {
   val IconSizeXs: Dp = Scale16
+  val IconSizeSm: Dp = Scale20
   val IconSizeMd: Dp = Scale24
   val IconSizeLg: Dp = Scale32
-  val IconSizeSm: Dp = Scale20
   val IconSizeXl: Dp = Scale40
   val RadiusNone: Shape = Radius0
   val RadiusXs: Shape = Radius2
@@ -51,4 +51,10 @@ internal object IntermediateMailDark {
   val Spacing6xl: Dp = Spacing48
   val Spacing7xl: Dp = Spacing64
   val Spacing8xl: Dp = Spacing100
+  val TextLinkColorDefault: Color = ColorContentBrandDefault
+  val TextLinkColorHover: Color = ColorContentBrandHover
+  val TextLinkColorPressed: Color = ColorContentBrandPressed
+  val TextLinkColorVisitedDefault: Color = ColorContentVisitedDefault
+  val TextLinkColorVisitedHover: Color = ColorContentVisitedHover
+  val TextLinkColorVisitedPressed: Color = ColorContentVisitedPressed
 }
