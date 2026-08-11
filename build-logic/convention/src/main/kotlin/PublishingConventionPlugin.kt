@@ -13,9 +13,10 @@ import org.gradle.plugins.signing.Sign
 import org.gradle.plugins.signing.SigningExtension
 
 /**
- * Applied to every module that should be published to Maven Central (Foundation, PrimitiveTokens,
+ * Applied to every module that should be published to Reposilite (Foundation, PrimitiveTokens,
  * and each Theme* module). Configures the release AAR + sources jar publication, its POM metadata,
- * GPG signing, and registers the module with the nmcp aggregation at the root project.
+ * and GPG signing, and registers the module's Maven repository (releases or snapshots depending on
+ * the version).
  */
 class PublishingConventionPlugin : Plugin<Project> {
 
@@ -23,7 +24,6 @@ class PublishingConventionPlugin : Plugin<Project> {
         with(pluginManager) {
             apply("maven-publish")
             apply("signing")
-            apply("com.gradleup.nmcp")
         }
 
         group = "com.infomaniak.designsystem"
@@ -74,6 +74,23 @@ class PublishingConventionPlugin : Plugin<Project> {
                                     url.set("https://www.infomaniak.com/")
                                 }
                             }
+                        }
+                    }
+                }
+
+                repositories {
+                    maven {
+                        name = "reposilite"
+                        url = uri(
+                            if (version.toString().endsWith("SNAPSHOT")) {
+                                "https://maven.infomaniak.app/snapshots"
+                            } else {
+                                "https://maven.infomaniak.app/releases"
+                            }
+                        )
+                        credentials {
+                            username = getPropertyValue("reposiliteUsername")
+                            password = getPropertyValue("reposilitePassword")
                         }
                     }
                 }

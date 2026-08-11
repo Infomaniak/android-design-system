@@ -1,5 +1,5 @@
 # https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions
-name: Publish to Maven Central Snapshots
+name: Publish to Reposilite Snapshots
 on:
   workflow_dispatch:
     inputs:
@@ -48,7 +48,7 @@ jobs:
         run: ./gradlew clean
 
       - name: Publish the snapshots
-        run: ./gradlew publishAggregationToCentralSnapshots -Pdesignsystem.version=${{ env.SNAPSHOT_VERSION }}
+        run: ./gradlew publishAllPublicationsToReposiliteRepository -Pdesignsystem.version=${{ env.SNAPSHOT_VERSION }}
 
       - name: List published libraries
         id: modules
@@ -71,15 +71,15 @@ jobs:
         run: |
           LIBS=$(echo "${{ steps.modules.outputs.list }}" | sed -E 's#^(.*)$#implementation("\1")#')
           COMMIT_LINK="${{ steps.commit-link.outputs.markdown-link }}"
-          TEXT=$(printf ':android: *Android Design System snapshot %s* is available on Maven Central Snapshots!\n:package: Available libraries:\n```\n%s\n```\n:link: https://central.sonatype.com/service/rest/repository/browse/maven-snapshots/com/infomaniak/designsystem/\n:pencil: Commit: %s' \
+          TEXT=$(printf ':android: *Android Design System snapshot %s* is available on Reposilite Snapshots!\n:package: Available libraries:\n```\n%s\n```\n:link: https://maven.infomaniak.app/#/snapshots/com/infomaniak/designsystem\n:pencil: Commit: %s' \
             "${{ env.SNAPSHOT_VERSION }}" "$LIBS" "$COMMIT_LINK")
           curl -s -X POST "$KCHAT_DESIGN_SYSTEM_WEBHOOK_URL" \
             -H "Content-Type: application/json" \
             -d "$(jq -n --arg text "$TEXT" '{text: $text}')"
 env:
   GRADLE_OPTS: -Dorg.gradle.jvmargs="-Xmx5g -Dfile.encoding=UTF-8"
-  ossrhUsername: ${{ secrets.SONATYPE_USERNAME }}
-  ossrhPassword: ${{ secrets.SONATYPE_PASSWORD }}
+  reposiliteUsername: ${{ secrets.REPOSILITE_USERNAME }}
+  reposilitePassword: ${{ secrets.REPOSILITE_PASSWORD }}
   GPG_key_id: ${{ secrets.GPG_KEY_ID }}
   GPG_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
   GPG_private_password: ${{ secrets.GPG_PRIVATE_PASSWORD }}
