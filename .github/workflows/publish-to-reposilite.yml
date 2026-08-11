@@ -1,5 +1,5 @@
 # https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions
-name: Publish to Maven Central
+name: Publish to Reposilite
 on:
   workflow_dispatch:
     inputs:
@@ -18,7 +18,7 @@ on:
           - patch
       acknowledgement:
         description: |
-          WARNING: Publishing a version to Maven Central is irrevocable.
+          WARNING: Publishing a version to Reposilite is irrevocable.
           Do you confirm (Yes/no):
           1. You have successfully tested publishing a snapshot (with a Gradle CLEAN) just before changing the version
           2. The version is CORRECT, and is NOT a SNAPSHOT
@@ -75,7 +75,7 @@ jobs:
 
       - name: Publish the artifacts
         id: publish
-        run: ./gradlew publishAggregationToCentralPortal -Pdesignsystem.version=${{ needs['resolve-version'].outputs.version }}
+        run: ./gradlew publishAllPublicationsToReposiliteRepository -Pdesignsystem.version=${{ needs['resolve-version'].outputs.version }}
 
       - name: Create GitHub Release
         run: |
@@ -106,7 +106,7 @@ jobs:
         run: |
           LIBS=$(echo "${{ steps.modules.outputs.list }}" | sed -E 's#^(.*)$#implementation("\1")#')
           COMMIT_LINK="${{ steps.commit-link.outputs.markdown-link }}"
-          TEXT=$(printf ':rocket: *Android Design System %s* is now available on Maven Central!\n:package: Available libraries:\n```\n%s\n```\n:link: https://central.sonatype.com/namespace/com.infomaniak.designsystem\n:pencil: Commit: %s' \
+          TEXT=$(printf ':rocket: *Android Design System %s* is now available on Reposilite!\n:package: Available libraries:\n```\n%s\n```\n:link: https://maven.infomaniak.app/#/releases/com/infomaniak/designsystem\n:pencil: Commit: %s' \
             "${{ needs['resolve-version'].outputs.version }}" "$LIBS" "$COMMIT_LINK")
           curl -s -X POST "$KCHAT_DESIGN_SYSTEM_WEBHOOK_URL" \
             -H "Content-Type: application/json" \
@@ -121,8 +121,8 @@ jobs:
 
 env:
   GRADLE_OPTS: -Dorg.gradle.jvmargs="-Xmx5g -Dfile.encoding=UTF-8"
-  ossrhUsername: ${{ secrets.SONATYPE_USERNAME }}
-  ossrhPassword: ${{ secrets.SONATYPE_PASSWORD }}
+  reposiliteUsername: ${{ secrets.REPOSILITE_USERNAME }}
+  reposilitePassword: ${{ secrets.REPOSILITE_PASSWORD }}
   GPG_key_id: ${{ secrets.GPG_KEY_ID }}
   GPG_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
   GPG_private_password: ${{ secrets.GPG_PRIVATE_PASSWORD }}
