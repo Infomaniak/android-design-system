@@ -116,11 +116,11 @@ val groupConfigs = listOf(
     ),
     GroupConfig(
         jsonGroupName = "Extended Colors",
-        instanceSuffix = "ExtendedColors",
+        instanceSuffix = "ExtendedColorScheme",
         subPackage = "extended",
         excluded = emptySet(),
         kind = GroupKind.GeneratedDataClass(
-            name = "ExtendedColors",
+            name = "ExtendedColorScheme",
             packageName = "com.infomaniak.designsystem.core.tokens",
             outputDir = repoRoot.resolve("Foundation/src/main/kotlin/com/infomaniak/designsystem/core/tokens"),
         ),

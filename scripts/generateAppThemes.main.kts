@@ -26,7 +26,7 @@ val repoRoot: File = generateSequence(File(System.getProperty("user.dir")).absol
  *   2. `default.dimensions` list (fallback for all themes without their own)
  *
  * Token types are always the fixed set matching EsdsTheme.Values parameters:
- *   icon, spacing, radius, materialColorScheme
+ *   icon, spacing, radius, materialColorScheme, extendedColorScheme
  *
  * The file is placed alongside the other token files:
  *   Theme{ThemeName}/src/main/kotlin/com/infomaniak/designsystem/{themeName.lowercase()}/{ThemeName}Theme.kt
@@ -56,7 +56,8 @@ val tokenTypeMappings: LinkedHashMap<String, TokenTypeMapping> = linkedMapOf(
     "icon"                to TokenTypeMapping("icon",                "IconTokens"),
     "spacing"             to TokenTypeMapping("spacing",             "SpacingTokens"),
     "radius"              to TokenTypeMapping("radius",              "RadiusTokens"),
-    "materialColorScheme" to TokenTypeMapping("materialColorScheme", "ColorScheme",  subPackage = "material"),
+    "materialColorScheme" to TokenTypeMapping("materialColorScheme", "ColorScheme",         subPackage = "material"),
+    "extendedColorScheme" to TokenTypeMapping("extendedColorScheme", "ExtendedColorScheme", subPackage = "extended"),
 )
 
 // ---------------------------------------------------------------------------
