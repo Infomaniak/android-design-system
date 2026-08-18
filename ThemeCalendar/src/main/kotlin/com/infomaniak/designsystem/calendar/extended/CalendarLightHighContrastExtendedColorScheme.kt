@@ -5,10 +5,10 @@
 
 package com.infomaniak.designsystem.calendar.extended
 
-import com.infomaniak.designsystem.core.tokens.ExtendedColors
+import com.infomaniak.designsystem.core.tokens.ExtendedColorScheme
 import com.infomaniak.designsystem.primitivetokens.ColorPrimitives
 
-internal val CalendarLightHighContrastExtendedColors = ExtendedColors(
+internal val CalendarLightHighContrastExtendedColorScheme = ExtendedColorScheme(
     warning = ColorPrimitives.Orange20,
     onWarning = ColorPrimitives.Orange100,
     warningContainer = ColorPrimitives.Orange30,

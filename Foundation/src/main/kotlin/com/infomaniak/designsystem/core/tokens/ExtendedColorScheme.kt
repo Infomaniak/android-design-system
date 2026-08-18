@@ -9,7 +9,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 
 @Immutable
-data class ExtendedColors(
+data class ExtendedColorScheme(
     val warning: Color,
     val onWarning: Color,
     val warningContainer: Color,
