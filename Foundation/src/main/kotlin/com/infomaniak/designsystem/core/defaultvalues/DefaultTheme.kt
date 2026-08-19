@@ -8,4 +8,5 @@ val DefaultTheme: EsdsTheme.Values = EsdsTheme.Values(
     spacing = DefaultSpacingTokens,
     radius = DefaultRadiusTokens,
     materialColorScheme = LightScheme,
+    extendedColorScheme = DefaultExtendedColorScheme,
 )

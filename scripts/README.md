@@ -11,9 +11,9 @@ The script reads `token-source/android_specific_tokens.json` (a Figma token expo
 | Output                                           | Location                                            |
 |--------------------------------------------------|-----------------------------------------------------|
 | Shared color primitives object                   | `PrimitiveTokens/…/ColorPrimitives.kt`              |
-| `ExtendedColors` data class definition           | `Foundation/…/ExtendedColors.kt`                    |
+| `ExtendedColorScheme` data class definition       | `Foundation/…/ExtendedColorScheme.kt`               |
 | Per-product color scheme instances (×6 modes)    | `Theme<Product>/…/<Product><Mode>ColorScheme.kt`    |
-| Per-product extended colors instances (×6 modes) | `Theme<Product>/…/<Product><Mode>ExtendedColors.kt` |
+| Per-product extended colors instances (×6 modes) | `Theme<Product>/…/<Product><Mode>ExtendedColorScheme.kt` |
 
 The script auto-detects the repo root by walking up to the nearest `settings.gradle.kts`, so it can be run from any subdirectory.
 

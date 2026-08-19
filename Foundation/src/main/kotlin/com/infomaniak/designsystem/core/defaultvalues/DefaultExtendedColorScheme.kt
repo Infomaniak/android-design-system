@@ -1,14 +1,13 @@
 /*
-  Do not edit directly, this file was auto-generated.
-  Source: android_specific_tokens.json
+    Manually written
 */
 
-package com.infomaniak.designsystem.calendar.extended
+package com.infomaniak.designsystem.core.defaultvalues
 
-import com.infomaniak.designsystem.core.tokens.ExtendedColors
+import com.infomaniak.designsystem.core.tokens.ExtendedColorScheme
 import com.infomaniak.designsystem.primitivetokens.ColorPrimitives
 
-internal val CalendarLightExtendedColors = ExtendedColors(
+internal val DefaultExtendedColorScheme = ExtendedColorScheme(
     warning = ColorPrimitives.Orange40,
     onWarning = ColorPrimitives.Orange100,
     warningContainer = ColorPrimitives.Orange90,
