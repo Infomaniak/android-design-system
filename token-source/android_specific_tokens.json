@@ -1054,6 +1054,84 @@
               "$value": "#ffffff"
             }
           },
+          "Lime": {
+            "0": {
+              "$type": "color",
+              "$value": "#000000"
+            },
+            "5": {
+              "$type": "color",
+              "$value": "#001504"
+            },
+            "10": {
+              "$type": "color",
+              "$value": "#002109"
+            },
+            "15": {
+              "$type": "color",
+              "$value": "#002d0f"
+            },
+            "20": {
+              "$type": "color",
+              "$value": "#003915"
+            },
+            "25": {
+              "$type": "color",
+              "$value": "#00461b"
+            },
+            "30": {
+              "$type": "color",
+              "$value": "#005321"
+            },
+            "35": {
+              "$type": "color",
+              "$value": "#006027"
+            },
+            "40": {
+              "$type": "color",
+              "$value": "#006e2e"
+            },
+            "45": {
+              "$type": "color",
+              "$value": "#007b35"
+            },
+            "50": {
+              "$type": "color",
+              "$value": "#008a3c"
+            },
+            "60": {
+              "$type": "color",
+              "$value": "#00a74a"
+            },
+            "70": {
+              "$type": "color",
+              "$value": "#14c55a"
+            },
+            "80": {
+              "$type": "color",
+              "$value": "#44e273"
+            },
+            "90": {
+              "$type": "color",
+              "$value": "#67ff8d"
+            },
+            "95": {
+              "$type": "color",
+              "$value": "#c5ffc8"
+            },
+            "98": {
+              "$type": "color",
+              "$value": "#ebffe8"
+            },
+            "99": {
+              "$type": "color",
+              "$value": "#f6fff2"
+            },
+            "100": {
+              "$type": "color",
+              "$value": "#ffffff"
+            }
+          },
           "Purple": {
             "0": {
               "$type": "color",
@@ -4059,7 +4137,7 @@
               "$type": "color",
               "$libraryName": "",
               "$collectionName": "Primitives",
-              "$value": "{Gray.98}"
+              "$value": "{Gray.100}"
             },
             "Surface Container Lowest": {
               "$scopes": [
@@ -5167,6 +5245,42 @@
               "$collectionName": "Primitives",
               "$value": "{Orange.30}"
             },
+            "Success": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.40}"
+            },
+            "On Success": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.100}"
+            },
+            "Success Container": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.90}"
+            },
+            "On Success Container": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.30}"
+            },
             "Dataviz": {
               "Pink": {
                 "$type": "color",
@@ -5819,7 +5933,7 @@
               "$type": "color",
               "$libraryName": "",
               "$collectionName": "Primitives",
-              "$value": "{Gray.98}"
+              "$value": "{Gray.100}"
             },
             "Surface Container Lowest": {
               "$scopes": [
@@ -6927,6 +7041,42 @@
               "$collectionName": "Primitives",
               "$value": "{Orange.100}"
             },
+            "Success": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.25}"
+            },
+            "On Success": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.100}"
+            },
+            "Success Container": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.45}"
+            },
+            "On Success Container": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.100}"
+            },
             "Dataviz": {
               "Pink": {
                 "$type": "color",
@@ -7579,7 +7729,7 @@
               "$type": "color",
               "$libraryName": "",
               "$collectionName": "Primitives",
-              "$value": "{Gray.98}"
+              "$value": "{Gray.100}"
             },
             "Surface Container Lowest": {
               "$scopes": [
@@ -8687,6 +8837,42 @@
               "$collectionName": "Primitives",
               "$value": "{Orange.100}"
             },
+            "Success": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.20}"
+            },
+            "On Success": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.100}"
+            },
+            "Success Container": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.30}"
+            },
+            "On Success Container": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.100}"
+            },
             "Dataviz": {
               "Pink": {
                 "$type": "color",
@@ -9339,7 +9525,7 @@
               "$type": "color",
               "$libraryName": "",
               "$collectionName": "Primitives",
-              "$value": "{Gray.24}"
+              "$value": "{Gray.16}"
             },
             "Surface Container Lowest": {
               "$scopes": [
@@ -10446,6 +10632,42 @@
               "$libraryName": "",
               "$collectionName": "Primitives",
               "$value": "{Orange.90}"
+            },
+            "Success": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.80}"
+            },
+            "On Success": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.20}"
+            },
+            "Success Container": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.30}"
+            },
+            "On Success Container": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.90}"
             },
             "Dataviz": {
               "Pink": {
@@ -12207,6 +12429,42 @@
               "$collectionName": "Primitives",
               "$value": "{Orange.0}"
             },
+            "Success": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.90}"
+            },
+            "On Success": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.15}"
+            },
+            "Success Container": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.60}"
+            },
+            "On Success Container": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.0}"
+            },
             "Dataviz": {
               "Pink": {
                 "$type": "color",
@@ -13966,6 +14224,42 @@
               "$libraryName": "",
               "$collectionName": "Primitives",
               "$value": "{Orange.5}"
+            },
+            "Success": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.95}"
+            },
+            "On Success": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.0}"
+            },
+            "Success Container": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.80}"
+            },
+            "On Success Container": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitives",
+              "$value": "{Lime.5}"
             },
             "Dataviz": {
               "Pink": {
