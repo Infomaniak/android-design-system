@@ -106,24 +106,57 @@ data class GroupConfig(
     val subPackage: String? = null,
 )
 
-val groupConfigs = listOf(
-    GroupConfig(
-        jsonGroupName = "Schemes",
-        instanceSuffix = "ColorScheme",
-        subPackage = "material",
-        excluded = excludedRoles,
-        kind = GroupKind.Framework(builderForMode = { it.builder }),
+val materialTokensGroup = GroupConfig(
+    jsonGroupName = "Schemes",
+    instanceSuffix = "ColorScheme",
+    subPackage = "material",
+    excluded = excludedRoles,
+    kind = GroupKind.Framework(builderForMode = { it.builder }),
+)
+
+val extendedColorsGroup = GroupConfig(
+    jsonGroupName = "Extended Colors",
+    instanceSuffix = "ExtendedColorScheme",
+    subPackage = "extended",
+    excluded = emptySet(),
+    kind = GroupKind.GeneratedDataClass(
+        name = "ExtendedColorScheme",
+        packageName = "com.infomaniak.designsystem.core.tokens",
+        outputDir = repoRoot.resolve("Foundation/src/main/kotlin/com/infomaniak/designsystem/core/tokens"),
     ),
-    GroupConfig(
-        jsonGroupName = "Extended Colors",
-        instanceSuffix = "ExtendedColorScheme",
-        subPackage = "extended",
-        excluded = emptySet(),
-        kind = GroupKind.GeneratedDataClass(
-            name = "ExtendedColorScheme",
-            packageName = "com.infomaniak.designsystem.core.tokens",
-            outputDir = repoRoot.resolve("Foundation/src/main/kotlin/com/infomaniak/designsystem/core/tokens"),
-        ),
+)
+
+val groupConfigs = listOf(materialTokensGroup, extendedColorsGroup)
+
+/**
+ * A fallback instance generated outside any theme module, so Foundation can expose default values
+ * without depending on a product. It is a single instance built from one product and one theme mode.
+ */
+data class DefaultInstanceConfig(
+    val instanceName: String,
+    val group: GroupConfig,
+    val product: String,
+    val mode: ThemeMode,
+    val packageName: String,
+    val outputDir: File,
+)
+
+val defaultInstanceConfigs = listOf(
+    DefaultInstanceConfig(
+        instanceName = "DefaultColorScheme",
+        group = materialTokensGroup,
+        product = "Infomaniak",
+        mode = themeModes.first(),
+        packageName = "com.infomaniak.designsystem.core.defaultvalues.material",
+        outputDir = repoRoot.resolve("Foundation/src/main/kotlin/com/infomaniak/designsystem/core/defaultvalues/material"),
+    ),
+    DefaultInstanceConfig(
+        instanceName = "DefaultExtendedColorScheme",
+        group = extendedColorsGroup,
+        product = "Infomaniak",
+        mode = themeModes.first(),
+        packageName = "com.infomaniak.designsystem.core.defaultvalues",
+        outputDir = repoRoot.resolve("Foundation/src/main/kotlin/com/infomaniak/designsystem/core/defaultvalues"),
     ),
 )
 
@@ -394,24 +427,37 @@ fun generateInstanceFiles(
     group: GroupConfig,
     resolvedByMode: Map<ThemeMode, List<ResolvedRole>>,
 ): List<GeneratedFile> = themeModes.map { mode ->
-    val instanceName = "${config.product}${mode.suffix}${group.instanceSuffix}"
-    val constructor = group.kind.constructorFor(mode)
-    GeneratedFile(
-        name = "$instanceName.kt",
-        content = buildString {
-            append(header(subPackageOf(config.packageName, group.subPackage)))
-            (group.kind.importsFor(mode) + "${sharedPalette.packageName}.${sharedPalette.objectName}")
-                .sorted()
-                .forEach { appendLine("import $it") }
-            appendLine()
-            appendLine("internal val $instanceName = $constructor(")
-            resolvedByMode.getValue(mode).forEach { role ->
-                appendLine("    ${role.parameter} = ${sharedPalette.objectName}.${role.constantName},")
-            }
-            appendLine(")")
-        },
+    generateInstanceFile(
+        instanceName = "${config.product}${mode.suffix}${group.instanceSuffix}",
+        packageName = subPackageOf(config.packageName, group.subPackage),
+        group = group,
+        mode = mode,
+        roles = resolvedByMode.getValue(mode),
     )
 }
+
+/** A single `internal val` instance file, built from the roles resolved for one group and one theme mode. */
+fun generateInstanceFile(
+    instanceName: String,
+    packageName: String,
+    group: GroupConfig,
+    mode: ThemeMode,
+    roles: List<ResolvedRole>,
+): GeneratedFile = GeneratedFile(
+    name = "$instanceName.kt",
+    content = buildString {
+        append(header(packageName))
+        (group.kind.importsFor(mode) + "${sharedPalette.packageName}.${sharedPalette.objectName}")
+            .sorted()
+            .forEach { appendLine("import $it") }
+        appendLine()
+        appendLine("internal val $instanceName = ${group.kind.constructorFor(mode)}(")
+        roles.forEach { role ->
+            appendLine("    ${role.parameter} = ${sharedPalette.objectName}.${role.constantName},")
+        }
+        appendLine(")")
+    },
+)
 
 // ---------------------------------------------------------------------------
 // Output
@@ -431,6 +477,10 @@ val resolved: Map<String, Map<GroupConfig, Map<ThemeMode, List<ResolvedRole>>>> 
     productConfigs.associate { config ->
         config.product to groupConfigs.associateWith { group -> resolveGroup(registry, config.product, group) }
     }
+
+val resolvedDefaults: Map<DefaultInstanceConfig, List<ResolvedRole>> = defaultInstanceConfigs.associateWith { default ->
+    resolveGroup(registry, default.product, default.group).getValue(default.mode)
+}
 
 // 1. Shared color-primitives module.
 writeFile(sharedPalette.outputDir, generateSharedPaletteFile(registry))
@@ -452,4 +502,10 @@ productConfigs.forEach { config ->
             writeFile(dir, file)
         }
     }
+}
+
+// 4. The product-agnostic default instances used as fallback values in Foundation.
+resolvedDefaults.forEach { (default, roles) ->
+    val file = generateInstanceFile(default.instanceName, default.packageName, default.group, default.mode, roles)
+    writeFile(default.outputDir, file)
 }

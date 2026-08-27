@@ -1,5 +1,6 @@
 /*
-    Manually written
+  Do not edit directly, this file was auto-generated.
+  Source: android_specific_tokens.json
 */
 
 package com.infomaniak.designsystem.core.defaultvalues
