@@ -284,8 +284,11 @@ class ConstantRegistry {
         return current
     }
 
-    /** Constants ordered so every `val` is declared before anything that references it. */
-    fun orderedConstants(): List<ConstantVal> {
+    /**
+     * Constants ordered so every `val` is declared before anything that references it. [seedOrder]
+     * decides the order between constants that no reference constrains.
+     */
+    fun orderedConstants(seedOrder: Comparator<String>): List<ConstantVal> {
         val ordered = LinkedHashMap<String, ConstantVal>()
         fun visit(name: String) {
             if (name in ordered) return
@@ -293,7 +296,7 @@ class ConstantRegistry {
             constant.deps.forEach { visit(it) }
             ordered[name] = constant
         }
-        constants.keys.forEach { visit(it) }
+        constants.keys.sortedWith(seedOrder).forEach { visit(it) }
         return ordered.values.toList()
     }
 }
@@ -308,6 +311,12 @@ fun colorLiteral(hex: String): String {
     require(clean.length == 6) { "Unexpected color format: $hex" }
     return "Color(0xFF$clean)"
 }
+
+/** Alphabetical, comparing the trailing shade as a number so `Gray20` comes before `Gray100`. */
+val byNameThenShade: Comparator<String> = compareBy(
+    { name -> name.trimEnd { it.isDigit() } },
+    { name -> name.takeLastWhile { it.isDigit() }.toIntOrNull() },
+)
 
 /** Keeps only identifier-safe characters: "Surface Container" -> "SurfaceContainer". */
 fun sanitize(raw: String): String =
@@ -393,7 +402,7 @@ fun generateSharedPaletteFile(registry: ConstantRegistry): GeneratedFile = Gener
         appendLine("import androidx.compose.ui.graphics.Color")
         appendLine()
         appendLine("object ${sharedPalette.objectName} {")
-        registry.orderedConstants().forEach { constant ->
+        registry.orderedConstants(byNameThenShade).forEach { constant ->
             appendLine("    val ${constant.name} = ${constant.rhs}")
         }
         appendLine("}")
