@@ -143,6 +143,14 @@ data class DefaultInstanceConfig(
 
 val defaultInstanceConfigs = listOf(
     DefaultInstanceConfig(
+        instanceName = "DefaultColorScheme",
+        group = materialTokensGroup,
+        product = "Infomaniak",
+        mode = themeModes.first(),
+        packageName = "com.infomaniak.designsystem.core.defaultvalues.material",
+        outputDir = repoRoot.resolve("Foundation/src/main/kotlin/com/infomaniak/designsystem/core/defaultvalues/material"),
+    ),
+    DefaultInstanceConfig(
         instanceName = "DefaultExtendedColorScheme",
         group = extendedColorsGroup,
         product = "Infomaniak",
