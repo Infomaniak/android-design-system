@@ -1,7 +1,7 @@
 name: 'Cleanup ESDS Branches'
 
 # Cleans up "esds/x.y.z-*" branches (and their PRs) for the closed PR's version and any
-# older version, whenever a PR from such a branch is closed (merged or not).
+# older version, whenever a PR from such a branch is merged and closed.
 # Source: https://github.com/Infomaniak/.github/blob/main/.github/workflows/cleanup-esds-branches.yml
 
 on:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   cleanup:
-    if: startsWith(github.head_ref, 'esds/')
+    if: startsWith(github.head_ref, 'esds/') && github.event.pull_request.merged == true
     permissions:
       contents: write
       pull-requests: write
