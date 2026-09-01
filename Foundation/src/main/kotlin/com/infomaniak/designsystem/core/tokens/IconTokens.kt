@@ -10,8 +10,8 @@ import androidx.compose.ui.unit.Dp
 @Immutable
 data class IconTokens(
   val sizeXs: Dp,
+  val sizeSm: Dp,
   val sizeMd: Dp,
   val sizeLg: Dp,
-  val sizeSm: Dp,
   val sizeXl: Dp,
 )
