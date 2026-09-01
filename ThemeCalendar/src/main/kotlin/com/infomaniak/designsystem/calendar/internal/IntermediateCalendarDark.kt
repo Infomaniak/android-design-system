@@ -10,9 +10,9 @@ import com.infomaniak.designsystem.primitivetokens.*
 
 internal object IntermediateCalendarDark {
   val IconSizeXs: Dp = Scale16
+  val IconSizeSm: Dp = Scale20
   val IconSizeMd: Dp = Scale24
   val IconSizeLg: Dp = Scale32
-  val IconSizeSm: Dp = Scale20
   val IconSizeXl: Dp = Scale40
   val RadiusNone: Shape = Radius0
   val RadiusXs: Shape = Radius2
