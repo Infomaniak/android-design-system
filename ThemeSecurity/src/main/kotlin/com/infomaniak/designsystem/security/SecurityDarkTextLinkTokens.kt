@@ -1,0 +1,17 @@
+/*
+  Do not edit directly, this file was auto-generated.
+*/
+
+package com.infomaniak.designsystem.security
+
+import com.infomaniak.designsystem.core.tokens.*
+import com.infomaniak.designsystem.security.internal.IntermediateSecurityDark
+
+internal val SecurityDarkTextLinkTokens = TextLinkTokens(
+  TextLinkColorDefault = IntermediateSecurityDark.TextLinkColorDefault,
+  TextLinkColorHover = IntermediateSecurityDark.TextLinkColorHover,
+  TextLinkColorPressed = IntermediateSecurityDark.TextLinkColorPressed,
+  TextLinkColorVisitedDefault = IntermediateSecurityDark.TextLinkColorVisitedDefault,
+  TextLinkColorVisitedHover = IntermediateSecurityDark.TextLinkColorVisitedHover,
+  TextLinkColorVisitedPressed = IntermediateSecurityDark.TextLinkColorVisitedPressed,
+)
