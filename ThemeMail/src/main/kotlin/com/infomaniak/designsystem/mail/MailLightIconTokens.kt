@@ -9,8 +9,8 @@ import com.infomaniak.designsystem.mail.internal.IntermediateMailLight
 
 internal val MailLightIconTokens = IconTokens(
   sizeXs = IntermediateMailLight.IconSizeXs,
+  sizeSm = IntermediateMailLight.IconSizeSm,
   sizeMd = IntermediateMailLight.IconSizeMd,
   sizeLg = IntermediateMailLight.IconSizeLg,
-  sizeSm = IntermediateMailLight.IconSizeSm,
   sizeXl = IntermediateMailLight.IconSizeXl,
 )
