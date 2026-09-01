@@ -9,8 +9,8 @@ import com.infomaniak.designsystem.security.internal.IntermediateSecurityLight
 
 internal val SecurityLightIconTokens = IconTokens(
   sizeXs = IntermediateSecurityLight.IconSizeXs,
+  sizeSm = IntermediateSecurityLight.IconSizeSm,
   sizeMd = IntermediateSecurityLight.IconSizeMd,
   sizeLg = IntermediateSecurityLight.IconSizeLg,
-  sizeSm = IntermediateSecurityLight.IconSizeSm,
   sizeXl = IntermediateSecurityLight.IconSizeXl,
 )
