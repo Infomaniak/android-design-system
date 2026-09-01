@@ -9,8 +9,8 @@ import com.infomaniak.designsystem.swisstransfer.internal.IntermediateSwisstrans
 
 internal val SwisstransferDarkIconTokens = IconTokens(
   sizeXs = IntermediateSwisstransferDark.IconSizeXs,
+  sizeSm = IntermediateSwisstransferDark.IconSizeSm,
   sizeMd = IntermediateSwisstransferDark.IconSizeMd,
   sizeLg = IntermediateSwisstransferDark.IconSizeLg,
-  sizeSm = IntermediateSwisstransferDark.IconSizeSm,
   sizeXl = IntermediateSwisstransferDark.IconSizeXl,
 )
