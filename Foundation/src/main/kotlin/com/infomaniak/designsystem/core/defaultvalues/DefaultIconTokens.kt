@@ -9,8 +9,8 @@ import com.infomaniak.designsystem.core.defaultvalues.internal.IntermediateDefau
 
 internal val DefaultIconTokens = IconTokens(
   sizeXs = IntermediateDefault.IconSizeXs,
+  sizeSm = IntermediateDefault.IconSizeSm,
   sizeMd = IntermediateDefault.IconSizeMd,
   sizeLg = IntermediateDefault.IconSizeLg,
-  sizeSm = IntermediateDefault.IconSizeSm,
   sizeXl = IntermediateDefault.IconSizeXl,
 )
