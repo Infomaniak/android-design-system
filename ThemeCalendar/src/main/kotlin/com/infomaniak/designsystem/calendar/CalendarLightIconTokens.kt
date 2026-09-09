@@ -9,8 +9,8 @@ import com.infomaniak.designsystem.calendar.internal.IntermediateCalendarLight
 
 internal val CalendarLightIconTokens = IconTokens(
   sizeXs = IntermediateCalendarLight.IconSizeXs,
+  sizeSm = IntermediateCalendarLight.IconSizeSm,
   sizeMd = IntermediateCalendarLight.IconSizeMd,
   sizeLg = IntermediateCalendarLight.IconSizeLg,
-  sizeSm = IntermediateCalendarLight.IconSizeSm,
   sizeXl = IntermediateCalendarLight.IconSizeXl,
 )
