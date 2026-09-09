@@ -9,8 +9,8 @@ import com.infomaniak.designsystem.contacts.internal.IntermediateContactsLight
 
 internal val ContactsLightIconTokens = IconTokens(
   sizeXs = IntermediateContactsLight.IconSizeXs,
+  sizeSm = IntermediateContactsLight.IconSizeSm,
   sizeMd = IntermediateContactsLight.IconSizeMd,
   sizeLg = IntermediateContactsLight.IconSizeLg,
-  sizeSm = IntermediateContactsLight.IconSizeSm,
   sizeXl = IntermediateContactsLight.IconSizeXl,
 )
