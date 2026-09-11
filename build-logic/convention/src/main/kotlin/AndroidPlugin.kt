@@ -14,7 +14,7 @@ class AndroidPlugin : Plugin<Project> {
     private fun Project.configureAndroid() {
         extensions.configure<CommonExtension> {
             compileSdk {
-                version = release(36)
+                version = release(37)
             }
             defaultConfig.apply {
                 minSdk = 27
