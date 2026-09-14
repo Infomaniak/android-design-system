@@ -9,8 +9,8 @@ import com.infomaniak.designsystem.knote.internal.IntermediateKnoteLight
 
 internal val KnoteLightIconTokens = IconTokens(
   sizeXs = IntermediateKnoteLight.IconSizeXs,
+  sizeSm = IntermediateKnoteLight.IconSizeSm,
   sizeMd = IntermediateKnoteLight.IconSizeMd,
   sizeLg = IntermediateKnoteLight.IconSizeLg,
-  sizeSm = IntermediateKnoteLight.IconSizeSm,
   sizeXl = IntermediateKnoteLight.IconSizeXl,
 )
