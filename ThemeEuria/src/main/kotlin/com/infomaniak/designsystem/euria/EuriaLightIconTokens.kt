@@ -9,8 +9,8 @@ import com.infomaniak.designsystem.euria.internal.IntermediateEuriaLight
 
 internal val EuriaLightIconTokens = IconTokens(
   sizeXs = IntermediateEuriaLight.IconSizeXs,
+  sizeSm = IntermediateEuriaLight.IconSizeSm,
   sizeMd = IntermediateEuriaLight.IconSizeMd,
   sizeLg = IntermediateEuriaLight.IconSizeLg,
-  sizeSm = IntermediateEuriaLight.IconSizeSm,
   sizeXl = IntermediateEuriaLight.IconSizeXl,
 )
