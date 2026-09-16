@@ -9,8 +9,8 @@ import com.infomaniak.designsystem.infomaniak.internal.IntermediateInfomaniakLig
 
 internal val InfomaniakLightIconTokens = IconTokens(
   sizeXs = IntermediateInfomaniakLight.IconSizeXs,
+  sizeSm = IntermediateInfomaniakLight.IconSizeSm,
   sizeMd = IntermediateInfomaniakLight.IconSizeMd,
   sizeLg = IntermediateInfomaniakLight.IconSizeLg,
-  sizeSm = IntermediateInfomaniakLight.IconSizeSm,
   sizeXl = IntermediateInfomaniakLight.IconSizeXl,
 )
