@@ -9,8 +9,8 @@ import com.infomaniak.designsystem.kdrive.internal.IntermediateKdriveDark
 
 internal val KdriveDarkIconTokens = IconTokens(
   sizeXs = IntermediateKdriveDark.IconSizeXs,
+  sizeSm = IntermediateKdriveDark.IconSizeSm,
   sizeMd = IntermediateKdriveDark.IconSizeMd,
   sizeLg = IntermediateKdriveDark.IconSizeLg,
-  sizeSm = IntermediateKdriveDark.IconSizeSm,
   sizeXl = IntermediateKdriveDark.IconSizeXl,
 )
