@@ -21,3 +21,6 @@ uitest-env.properties
 *.realm
 *.realm.lock
 *.mx
+
+# Exclude ktlint CLI used by the TS token generation script
+ktlint
