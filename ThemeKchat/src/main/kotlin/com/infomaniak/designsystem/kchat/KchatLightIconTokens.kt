@@ -9,8 +9,8 @@ import com.infomaniak.designsystem.kchat.internal.IntermediateKchatLight
 
 internal val KchatLightIconTokens = IconTokens(
   sizeXs = IntermediateKchatLight.IconSizeXs,
+  sizeSm = IntermediateKchatLight.IconSizeSm,
   sizeMd = IntermediateKchatLight.IconSizeMd,
   sizeLg = IntermediateKchatLight.IconSizeLg,
-  sizeSm = IntermediateKchatLight.IconSizeSm,
   sizeXl = IntermediateKchatLight.IconSizeXl,
 )
