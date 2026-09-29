@@ -24,3 +24,6 @@ uitest-env.properties
 
 # Exclude ktlint CLI used by the TS token generation script
 ktlint
+
+# Exclude graphify generated files
+**/graphify*
