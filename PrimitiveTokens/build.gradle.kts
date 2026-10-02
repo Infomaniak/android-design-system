@@ -9,6 +9,12 @@ kotlin {
     android {
         namespace = "com.infomaniak.designsystem.primitivetokens"
     }
+
+    sourceSets {
+        commonMain.dependencies {
+
+        }
+    }
 }
 
 //dependencies {
