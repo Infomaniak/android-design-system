@@ -4,6 +4,7 @@ plugins {
 
 dependencies {
     compileOnly(libs.android.gradle.plugin)
+    compileOnly(libs.kotlin.gradle.plugin)
     implementation(libs.ktlint.gradle.plugin)
 }
 
@@ -12,6 +13,14 @@ gradlePlugin {
         register("android") {
             id = "com.infomaniak.designsystem.convention.android"
             implementationClass = "AndroidPlugin"
+        }
+        register("kmpLibrary") {
+            id = "com.infomaniak.designsystem.convention.kmplibrary"
+            implementationClass = "com.infomaniak.designsystem.convention.KmpLibraryConventionPlugin"
+        }
+        register("ktlint") {
+            id = "com.infomaniak.designsystem.convention.ktlint"
+            implementationClass = "KtlintConventionPlugin"
         }
         register("themeModule") {
             id = "com.infomaniak.designsystem.convention.theme"

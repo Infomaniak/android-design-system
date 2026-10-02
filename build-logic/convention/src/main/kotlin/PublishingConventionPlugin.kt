@@ -14,7 +14,8 @@ import org.gradle.plugins.signing.SigningExtension
 
 /**
  * Applied to every module that should be published to Reposilite (Foundation, PrimitiveTokens,
- * and each Theme* module). Configures the release AAR + sources jar publication, its POM metadata,
+ * and each Theme* module). Configures the publications (release AAR + sources jar for Android-only
+ * modules, one per target for KMP modules), their POM metadata,
  * and GPG signing, and registers the module's Maven repository (releases or snapshots depending on
  * the version).
  */
@@ -29,50 +30,56 @@ class PublishingConventionPlugin : Plugin<Project> {
         group = "com.infomaniak.designsystem"
         version = getPropertyValue("designsystem.version") ?: "unspecified"
 
-        extensions.configure<LibraryExtension> {
-            publishing {
-                singleVariant("release") {
-                    withSourcesJar()
+        // KMP modules don't need this: the Kotlin Multiplatform plugin creates one publication per
+        // target (plus the root "kotlinMultiplatform" one), sources jars included.
+        pluginManager.withPlugin("com.android.library") {
+            extensions.configure<LibraryExtension> {
+                publishing {
+                    singleVariant("release") {
+                        withSourcesJar()
+                    }
                 }
             }
         }
 
         afterEvaluate {
             extensions.configure<PublishingExtension> {
-                publications {
-                    create<MavenPublication>("release") {
+                if (pluginManager.hasPlugin("com.android.library")) {
+                    publications.create<MavenPublication>("release") {
                         from(components["release"])
+                    }
+                }
 
-                        pom {
-                            name.set(project.name)
-                            description.set("Infomaniak Android Design System - ${project.name} module")
+                publications.withType<MavenPublication>().configureEach {
+                    pom {
+                        name.set(project.name)
+                        description.set("Infomaniak Android Design System - ${project.name} module")
+                        url.set("https://github.com/Infomaniak/android-design-system")
+                        licenses {
+                            license {
+                                name.set("GPL-3.0")
+                                url.set("https://www.gnu.org/licenses/gpl-3.0.html")
+                            }
+                        }
+                        issueManagement {
+                            system.set("GitHub")
+                            url.set("https://github.com/Infomaniak/android-design-system/issues")
+                        }
+                        scm {
+                            connection.set("scm:git:https://github.com/Infomaniak/android-design-system.git")
+                            developerConnection.set("scm:git:ssh://git@github.com/Infomaniak/android-design-system.git")
                             url.set("https://github.com/Infomaniak/android-design-system")
-                            licenses {
-                                license {
-                                    name.set("GPL-3.0")
-                                    url.set("https://www.gnu.org/licenses/gpl-3.0.html")
-                                }
-                            }
-                            issueManagement {
-                                system.set("GitHub")
-                                url.set("https://github.com/Infomaniak/android-design-system/issues")
-                            }
-                            scm {
-                                connection.set("scm:git:https://github.com/Infomaniak/android-design-system.git")
-                                developerConnection.set("scm:git:ssh://git@github.com/Infomaniak/android-design-system.git")
-                                url.set("https://github.com/Infomaniak/android-design-system")
-                            }
-                            organization {
-                                name.set("Infomaniak Network SA")
+                        }
+                        organization {
+                            name.set("Infomaniak Network SA")
+                            url.set("https://www.infomaniak.com/")
+                        }
+                        developers {
+                            developer {
+                                id.set("Infomaniak")
+                                email.set("mobile+libraries@infomaniak-dev.ch")
+                                name.set("Infomaniak Development Team")
                                 url.set("https://www.infomaniak.com/")
-                            }
-                            developers {
-                                developer {
-                                    id.set("Infomaniak")
-                                    email.set("mobile+libraries@infomaniak-dev.ch")
-                                    name.set("Infomaniak Development Team")
-                                    url.set("https://www.infomaniak.com/")
-                                }
                             }
                         }
                     }
