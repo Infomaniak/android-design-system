@@ -24,7 +24,7 @@ gradlePlugin {
         }
         register("themeModule") {
             id = "com.infomaniak.designsystem.convention.theme"
-            implementationClass = "ThemeModuleConventionPlugin"
+            implementationClass = "com.infomaniak.designsystem.convention.ThemeModuleConventionPlugin"
         }
         register("publishing") {
             id = "com.infomaniak.designsystem.convention.publishing"
