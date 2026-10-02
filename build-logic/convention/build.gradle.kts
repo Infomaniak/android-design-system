@@ -12,7 +12,7 @@ gradlePlugin {
     plugins {
         register("android") {
             id = "com.infomaniak.designsystem.convention.android"
-            implementationClass = "AndroidPlugin"
+            implementationClass = "com.infomaniak.designsystem.convention.AndroidPlugin"
         }
         register("multiplatformLibrary") {
             id = "com.infomaniak.designsystem.convention.multiplatform.library"
@@ -20,7 +20,7 @@ gradlePlugin {
         }
         register("ktlint") {
             id = "com.infomaniak.designsystem.convention.ktlint"
-            implementationClass = "KtlintConventionPlugin"
+            implementationClass = "com.infomaniak.designsystem.convention.KtlintConventionPlugin"
         }
         register("themeModule") {
             id = "com.infomaniak.designsystem.convention.theme"
@@ -28,7 +28,7 @@ gradlePlugin {
         }
         register("publishing") {
             id = "com.infomaniak.designsystem.convention.publishing"
-            implementationClass = "PublishingConventionPlugin"
+            implementationClass = "com.infomaniak.designsystem.convention.PublishingConventionPlugin"
         }
     }
 }
