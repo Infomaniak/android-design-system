@@ -22,6 +22,7 @@ val CalendarLightTheme = EsdsTheme.Values(
     icon = CalendarLightIconTokens,
     spacing = CalendarLightSpacingTokens,
     radius = CalendarLightRadiusTokens,
+    opacity = CalendarLightOpacityTokens,
     materialColorScheme = CalendarLightColorScheme,
     extendedColorScheme = CalendarLightExtendedColorScheme,
 )
@@ -30,6 +31,7 @@ val CalendarLightMediumContrastTheme = EsdsTheme.Values(
     icon = CalendarLightIconTokens,
     spacing = CalendarLightSpacingTokens,
     radius = CalendarLightRadiusTokens,
+    opacity = CalendarLightOpacityTokens,
     materialColorScheme = CalendarLightMediumContrastColorScheme,
     extendedColorScheme = CalendarLightMediumContrastExtendedColorScheme,
 )
@@ -38,6 +40,7 @@ val CalendarLightHighContrastTheme = EsdsTheme.Values(
     icon = CalendarLightIconTokens,
     spacing = CalendarLightSpacingTokens,
     radius = CalendarLightRadiusTokens,
+    opacity = CalendarLightOpacityTokens,
     materialColorScheme = CalendarLightHighContrastColorScheme,
     extendedColorScheme = CalendarLightHighContrastExtendedColorScheme,
 )
@@ -46,6 +49,7 @@ val CalendarDarkTheme = EsdsTheme.Values(
     icon = CalendarDarkIconTokens,
     spacing = CalendarDarkSpacingTokens,
     radius = CalendarDarkRadiusTokens,
+    opacity = CalendarDarkOpacityTokens,
     materialColorScheme = CalendarDarkColorScheme,
     extendedColorScheme = CalendarDarkExtendedColorScheme,
 )
@@ -54,6 +58,7 @@ val CalendarDarkMediumContrastTheme = EsdsTheme.Values(
     icon = CalendarDarkIconTokens,
     spacing = CalendarDarkSpacingTokens,
     radius = CalendarDarkRadiusTokens,
+    opacity = CalendarDarkOpacityTokens,
     materialColorScheme = CalendarDarkMediumContrastColorScheme,
     extendedColorScheme = CalendarDarkMediumContrastExtendedColorScheme,
 )
@@ -62,6 +67,7 @@ val CalendarDarkHighContrastTheme = EsdsTheme.Values(
     icon = CalendarDarkIconTokens,
     spacing = CalendarDarkSpacingTokens,
     radius = CalendarDarkRadiusTokens,
+    opacity = CalendarDarkOpacityTokens,
     materialColorScheme = CalendarDarkHighContrastColorScheme,
     extendedColorScheme = CalendarDarkHighContrastExtendedColorScheme,
 )

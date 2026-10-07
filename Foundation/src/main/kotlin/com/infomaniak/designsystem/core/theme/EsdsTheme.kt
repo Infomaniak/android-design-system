@@ -14,6 +14,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import com.infomaniak.designsystem.core.defaultvalues.DefaultTheme
 import com.infomaniak.designsystem.core.tokens.ExtendedColorScheme
 import com.infomaniak.designsystem.core.tokens.IconTokens
+import com.infomaniak.designsystem.core.tokens.OpacityTokens
 import com.infomaniak.designsystem.core.tokens.RadiusTokens
 import com.infomaniak.designsystem.core.tokens.SpacingTokens
 
@@ -31,6 +32,9 @@ object EsdsTheme {
     val radius: RadiusTokens
         @Composable @ReadOnlyComposable get() = LocalEsdsTheme.current.radius
 
+    val opacity: OpacityTokens
+        @Composable @ReadOnlyComposable get() = LocalEsdsTheme.current.opacity
+
     val MaterialTheme.extendedColorScheme: ExtendedColorScheme
         @Composable @ReadOnlyComposable get() = LocalEsdsTheme.current.extendedColorScheme
 
@@ -43,6 +47,7 @@ object EsdsTheme {
         val icon: IconTokens = DefaultTheme.icon,
         val spacing: SpacingTokens = DefaultTheme.spacing,
         val radius: RadiusTokens = DefaultTheme.radius,
+        val opacity: OpacityTokens = DefaultTheme.opacity,
         val materialColorScheme: ColorScheme = DefaultTheme.materialColorScheme,
         val extendedColorScheme: ExtendedColorScheme = DefaultTheme.extendedColorScheme,
     )

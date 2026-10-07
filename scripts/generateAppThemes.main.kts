@@ -56,6 +56,7 @@ val tokenTypeMappings: LinkedHashMap<String, TokenTypeMapping> = linkedMapOf(
     "icon"                to TokenTypeMapping("icon",                "IconTokens"),
     "spacing"             to TokenTypeMapping("spacing",             "SpacingTokens"),
     "radius"              to TokenTypeMapping("radius",              "RadiusTokens"),
+    "opacity"             to TokenTypeMapping("opacity",             "OpacityTokens"),
     "materialColorScheme" to TokenTypeMapping("materialColorScheme", "ColorScheme",         subPackage = "material"),
     "extendedColorScheme" to TokenTypeMapping("extendedColorScheme", "ExtendedColorScheme", subPackage = "extended"),
 )
