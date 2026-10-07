@@ -70,6 +70,12 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v5
 
+      # fwilhe2/setup-kotlin@v1.8
+      - name: Set up Kotlin
+        uses: fwilhe2/setup-kotlin@7163c92e0f906bdf586bd76b14143aa61d6b49e4
+        with:
+          version: 2.3.10
+
       - name: Perform a Gradle clean
         run: ./gradlew clean
 
@@ -81,6 +87,7 @@ jobs:
         run: |
           gh release create "${{ needs['resolve-version'].outputs.version }}" \
             --title "${{ needs['resolve-version'].outputs.version }}" \
+            --notes "$(kotlin scripts/generateReleaseNotes.main.kts)" \
             --generate-notes
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
