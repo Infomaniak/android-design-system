@@ -30,6 +30,38 @@ internal object IntermediateContactsDark {
    */
   val IconSizeXl: Dp = Scale40
   /*
+    Fully transparent; invisible element.
+   */
+  val OpacityNone: Float = Opacity0
+  /*
+    Near-transparent ghost used for faint hints.
+   */
+  val OpacityGhost: Float = Opacity5
+  /*
+    Subtle opacity for barely-visible overlays.
+   */
+  val OpacitySubtle: Float = Opacity10
+  /*
+    Soft opacity for light overlays and washes.
+   */
+  val OpacitySoft: Float = Opacity25
+  /*
+    Medium opacity for balanced translucency.
+   */
+  val OpacityMedium: Float = Opacity50
+  /*
+    Strong opacity for prominent but translucent elements.
+   */
+  val OpacityStrong: Float = Opacity75
+  /*
+    Heavy opacity for near-opaque elements.
+   */
+  val OpacityHeavy: Float = Opacity90
+  /*
+    Fully opaque; no translucency.
+   */
+  val OpacityFull: Float = Opacity100
+  /*
     No corner radius; sharp corners.
    */
   val RadiusNone: Shape = Radius0
