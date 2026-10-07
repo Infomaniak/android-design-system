@@ -10,7 +10,7 @@ import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
-class MultiplatformLibraryConventionPlugin : Plugin<Project> {
+class ComposeMultiplatformLibraryPlugin : Plugin<Project> {
     override fun apply(target: Project): Unit = with(target) {
         pluginManager.withPlugin("org.jetbrains.kotlin.multiplatform") {
             configureKotlinMultiplatform()

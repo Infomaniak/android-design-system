@@ -14,9 +14,9 @@ gradlePlugin {
             id = "com.infomaniak.designsystem.convention.android"
             implementationClass = "com.infomaniak.designsystem.convention.AndroidPlugin"
         }
-        register("multiplatformLibrary") {
-            id = "com.infomaniak.designsystem.convention.multiplatform.library"
-            implementationClass = "com.infomaniak.designsystem.convention.MultiplatformLibraryConventionPlugin"
+        register("composeMultiplatformLibrary") {
+            id = "com.infomaniak.designsystem.convention.compose.multiplatform.library"
+            implementationClass = "com.infomaniak.designsystem.convention.ComposeMultiplatformLibraryPlugin"
         }
         register("ktlint") {
             id = "com.infomaniak.designsystem.convention.ktlint"
