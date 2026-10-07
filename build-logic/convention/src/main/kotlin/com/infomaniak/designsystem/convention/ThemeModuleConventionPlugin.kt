@@ -20,6 +20,8 @@ class ThemeModuleConventionPlugin : Plugin<Project> {
         val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
         extensions.configure<KotlinMultiplatformExtension> {
             sourceSets.commonMain.dependencies {
+                // Exposed as "api" because theme modules expose public vals of type EsdsTheme.Values
+                // (defined in Foundation) directly as part of their public API.
                 api(project(":Foundation"))
                 implementation(project(":PrimitiveTokens"))
 
