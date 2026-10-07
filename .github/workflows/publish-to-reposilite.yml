@@ -81,6 +81,7 @@ jobs:
         run: |
           gh release create "${{ needs['resolve-version'].outputs.version }}" \
             --title "${{ needs['resolve-version'].outputs.version }}" \
+            --notes "$(python3 scripts/generateReleaseNotes.py)" \
             --generate-notes
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
