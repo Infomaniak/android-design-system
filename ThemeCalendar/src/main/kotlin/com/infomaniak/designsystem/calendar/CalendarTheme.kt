@@ -19,49 +19,55 @@ import com.infomaniak.designsystem.calendar.material.CalendarLightMediumContrast
 import com.infomaniak.designsystem.core.theme.EsdsTheme
 
 val CalendarLightTheme = EsdsTheme.Values(
+    materialColorScheme = CalendarLightColorScheme,
+    extendedColorScheme = CalendarLightExtendedColorScheme,
     icon = CalendarLightIconTokens,
     spacing = CalendarLightSpacingTokens,
     radius = CalendarLightRadiusTokens,
-    materialColorScheme = CalendarLightColorScheme,
-    extendedColorScheme = CalendarLightExtendedColorScheme,
+    opacity = CalendarLightOpacityTokens,
 )
 
 val CalendarLightMediumContrastTheme = EsdsTheme.Values(
+    materialColorScheme = CalendarLightMediumContrastColorScheme,
+    extendedColorScheme = CalendarLightMediumContrastExtendedColorScheme,
     icon = CalendarLightIconTokens,
     spacing = CalendarLightSpacingTokens,
     radius = CalendarLightRadiusTokens,
-    materialColorScheme = CalendarLightMediumContrastColorScheme,
-    extendedColorScheme = CalendarLightMediumContrastExtendedColorScheme,
+    opacity = CalendarLightOpacityTokens,
 )
 
 val CalendarLightHighContrastTheme = EsdsTheme.Values(
+    materialColorScheme = CalendarLightHighContrastColorScheme,
+    extendedColorScheme = CalendarLightHighContrastExtendedColorScheme,
     icon = CalendarLightIconTokens,
     spacing = CalendarLightSpacingTokens,
     radius = CalendarLightRadiusTokens,
-    materialColorScheme = CalendarLightHighContrastColorScheme,
-    extendedColorScheme = CalendarLightHighContrastExtendedColorScheme,
+    opacity = CalendarLightOpacityTokens,
 )
 
 val CalendarDarkTheme = EsdsTheme.Values(
+    materialColorScheme = CalendarDarkColorScheme,
+    extendedColorScheme = CalendarDarkExtendedColorScheme,
     icon = CalendarDarkIconTokens,
     spacing = CalendarDarkSpacingTokens,
     radius = CalendarDarkRadiusTokens,
-    materialColorScheme = CalendarDarkColorScheme,
-    extendedColorScheme = CalendarDarkExtendedColorScheme,
+    opacity = CalendarDarkOpacityTokens,
 )
 
 val CalendarDarkMediumContrastTheme = EsdsTheme.Values(
+    materialColorScheme = CalendarDarkMediumContrastColorScheme,
+    extendedColorScheme = CalendarDarkMediumContrastExtendedColorScheme,
     icon = CalendarDarkIconTokens,
     spacing = CalendarDarkSpacingTokens,
     radius = CalendarDarkRadiusTokens,
-    materialColorScheme = CalendarDarkMediumContrastColorScheme,
-    extendedColorScheme = CalendarDarkMediumContrastExtendedColorScheme,
+    opacity = CalendarDarkOpacityTokens,
 )
 
 val CalendarDarkHighContrastTheme = EsdsTheme.Values(
+    materialColorScheme = CalendarDarkHighContrastColorScheme,
+    extendedColorScheme = CalendarDarkHighContrastExtendedColorScheme,
     icon = CalendarDarkIconTokens,
     spacing = CalendarDarkSpacingTokens,
     radius = CalendarDarkRadiusTokens,
-    materialColorScheme = CalendarDarkHighContrastColorScheme,
-    extendedColorScheme = CalendarDarkHighContrastExtendedColorScheme,
+    opacity = CalendarDarkOpacityTokens,
 )
