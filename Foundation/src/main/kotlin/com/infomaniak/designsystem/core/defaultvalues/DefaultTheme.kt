@@ -7,6 +7,7 @@ val DefaultTheme: EsdsTheme.Values = EsdsTheme.Values(
     icon = DefaultIconTokens,
     spacing = DefaultSpacingTokens,
     radius = DefaultRadiusTokens,
+    opacity = DefaultOpacityTokens,
     materialColorScheme = DefaultColorScheme,
     extendedColorScheme = DefaultExtendedColorScheme,
 )
