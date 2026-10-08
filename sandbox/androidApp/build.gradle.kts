@@ -1,14 +1,14 @@
 plugins {
     alias(libs.plugins.android.application)
-    id("com.infomaniak.designsystem.convention.android")
     alias(libs.plugins.compose.compiler)
+    id("com.infomaniak.designsystem.convention.android")
 }
 
 android {
-    namespace = "com.infomaniak.generateddstokens"
+    namespace = "com.infomaniak.designsystem.sandbox"
 
     defaultConfig {
-        applicationId = "com.infomaniak.generateddstokens"
+        applicationId = "com.infomaniak.designsystem.sandbox"
         targetSdk = 37
         versionCode = 1
         versionName = "1.0"
@@ -27,7 +27,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":Foundation"))
+    implementation(project(":sandbox:shared"))
 
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.core.ktx)

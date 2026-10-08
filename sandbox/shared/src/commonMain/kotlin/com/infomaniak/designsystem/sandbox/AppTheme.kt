@@ -1,4 +1,4 @@
-package com.infomaniak.generateddstokens
+package com.infomaniak.designsystem.sandbox
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

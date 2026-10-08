@@ -24,7 +24,9 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Design System"
-include(":app")
+include(":sandbox:androidApp")
+include(":sandbox:desktopApp")
+include(":sandbox:shared")
 include(":catalog")
 include(":Foundation")
 include(":PrimitiveTokens")
