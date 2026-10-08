@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
-    id("com.infomaniak.designsystem.convention.android")
     alias(libs.plugins.compose.compiler)
+    id("com.infomaniak.designsystem.convention.android")
 }
 
 android {
@@ -31,6 +31,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":catalog:shared"))
+
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.core.ktx)
 
