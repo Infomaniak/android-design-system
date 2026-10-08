@@ -29,7 +29,7 @@ val repoRoot: File = generateSequence(File(System.getProperty("user.dir")).absol
  *   icon, spacing, radius, materialColorScheme, extendedColorScheme
  *
  * The file is placed alongside the other token files:
- *   Theme{ThemeName}/src/main/kotlin/com/infomaniak/designsystem/{themeName.lowercase()}/{ThemeName}Theme.kt
+ *   Theme{ThemeName}/src/commonMain/kotlin/com/infomaniak/designsystem/{themeName.lowercase()}/{ThemeName}Theme.kt
  */
 
 // ---------------------------------------------------------------------------
@@ -72,7 +72,7 @@ fun packageNameFor(themeName: String) =
 
 fun outputDirFor(themeName: String): File =
     repoRoot.resolve(
-        "Theme$themeName/src/main/kotlin/com/infomaniak/designsystem/${themeName.lowercase()}"
+        "Theme$themeName/src/commonMain/kotlin/com/infomaniak/designsystem/${themeName.lowercase()}"
     )
 
 fun header(packageName: String) = buildString {
