@@ -9,6 +9,10 @@ import com.infomaniak.designsystem.core.tokens.ExtendedColorScheme
 import com.infomaniak.designsystem.primitivetokens.ColorPrimitives
 
 internal val CalendarLightExtendedColorScheme = ExtendedColorScheme(
+    information = ColorPrimitives.Blue40,
+    onInformation = ColorPrimitives.Blue100,
+    informationContainer = ColorPrimitives.Blue90,
+    onInformationContainer = ColorPrimitives.Blue30,
     warning = ColorPrimitives.Orange40,
     onWarning = ColorPrimitives.Orange100,
     warningContainer = ColorPrimitives.Orange90,
@@ -59,4 +63,10 @@ internal val CalendarLightExtendedColorScheme = ExtendedColorScheme(
     datavizOnYellowContainer = ColorPrimitives.Yellow30,
     datavizYellowContainerVariant = ColorPrimitives.Yellow100,
     datavizOnYellowContainerVariant = ColorPrimitives.Yellow40,
+    datavizGray = ColorPrimitives.Gray40,
+    datavizOnGray = ColorPrimitives.Gray100,
+    datavizGrayContainer = ColorPrimitives.Gray90,
+    datavizOnGrayContainer = ColorPrimitives.Gray30,
+    datavizGrayContainerVariant = ColorPrimitives.Gray100,
+    datavizOnGrayContainerVariant = ColorPrimitives.Gray40,
 )
