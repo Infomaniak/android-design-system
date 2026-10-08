@@ -10,6 +10,10 @@ import androidx.compose.ui.graphics.Color
 
 @Immutable
 data class ExtendedColorScheme(
+    val information: Color,
+    val onInformation: Color,
+    val informationContainer: Color,
+    val onInformationContainer: Color,
     val warning: Color,
     val onWarning: Color,
     val warningContainer: Color,
@@ -60,4 +64,10 @@ data class ExtendedColorScheme(
     val datavizOnYellowContainer: Color,
     val datavizYellowContainerVariant: Color,
     val datavizOnYellowContainerVariant: Color,
+    val datavizGray: Color,
+    val datavizOnGray: Color,
+    val datavizGrayContainer: Color,
+    val datavizOnGrayContainer: Color,
+    val datavizGrayContainerVariant: Color,
+    val datavizOnGrayContainerVariant: Color,
 )
