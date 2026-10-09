@@ -22,7 +22,6 @@ import org.gradle.plugins.signing.SigningExtension
  * the version).
  */
 class PublishingConventionPlugin : Plugin<Project> {
-
     override fun apply(target: Project) = with(target) {
         with(pluginManager) {
             apply("maven-publish")
@@ -32,26 +31,8 @@ class PublishingConventionPlugin : Plugin<Project> {
         group = "com.infomaniak.designsystem"
         version = getPropertyValue("designsystem.version") ?: "unspecified"
 
-        // KMP modules don't need this: the Kotlin Multiplatform plugin creates one publication per
-        // target (plus the root "kotlinMultiplatform" one), sources jars included.
-        pluginManager.withPlugin("com.android.library") {
-            extensions.configure<LibraryExtension> {
-                publishing {
-                    singleVariant("release") {
-                        withSourcesJar()
-                    }
-                }
-            }
-        }
-
         afterEvaluate {
             extensions.configure<PublishingExtension> {
-                if (pluginManager.hasPlugin("com.android.library")) {
-                    publications.create<MavenPublication>("release") {
-                        from(components["release"])
-                    }
-                }
-
                 publications.withType<MavenPublication>().configureEach {
                     pom {
                         name.set(project.name)

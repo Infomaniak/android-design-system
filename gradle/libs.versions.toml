@@ -39,7 +39,6 @@ ktlint-gradle-plugin = { group = "org.jlleitschuh.gradle", name = "ktlint-gradle
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
-android-library = { id = "com.android.library", version.ref = "agp" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

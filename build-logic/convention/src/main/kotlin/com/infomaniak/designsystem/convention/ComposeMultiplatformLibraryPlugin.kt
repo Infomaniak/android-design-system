@@ -1,6 +1,5 @@
 package com.infomaniak.designsystem.convention
 
-import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryTarget
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
@@ -13,13 +12,8 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 class ComposeMultiplatformLibraryPlugin : Plugin<Project> {
     override fun apply(target: Project): Unit = with(target) {
         pluginManager.withPlugin("org.jetbrains.kotlin.multiplatform") {
-            configureKotlinMultiplatform()
+            configureComposeMultiplatform()
         }
-        pluginManager.withPlugin("com.android.kotlin.multiplatform.library") {
-            configureAndroid()
-        }
-
-        pluginManager.apply("org.jetbrains.kotlin.plugin.compose")
         pluginManager.apply("com.infomaniak.designsystem.convention.ktlint")
 
         tasks.withType<JavaCompile>().configureEach {
@@ -27,7 +21,9 @@ class ComposeMultiplatformLibraryPlugin : Plugin<Project> {
         }
     }
 
-    private fun Project.configureKotlinMultiplatform() {
+    private fun Project.configureComposeMultiplatform() {
+        pluginManager.apply("org.jetbrains.kotlin.plugin.compose")
+
         val kotlin = extensions.getByType<KotlinMultiplatformExtension>()
         val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
@@ -41,17 +37,6 @@ class ComposeMultiplatformLibraryPlugin : Plugin<Project> {
             }
 
             jvm {
-                compilerOptions.jvmTarget.set(JvmTarget.JVM_17)
-            }
-        }
-    }
-
-    private fun Project.configureAndroid() {
-        val kotlin = extensions.getByType<KotlinMultiplatformExtension>()
-        kotlin.apply {
-            this.extensions.configure<KotlinMultiplatformAndroidLibraryTarget>("android") {
-                compileSdk = 37
-                minSdk = 27
                 compilerOptions.jvmTarget.set(JvmTarget.JVM_17)
             }
         }

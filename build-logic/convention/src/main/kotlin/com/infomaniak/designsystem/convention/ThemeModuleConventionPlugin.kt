@@ -13,6 +13,7 @@ class ThemeModuleConventionPlugin : Plugin<Project> {
         with(pluginManager) {
             apply("org.jetbrains.kotlin.multiplatform")
             apply("com.android.kotlin.multiplatform.library")
+            apply("com.infomaniak.designsystem.convention.android")
             apply("com.infomaniak.designsystem.convention.compose.multiplatform.library")
             apply("com.infomaniak.designsystem.convention.publishing")
         }
