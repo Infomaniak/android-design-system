@@ -19,7 +19,7 @@ fun App() {
 private fun Screen() {
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
         Greeting(
-            name = "Android",
+            name = "Catalog App",
             modifier = Modifier.padding(innerPadding)
         )
     }
