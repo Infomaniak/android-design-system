@@ -122,7 +122,7 @@ val extendedColorsGroup = GroupConfig(
     kind = GroupKind.GeneratedDataClass(
         name = "ExtendedColorScheme",
         packageName = "com.infomaniak.designsystem.core.tokens",
-        outputDir = repoRoot.resolve("Foundation/src/main/kotlin/com/infomaniak/designsystem/core/tokens"),
+        outputDir = repoRoot.resolve("Foundation/src/commonMain/kotlin/com/infomaniak/designsystem/core/tokens"),
     ),
 )
 
@@ -148,7 +148,7 @@ val defaultInstanceConfigs = listOf(
         product = "Infomaniak",
         mode = themeModes.first(),
         packageName = "com.infomaniak.designsystem.core.defaultvalues.material",
-        outputDir = repoRoot.resolve("Foundation/src/main/kotlin/com/infomaniak/designsystem/core/defaultvalues/material"),
+        outputDir = repoRoot.resolve("Foundation/src/commonMain/kotlin/com/infomaniak/designsystem/core/defaultvalues/material"),
     ),
     DefaultInstanceConfig(
         instanceName = "DefaultExtendedColorScheme",
@@ -156,7 +156,7 @@ val defaultInstanceConfigs = listOf(
         product = "Infomaniak",
         mode = themeModes.first(),
         packageName = "com.infomaniak.designsystem.core.defaultvalues",
-        outputDir = repoRoot.resolve("Foundation/src/main/kotlin/com/infomaniak/designsystem/core/defaultvalues"),
+        outputDir = repoRoot.resolve("Foundation/src/commonMain/kotlin/com/infomaniak/designsystem/core/defaultvalues"),
     ),
 )
 
@@ -174,7 +174,7 @@ data class SharedPaletteConfig(val objectName: String, val packageName: String, 
 val sharedPalette = SharedPaletteConfig(
     objectName = "ColorPrimitives",
     packageName = "com.infomaniak.designsystem.primitivetokens",
-    outputDir = repoRoot.resolve("PrimitiveTokens/src/main/kotlin/com/infomaniak/designsystem/primitivetokens"),
+    outputDir = repoRoot.resolve("PrimitiveTokens/src/commonMain/kotlin/com/infomaniak/designsystem/primitivetokens"),
 )
 
 /**
@@ -194,7 +194,7 @@ val productConfigs = listOf(
     ProductConfig(
         product = "Calendar",
         packageName = "com.infomaniak.designsystem.calendar",
-        outputDir = repoRoot.resolve("ThemeCalendar/src/main/kotlin/com/infomaniak/designsystem/calendar"),
+        outputDir = repoRoot.resolve("ThemeCalendar/src/commonMain/kotlin/com/infomaniak/designsystem/calendar"),
     ),
 )
 

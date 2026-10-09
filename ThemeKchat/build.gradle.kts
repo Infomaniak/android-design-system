@@ -2,6 +2,8 @@ plugins {
     id("com.infomaniak.designsystem.convention.theme")
 }
 
-android {
-    namespace = "com.infomaniak.designsystem.kchat"
+kotlin {
+    android {
+        namespace = "com.infomaniak.designsystem.kchat"
+    }
 }

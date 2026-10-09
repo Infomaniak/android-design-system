@@ -24,8 +24,16 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Design System"
-include(":app")
-include(":catalog")
+
+// Apps
+include(":sandbox:androidApp")
+include(":sandbox:desktopApp")
+include(":sandbox:shared")
+include(":catalog:androidApp")
+include(":catalog:desktopApp")
+include(":catalog:shared")
+
+// Published Libraries
 include(":Foundation")
 include(":PrimitiveTokens")
 include(":ThemeCalendar")

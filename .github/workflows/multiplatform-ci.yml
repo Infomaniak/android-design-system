@@ -1,0 +1,48 @@
+# https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions
+name: Multiplatform CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v6
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: 21
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+
+      - name: Check code style (ktlint)
+        run: ./gradlew ktlintCheck
+
+      # Builds every KMP target (android + jvm) of the libraries, plus the Android and desktop apps
+      - name: Build all libraries and apps
+        run: ./gradlew assemble
+
+      - name: Run tests on all KMP targets
+        run: ./gradlew allTests
+
+      # Catches KMP publication issues (kotlinMultiplatform/android/jvm publications, POM metadata)
+      # before running the real publish workflows. Signing is skipped as no GPG key is provided here.
+      - name: Verify publications
+        run: ./gradlew publishToMavenLocal -Pdesignsystem.version=0.0.0-ci-SNAPSHOT
+env:
+  GRADLE_OPTS: -Dorg.gradle.jvmargs="-Xmx5g -Dfile.encoding=UTF-8"

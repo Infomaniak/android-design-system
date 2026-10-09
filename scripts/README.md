@@ -44,7 +44,7 @@ Every time a new product is supported inside the JSON and needs to be generated,
 ProductConfig(
     product = "Mail", // must match the mode name in the JSON "Product" collection
     packageName = "com.infomaniak.designsystem.mail",
-    outputDir = repoRoot.resolve("ThemeMail/src/main/kotlin/com/infomaniak/designsystem/mail"),
+    outputDir = repoRoot.resolve("ThemeMail/src/commonMain/kotlin/com/infomaniak/designsystem/mail"),
 )
 ```
 
@@ -61,7 +61,7 @@ GroupConfig(
     kind = GroupKind.GeneratedDataClass(
         name = "MyTokens",
         packageName = "com.infomaniak.designsystem.core.tokens",
-        outputDir = repoRoot.resolve("Foundation/src/main/kotlin/com/infomaniak/designsystem/core/tokens"),
+        outputDir = repoRoot.resolve("Foundation/src/commonMain/kotlin/com/infomaniak/designsystem/core/tokens"),
     ),
 )
 ```
