@@ -33,10 +33,7 @@ class AndroidPlugin : Plugin<Project> {
             }
         }
 
-        pluginManager.apply("org.jlleitschuh.gradle.ktlint")
-        extensions.configure<KtlintExtension> {
-            version.set("1.8.0")
-        }
+        pluginManager.apply("com.infomaniak.designsystem.convention.ktlint")
     }
 
     private fun Project.configureMultiplatformAndroidLibrary() {
@@ -48,8 +45,7 @@ class AndroidPlugin : Plugin<Project> {
                 compilerOptions.jvmTarget.set(JvmTarget.JVM_17)
             }
         }
-
-        pluginManager.apply("org.jlleitschuh.gradle.ktlint")
+        pluginManager.apply("com.infomaniak.designsystem.convention.ktlint")
     }
 
     companion object AndroidSdk {
