@@ -22,10 +22,10 @@ class AndroidPlugin : Plugin<Project> {
     private fun Project.configureAndroid() {
         extensions.configure<CommonExtension> {
             compileSdk {
-                version = release(37)
+                version = release(ANDROID_COMPILE_SDK)
             }
             defaultConfig.apply {
-                minSdk = 27
+                minSdk = ANDROID_MIN_SDK
             }
             compileOptions.apply {
                 sourceCompatibility = JavaVersion.VERSION_17
@@ -43,8 +43,8 @@ class AndroidPlugin : Plugin<Project> {
         val kotlin = extensions.getByType<KotlinMultiplatformExtension>()
         kotlin.apply {
             this.extensions.configure<KotlinMultiplatformAndroidLibraryTarget>("android") {
-                compileSdk = 37
-                minSdk = 27
+                compileSdk = ANDROID_COMPILE_SDK
+                minSdk = ANDROID_MIN_SDK
                 compilerOptions.jvmTarget.set(JvmTarget.JVM_17)
             }
         }
@@ -52,7 +52,7 @@ class AndroidPlugin : Plugin<Project> {
         pluginManager.apply("org.jlleitschuh.gradle.ktlint")
     }
 
-    companion object {
+    companion object AndroidSdk {
         const val ANDROID_MIN_SDK = 27
         const val ANDROID_COMPILE_SDK = 37
     }
