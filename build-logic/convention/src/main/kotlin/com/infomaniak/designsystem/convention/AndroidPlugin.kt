@@ -9,7 +9,6 @@ import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jlleitschuh.gradle.ktlint.KtlintExtension
 
 class AndroidPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
