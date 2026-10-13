@@ -14,12 +14,6 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(project(":Foundation"))
-
-            implementation(libs.compose.multiplatform.ui.tooling.preview)
         }
     }
-}
-
-dependencies {
-    androidRuntimeClasspath(libs.compose.multiplatform.ui.tooling)
 }
