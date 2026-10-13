@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.android.kotlin.multiplatform.library)
     id("com.infomaniak.designsystem.convention.android")
     id("com.infomaniak.designsystem.convention.compose.multiplatform.library")
+    id("com.infomaniak.designsystem.convention.compose.multiplatform.preview")
 }
 
 kotlin {
@@ -13,12 +14,6 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(project(":Foundation"))
-
-            implementation(libs.compose.multiplatform.ui.tooling.preview)
         }
     }
-}
-
-dependencies {
-    androidRuntimeClasspath(libs.compose.multiplatform.ui.tooling)
 }

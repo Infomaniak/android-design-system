@@ -4,7 +4,6 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
@@ -15,6 +14,7 @@ class ThemeModuleConventionPlugin : Plugin<Project> {
             apply("com.android.kotlin.multiplatform.library")
             apply("com.infomaniak.designsystem.convention.android")
             apply("com.infomaniak.designsystem.convention.compose.multiplatform.library")
+            apply("com.infomaniak.designsystem.convention.compose.multiplatform.preview")
             apply("com.infomaniak.designsystem.convention.publishing")
         }
 
@@ -26,13 +26,7 @@ class ThemeModuleConventionPlugin : Plugin<Project> {
                 api(project(":Foundation"))
                 implementation(project(":PrimitiveTokens"))
 
-                implementation(libs.findLibrary("compose-multiplatform-ui-tooling-preview").get())
             }
-        }
-
-        dependencies {
-            // Runtime-only, for Android Studio previews: not part of the published metadata.
-            add("androidRuntimeClasspath", libs.findLibrary("compose-multiplatform-ui-tooling").get())
         }
     }
 }

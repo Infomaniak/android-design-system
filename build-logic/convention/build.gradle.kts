@@ -18,6 +18,10 @@ gradlePlugin {
             id = "com.infomaniak.designsystem.convention.compose.multiplatform.library"
             implementationClass = "com.infomaniak.designsystem.convention.ComposeMultiplatformLibraryPlugin"
         }
+        register("composeMultiplatformPreview") {
+            id = "com.infomaniak.designsystem.convention.compose.multiplatform.preview"
+            implementationClass = "com.infomaniak.designsystem.convention.ComposePreviewPlugin"
+        }
         register("ktlint") {
             id = "com.infomaniak.designsystem.convention.ktlint"
             implementationClass = "com.infomaniak.designsystem.convention.KtlintConventionPlugin"
