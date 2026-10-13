@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.android.kotlin.multiplatform.library)
     id("com.infomaniak.designsystem.convention.android")
     id("com.infomaniak.designsystem.convention.compose.multiplatform.library")
+    id("com.infomaniak.designsystem.convention.compose.multiplatform.preview")
 }
 
 kotlin {
