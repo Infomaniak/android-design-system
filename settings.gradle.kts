@@ -35,5 +35,6 @@ include(":catalog:shared")
 
 // Published Libraries
 include(":Foundation")
+include(":Icons")
 include(":PrimitiveTokens")
 include(":ThemeCalendar")
