@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraLarge.DiamondsStackedVertical: ImageVector
+internal val EsdsIcons.ExtraLarge.DiamondsStackedVertical: ImageVector
     get() {
         if (_DiamondsStackedVertical != null) {
             return _DiamondsStackedVertical!!

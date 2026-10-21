@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Medium.SpeakerWaves: ImageVector
+internal val EsdsIcons.Medium.SpeakerWaves: ImageVector
     get() {
         if (_SpeakerWaves != null) {
             return _SpeakerWaves!!

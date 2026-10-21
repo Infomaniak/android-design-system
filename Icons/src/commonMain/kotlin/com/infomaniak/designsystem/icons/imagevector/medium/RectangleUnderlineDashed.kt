@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Medium.RectangleUnderlineDashed: ImageVector
+internal val EsdsIcons.Medium.RectangleUnderlineDashed: ImageVector
     get() {
         if (_RectangleUnderlineDashed != null) {
             return _RectangleUnderlineDashed!!

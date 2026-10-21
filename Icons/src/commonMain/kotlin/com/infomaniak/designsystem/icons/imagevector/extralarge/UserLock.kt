@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraLarge.UserLock: ImageVector
+internal val EsdsIcons.ExtraLarge.UserLock: ImageVector
     get() {
         if (_UserLock != null) {
             return _UserLock!!

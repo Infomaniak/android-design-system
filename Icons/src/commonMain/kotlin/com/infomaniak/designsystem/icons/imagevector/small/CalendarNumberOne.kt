@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Small.CalendarNumberOne: ImageVector
+internal val EsdsIcons.Small.CalendarNumberOne: ImageVector
     get() {
         if (_CalendarNumberOne != null) {
             return _CalendarNumberOne!!

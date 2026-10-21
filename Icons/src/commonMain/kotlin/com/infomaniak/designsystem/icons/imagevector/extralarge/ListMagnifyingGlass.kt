@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraLarge.ListMagnifyingGlass: ImageVector
+internal val EsdsIcons.ExtraLarge.ListMagnifyingGlass: ImageVector
     get() {
         if (_ListMagnifyingGlass != null) {
             return _ListMagnifyingGlass!!

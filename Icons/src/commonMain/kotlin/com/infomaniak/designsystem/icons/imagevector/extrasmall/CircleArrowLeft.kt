@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraSmall.CircleArrowLeft: ImageVector
+internal val EsdsIcons.ExtraSmall.CircleArrowLeft: ImageVector
     get() {
         if (_CircleArrowLeft != null) {
             return _CircleArrowLeft!!

@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraSmall.CircleFadingArrowUp: ImageVector
+internal val EsdsIcons.ExtraSmall.CircleFadingArrowUp: ImageVector
     get() {
         if (_CircleFadingArrowUp != null) {
             return _CircleFadingArrowUp!!

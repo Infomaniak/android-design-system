@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraLarge.CakeCandles: ImageVector
+internal val EsdsIcons.ExtraLarge.CakeCandles: ImageVector
     get() {
         if (_CakeCandles != null) {
             return _CakeCandles!!

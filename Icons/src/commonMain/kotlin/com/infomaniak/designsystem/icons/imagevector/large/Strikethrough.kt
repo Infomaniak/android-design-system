@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Large.Strikethrough: ImageVector
+internal val EsdsIcons.Large.Strikethrough: ImageVector
     get() {
         if (_Strikethrough != null) {
             return _Strikethrough!!

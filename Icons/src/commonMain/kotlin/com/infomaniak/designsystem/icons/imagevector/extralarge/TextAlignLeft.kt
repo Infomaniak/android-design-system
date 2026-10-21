@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraLarge.TextAlignLeft: ImageVector
+internal val EsdsIcons.ExtraLarge.TextAlignLeft: ImageVector
     get() {
         if (_TextAlignLeft != null) {
             return _TextAlignLeft!!

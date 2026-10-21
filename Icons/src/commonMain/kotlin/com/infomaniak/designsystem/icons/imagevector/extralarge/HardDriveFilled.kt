@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraLarge.HardDriveFilled: ImageVector
+internal val EsdsIcons.ExtraLarge.HardDriveFilled: ImageVector
     get() {
         if (_HardDriveFilled != null) {
             return _HardDriveFilled!!

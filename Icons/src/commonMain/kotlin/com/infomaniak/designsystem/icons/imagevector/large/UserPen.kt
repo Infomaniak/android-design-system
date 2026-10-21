@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Large.UserPen: ImageVector
+internal val EsdsIcons.Large.UserPen: ImageVector
     get() {
         if (_UserPen != null) {
             return _UserPen!!

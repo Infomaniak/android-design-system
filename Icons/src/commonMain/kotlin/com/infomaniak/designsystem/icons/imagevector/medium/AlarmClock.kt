@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Medium.AlarmClock: ImageVector
+internal val EsdsIcons.Medium.AlarmClock: ImageVector
     get() {
         if (_AlarmClock != null) {
             return _AlarmClock!!

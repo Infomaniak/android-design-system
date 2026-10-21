@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraLarge.CircleArrowsAnticlockwise: ImageVector
+internal val EsdsIcons.ExtraLarge.CircleArrowsAnticlockwise: ImageVector
     get() {
         if (_CircleArrowsAnticlockwise != null) {
             return _CircleArrowsAnticlockwise!!

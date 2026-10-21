@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraLarge.CloudSlash: ImageVector
+internal val EsdsIcons.ExtraLarge.CloudSlash: ImageVector
     get() {
         if (_CloudSlash != null) {
             return _CloudSlash!!

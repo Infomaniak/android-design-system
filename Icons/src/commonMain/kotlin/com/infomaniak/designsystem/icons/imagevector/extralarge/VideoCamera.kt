@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraLarge.VideoCamera: ImageVector
+internal val EsdsIcons.ExtraLarge.VideoCamera: ImageVector
     get() {
         if (_VideoCamera != null) {
             return _VideoCamera!!

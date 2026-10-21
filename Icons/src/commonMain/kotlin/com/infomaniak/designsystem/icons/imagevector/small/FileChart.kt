@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Small.FileChart: ImageVector
+internal val EsdsIcons.Small.FileChart: ImageVector
     get() {
         if (_FileChart != null) {
             return _FileChart!!

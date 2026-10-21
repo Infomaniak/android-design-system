@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Small.EnvelopeExclamationMark: ImageVector
+internal val EsdsIcons.Small.EnvelopeExclamationMark: ImageVector
     get() {
         if (_EnvelopeExclamationMark != null) {
             return _EnvelopeExclamationMark!!

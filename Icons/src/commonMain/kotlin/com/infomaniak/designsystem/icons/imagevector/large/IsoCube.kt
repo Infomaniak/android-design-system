@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Large.IsoCube: ImageVector
+internal val EsdsIcons.Large.IsoCube: ImageVector
     get() {
         if (_IsoCube != null) {
             return _IsoCube!!

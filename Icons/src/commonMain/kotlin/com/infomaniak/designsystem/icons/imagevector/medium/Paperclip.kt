@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Medium.Paperclip: ImageVector
+internal val EsdsIcons.Medium.Paperclip: ImageVector
     get() {
         if (_Paperclip != null) {
             return _Paperclip!!

@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Medium.ZigzagArrowUpRight: ImageVector
+internal val EsdsIcons.Medium.ZigzagArrowUpRight: ImageVector
     get() {
         if (_ZigzagArrowUpRight != null) {
             return _ZigzagArrowUpRight!!

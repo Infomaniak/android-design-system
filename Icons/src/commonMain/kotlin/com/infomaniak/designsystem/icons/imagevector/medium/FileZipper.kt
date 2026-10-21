@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Medium.FileZipper: ImageVector
+internal val EsdsIcons.Medium.FileZipper: ImageVector
     get() {
         if (_FileZipper != null) {
             return _FileZipper!!

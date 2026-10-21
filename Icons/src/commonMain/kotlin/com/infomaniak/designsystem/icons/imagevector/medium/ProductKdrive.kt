@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Medium.ProductKdrive: ImageVector
+internal val EsdsIcons.Medium.ProductKdrive: ImageVector
     get() {
         if (_ProductKdrive != null) {
             return _ProductKdrive!!

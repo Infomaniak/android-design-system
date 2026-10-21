@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraSmall.ProductSwisstransfer: ImageVector
+internal val EsdsIcons.ExtraSmall.ProductSwisstransfer: ImageVector
     get() {
         if (_ProductSwisstransfer != null) {
             return _ProductSwisstransfer!!

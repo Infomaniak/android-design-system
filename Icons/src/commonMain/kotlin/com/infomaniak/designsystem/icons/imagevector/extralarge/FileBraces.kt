@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraLarge.FileBraces: ImageVector
+internal val EsdsIcons.ExtraLarge.FileBraces: ImageVector
     get() {
         if (_FileBraces != null) {
             return _FileBraces!!

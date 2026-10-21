@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraSmall.ProductKchatFilled: ImageVector
+internal val EsdsIcons.ExtraSmall.ProductKchatFilled: ImageVector
     get() {
         if (_ProductKchatFilled != null) {
             return _ProductKchatFilled!!

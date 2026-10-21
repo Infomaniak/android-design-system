@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Large.CloudExclamationMark: ImageVector
+internal val EsdsIcons.Large.CloudExclamationMark: ImageVector
     get() {
         if (_CloudExclamationMark != null) {
             return _CloudExclamationMark!!

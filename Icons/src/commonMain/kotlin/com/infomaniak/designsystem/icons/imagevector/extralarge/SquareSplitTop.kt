@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraLarge.SquareSplitTop: ImageVector
+internal val EsdsIcons.ExtraLarge.SquareSplitTop: ImageVector
     get() {
         if (_SquareSplitTop != null) {
             return _SquareSplitTop!!

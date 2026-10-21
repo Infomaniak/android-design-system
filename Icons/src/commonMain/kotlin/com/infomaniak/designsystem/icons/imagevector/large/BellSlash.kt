@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Large.BellSlash: ImageVector
+internal val EsdsIcons.Large.BellSlash: ImageVector
     get() {
         if (_BellSlash != null) {
             return _BellSlash!!

@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraSmall.Bookmark: ImageVector
+internal val EsdsIcons.ExtraSmall.Bookmark: ImageVector
     get() {
         if (_Bookmark != null) {
             return _Bookmark!!

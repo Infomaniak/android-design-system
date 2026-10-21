@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Medium.Megaphone: ImageVector
+internal val EsdsIcons.Medium.Megaphone: ImageVector
     get() {
         if (_Megaphone != null) {
             return _Megaphone!!

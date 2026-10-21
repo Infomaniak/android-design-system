@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Medium.MousePointerSparkle: ImageVector
+internal val EsdsIcons.Medium.MousePointerSparkle: ImageVector
     get() {
         if (_MousePointerSparkle != null) {
             return _MousePointerSparkle!!

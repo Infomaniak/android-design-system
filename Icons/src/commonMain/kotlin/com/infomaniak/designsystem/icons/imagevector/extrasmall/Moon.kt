@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraSmall.Moon: ImageVector
+internal val EsdsIcons.ExtraSmall.Moon: ImageVector
     get() {
         if (_Moon != null) {
             return _Moon!!

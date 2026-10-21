@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Small.TriangleRight: ImageVector
+internal val EsdsIcons.Small.TriangleRight: ImageVector
     get() {
         if (_TriangleRight != null) {
             return _TriangleRight!!

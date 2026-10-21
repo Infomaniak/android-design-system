@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Small.PencilSparkles: ImageVector
+internal val EsdsIcons.Small.PencilSparkles: ImageVector
     get() {
         if (_PencilSparkles != null) {
             return _PencilSparkles!!

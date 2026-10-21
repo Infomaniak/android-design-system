@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraSmall.MusicNote: ImageVector
+internal val EsdsIcons.ExtraSmall.MusicNote: ImageVector
     get() {
         if (_MusicNote != null) {
             return _MusicNote!!

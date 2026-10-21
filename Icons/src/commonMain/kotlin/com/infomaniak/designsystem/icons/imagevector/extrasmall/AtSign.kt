@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraSmall.AtSign: ImageVector
+internal val EsdsIcons.ExtraSmall.AtSign: ImageVector
     get() {
         if (_AtSign != null) {
             return _AtSign!!

@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Small.Heart: ImageVector
+internal val EsdsIcons.Small.Heart: ImageVector
     get() {
         if (_Heart != null) {
             return _Heart!!

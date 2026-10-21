@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Large.RectangleDotsThree: ImageVector
+internal val EsdsIcons.Large.RectangleDotsThree: ImageVector
     get() {
         if (_RectangleDotsThree != null) {
             return _RectangleDotsThree!!

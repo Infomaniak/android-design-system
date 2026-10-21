@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Large.SquareCornersFace: ImageVector
+internal val EsdsIcons.Large.SquareCornersFace: ImageVector
     get() {
         if (_SquareCornersFace != null) {
             return _SquareCornersFace!!

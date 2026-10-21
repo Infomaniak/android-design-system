@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Medium.HandshakeHeart: ImageVector
+internal val EsdsIcons.Medium.HandshakeHeart: ImageVector
     get() {
         if (_HandshakeHeart != null) {
             return _HandshakeHeart!!

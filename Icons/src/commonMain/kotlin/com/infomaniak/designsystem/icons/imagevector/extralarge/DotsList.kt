@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraLarge.DotsList: ImageVector
+internal val EsdsIcons.ExtraLarge.DotsList: ImageVector
     get() {
         if (_DotsList != null) {
             return _DotsList!!

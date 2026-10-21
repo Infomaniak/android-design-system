@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraLarge.ProductEuriaFilled: ImageVector
+internal val EsdsIcons.ExtraLarge.ProductEuriaFilled: ImageVector
     get() {
         if (_ProductEuriaFilled != null) {
             return _ProductEuriaFilled!!

@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Medium.Underline: ImageVector
+internal val EsdsIcons.Medium.Underline: ImageVector
     get() {
         if (_Underline != null) {
             return _Underline!!

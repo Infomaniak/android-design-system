@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraSmall.RectangleDoubleOverline: ImageVector
+internal val EsdsIcons.ExtraSmall.RectangleDoubleOverline: ImageVector
     get() {
         if (_RectangleDoubleOverline != null) {
             return _RectangleDoubleOverline!!

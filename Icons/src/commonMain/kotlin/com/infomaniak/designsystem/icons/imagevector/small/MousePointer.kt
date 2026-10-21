@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Small.MousePointer: ImageVector
+internal val EsdsIcons.Small.MousePointer: ImageVector
     get() {
         if (_MousePointer != null) {
             return _MousePointer!!
