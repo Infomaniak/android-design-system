@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Small.BubbleLeftText: ImageVector
+internal val EsdsIcons.Small.BubbleLeftText: ImageVector
     get() {
         if (_BubbleLeftText != null) {
             return _BubbleLeftText!!

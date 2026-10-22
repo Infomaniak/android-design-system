@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Large.BubbleTopRightCircle: ImageVector
+internal val EsdsIcons.Large.BubbleTopRightCircle: ImageVector
     get() {
         if (_BubbleTopRightCircle != null) {
             return _BubbleTopRightCircle!!

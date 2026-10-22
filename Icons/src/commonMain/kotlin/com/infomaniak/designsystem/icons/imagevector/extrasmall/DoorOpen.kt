@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraSmall.DoorOpen: ImageVector
+internal val EsdsIcons.ExtraSmall.DoorOpen: ImageVector
     get() {
         if (_DoorOpen != null) {
             return _DoorOpen!!

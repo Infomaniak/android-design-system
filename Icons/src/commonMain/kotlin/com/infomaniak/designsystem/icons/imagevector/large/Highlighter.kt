@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Large.Highlighter: ImageVector
+internal val EsdsIcons.Large.Highlighter: ImageVector
     get() {
         if (_Highlighter != null) {
             return _Highlighter!!

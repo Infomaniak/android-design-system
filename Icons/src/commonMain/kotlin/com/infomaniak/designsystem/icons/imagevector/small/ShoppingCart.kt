@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Small.ShoppingCart: ImageVector
+internal val EsdsIcons.Small.ShoppingCart: ImageVector
     get() {
         if (_ShoppingCart != null) {
             return _ShoppingCart!!

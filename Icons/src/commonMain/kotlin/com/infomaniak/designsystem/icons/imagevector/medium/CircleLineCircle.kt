@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Medium.CircleLineCircle: ImageVector
+internal val EsdsIcons.Medium.CircleLineCircle: ImageVector
     get() {
         if (_CircleLineCircle != null) {
             return _CircleLineCircle!!

@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraLarge.Clock: ImageVector
+internal val EsdsIcons.ExtraLarge.Clock: ImageVector
     get() {
         if (_Clock != null) {
             return _Clock!!

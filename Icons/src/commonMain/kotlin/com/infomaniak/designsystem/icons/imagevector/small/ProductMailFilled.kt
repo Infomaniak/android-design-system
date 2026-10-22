@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Small.ProductMailFilled: ImageVector
+internal val EsdsIcons.Small.ProductMailFilled: ImageVector
     get() {
         if (_ProductMailFilled != null) {
             return _ProductMailFilled!!

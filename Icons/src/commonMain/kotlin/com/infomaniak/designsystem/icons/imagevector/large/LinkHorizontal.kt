@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Large.LinkHorizontal: ImageVector
+internal val EsdsIcons.Large.LinkHorizontal: ImageVector
     get() {
         if (_LinkHorizontal != null) {
             return _LinkHorizontal!!

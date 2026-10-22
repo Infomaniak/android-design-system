@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Medium.ShieldCheck: ImageVector
+internal val EsdsIcons.Medium.ShieldCheck: ImageVector
     get() {
         if (_ShieldCheck != null) {
             return _ShieldCheck!!

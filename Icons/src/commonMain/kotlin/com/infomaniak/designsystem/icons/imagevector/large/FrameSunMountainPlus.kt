@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Large.FrameSunMountainPlus: ImageVector
+internal val EsdsIcons.Large.FrameSunMountainPlus: ImageVector
     get() {
         if (_FrameSunMountainPlus != null) {
             return _FrameSunMountainPlus!!

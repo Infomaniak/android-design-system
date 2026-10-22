@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Medium.WaveArcsUp: ImageVector
+internal val EsdsIcons.Medium.WaveArcsUp: ImageVector
     get() {
         if (_WaveArcsUp != null) {
             return _WaveArcsUp!!

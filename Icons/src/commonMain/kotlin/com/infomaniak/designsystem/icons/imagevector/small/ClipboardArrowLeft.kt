@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Small.ClipboardArrowLeft: ImageVector
+internal val EsdsIcons.Small.ClipboardArrowLeft: ImageVector
     get() {
         if (_ClipboardArrowLeft != null) {
             return _ClipboardArrowLeft!!

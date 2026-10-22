@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraLarge.Lightbulb: ImageVector
+internal val EsdsIcons.ExtraLarge.Lightbulb: ImageVector
     get() {
         if (_Lightbulb != null) {
             return _Lightbulb!!

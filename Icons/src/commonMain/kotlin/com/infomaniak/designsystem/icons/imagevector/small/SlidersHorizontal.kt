@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Small.SlidersHorizontal: ImageVector
+internal val EsdsIcons.Small.SlidersHorizontal: ImageVector
     get() {
         if (_SlidersHorizontal != null) {
             return _SlidersHorizontal!!

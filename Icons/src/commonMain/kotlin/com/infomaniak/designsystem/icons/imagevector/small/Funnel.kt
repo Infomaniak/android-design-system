@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Small.Funnel: ImageVector
+internal val EsdsIcons.Small.Funnel: ImageVector
     get() {
         if (_Funnel != null) {
             return _Funnel!!

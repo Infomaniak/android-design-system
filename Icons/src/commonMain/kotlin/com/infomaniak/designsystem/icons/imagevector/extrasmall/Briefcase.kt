@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraSmall.Briefcase: ImageVector
+internal val EsdsIcons.ExtraSmall.Briefcase: ImageVector
     get() {
         if (_Briefcase != null) {
             return _Briefcase!!

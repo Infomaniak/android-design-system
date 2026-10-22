@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Small.DoubleQuotesClosing: ImageVector
+internal val EsdsIcons.Small.DoubleQuotesClosing: ImageVector
     get() {
         if (_DoubleQuotesClosing != null) {
             return _DoubleQuotesClosing!!

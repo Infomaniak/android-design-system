@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraSmall.CheckmarkList: ImageVector
+internal val EsdsIcons.ExtraSmall.CheckmarkList: ImageVector
     get() {
         if (_CheckmarkList != null) {
             return _CheckmarkList!!

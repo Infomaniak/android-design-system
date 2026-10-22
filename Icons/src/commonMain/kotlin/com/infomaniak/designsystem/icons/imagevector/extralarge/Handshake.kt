@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraLarge.Handshake: ImageVector
+internal val EsdsIcons.ExtraLarge.Handshake: ImageVector
     get() {
         if (_Handshake != null) {
             return _Handshake!!

@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraSmall.CloudArrowUp: ImageVector
+internal val EsdsIcons.ExtraSmall.CloudArrowUp: ImageVector
     get() {
         if (_CloudArrowUp != null) {
             return _CloudArrowUp!!

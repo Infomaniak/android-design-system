@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Small.ArrowLeft: ImageVector
+internal val EsdsIcons.Small.ArrowLeft: ImageVector
     get() {
         if (_ArrowLeft != null) {
             return _ArrowLeft!!

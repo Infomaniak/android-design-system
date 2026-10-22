@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Large.PieSlice: ImageVector
+internal val EsdsIcons.Large.PieSlice: ImageVector
     get() {
         if (_PieSlice != null) {
             return _PieSlice!!

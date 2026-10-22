@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraSmall.DotsThreeHorizontal: ImageVector
+internal val EsdsIcons.ExtraSmall.DotsThreeHorizontal: ImageVector
     get() {
         if (_DotsThreeHorizontal != null) {
             return _DotsThreeHorizontal!!

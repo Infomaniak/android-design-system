@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Large.Network: ImageVector
+internal val EsdsIcons.Large.Network: ImageVector
     get() {
         if (_Network != null) {
             return _Network!!

@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraLarge.Broom: ImageVector
+internal val EsdsIcons.ExtraLarge.Broom: ImageVector
     get() {
         if (_Broom != null) {
             return _Broom!!

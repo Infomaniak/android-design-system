@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Small.Languages: ImageVector
+internal val EsdsIcons.Small.Languages: ImageVector
     get() {
         if (_Languages != null) {
             return _Languages!!

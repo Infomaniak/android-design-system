@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraLarge.SquaresStackedPlus: ImageVector
+internal val EsdsIcons.ExtraLarge.SquaresStackedPlus: ImageVector
     get() {
         if (_SquaresStackedPlus != null) {
             return _SquaresStackedPlus!!

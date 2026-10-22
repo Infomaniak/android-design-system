@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraSmall.TriangleExclamationMark: ImageVector
+internal val EsdsIcons.ExtraSmall.TriangleExclamationMark: ImageVector
     get() {
         if (_TriangleExclamationMark != null) {
             return _TriangleExclamationMark!!

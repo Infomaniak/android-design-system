@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Small.KeyOptionApple: ImageVector
+internal val EsdsIcons.Small.KeyOptionApple: ImageVector
     get() {
         if (_KeyOptionApple != null) {
             return _KeyOptionApple!!

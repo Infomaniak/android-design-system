@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Medium.UserCross: ImageVector
+internal val EsdsIcons.Medium.UserCross: ImageVector
     get() {
         if (_UserCross != null) {
             return _UserCross!!

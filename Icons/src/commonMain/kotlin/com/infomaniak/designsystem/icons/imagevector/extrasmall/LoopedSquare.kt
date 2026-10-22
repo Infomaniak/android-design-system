@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraSmall.LoopedSquare: ImageVector
+internal val EsdsIcons.ExtraSmall.LoopedSquare: ImageVector
     get() {
         if (_LoopedSquare != null) {
             return _LoopedSquare!!

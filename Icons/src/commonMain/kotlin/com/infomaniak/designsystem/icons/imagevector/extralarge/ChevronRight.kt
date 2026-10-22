@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.ExtraLarge.ChevronRight: ImageVector
+internal val EsdsIcons.ExtraLarge.ChevronRight: ImageVector
     get() {
         if (_ChevronRight != null) {
             return _ChevronRight!!

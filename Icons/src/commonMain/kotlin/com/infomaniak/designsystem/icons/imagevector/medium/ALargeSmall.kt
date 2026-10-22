@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Medium.ALargeSmall: ImageVector
+internal val EsdsIcons.Medium.ALargeSmall: ImageVector
     get() {
         if (_ALargeSmall != null) {
             return _ALargeSmall!!

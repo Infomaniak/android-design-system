@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Small.CloudArrowAnticlockwise: ImageVector
+internal val EsdsIcons.Small.CloudArrowAnticlockwise: ImageVector
     get() {
         if (_CloudArrowAnticlockwise != null) {
             return _CloudArrowAnticlockwise!!

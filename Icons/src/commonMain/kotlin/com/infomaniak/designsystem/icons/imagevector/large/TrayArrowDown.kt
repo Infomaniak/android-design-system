@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-public val EsdsIcons.Large.TrayArrowDown: ImageVector
+internal val EsdsIcons.Large.TrayArrowDown: ImageVector
     get() {
         if (_TrayArrowDown != null) {
             return _TrayArrowDown!!
