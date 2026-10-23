@@ -4,7 +4,6 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
@@ -34,7 +33,6 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.core.theme.EsdsTheme
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.symbols.ArrowLeft
-import com.infomaniak.designsystem.icons.symbols.Check
 import kotlinx.serialization.Serializable
 import androidx.navigation3.runtime.NavKey
 
@@ -84,7 +82,6 @@ internal fun ThemeScreen(onBack: () -> Unit) {
                     onSelect = { darkMode = it },
                     label = { it.label },
                     isEnabled = { appTheme.supportsDark },
-                    note = "${appTheme.label} only has a light theme for now.".takeUnless { appTheme.supportsDark },
                     leadingContent = { Icon(it.icon.current, contentDescription = null) },
                 )
                 ThemeOptions(
@@ -94,7 +91,6 @@ internal fun ThemeScreen(onBack: () -> Unit) {
                     onSelect = { appTheme = it },
                     label = { it.label },
                     isEnabled = { it.isAvailable },
-                    note = "Material You requires Android 12 or later.".takeUnless { AppTheme.MaterialYou.isAvailable },
                     leadingContent = { ThemeSwatch(resolveTheme(darkMode, it, contrast), isEnabled = it.isAvailable) },
                 )
                 ThemeOptions(
@@ -104,7 +100,6 @@ internal fun ThemeScreen(onBack: () -> Unit) {
                     onSelect = { contrast = it },
                     label = { it.label },
                     isEnabled = { appTheme.supportsContrast },
-                    note = "${appTheme.label} has no contrast variants for now.".takeUnless { appTheme.supportsContrast },
                 )
             }
         }
@@ -121,7 +116,6 @@ private fun <T> ThemeOptions(
     onSelect: (T) -> Unit,
     label: (T) -> String,
     isEnabled: (T) -> Boolean,
-    note: String?,
     leadingContent: (@Composable (T) -> Unit)? = null,
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(ListItemDefaults.SegmentedGap)) {
@@ -132,9 +126,8 @@ private fun <T> ThemeOptions(
             color = MaterialTheme.colorScheme.primary,
         )
         options.forEachIndexed { index, option ->
-            val isSelected = option == selected
             SegmentedListItem(
-                selected = isSelected,
+                selected = option == selected,
                 onClick = { onSelect(option) },
                 shapes = ListItemDefaults.segmentedShapes(index = index, count = options.size),
                 enabled = isEnabled(option),
@@ -144,22 +137,9 @@ private fun <T> ThemeOptions(
                     disabledContainerColor = MaterialTheme.colorScheme.surfaceContainerLow.copy(alpha = DisabledAlpha),
                 ),
                 leadingContent = leadingContent?.let { { it(option) } },
-                trailingContent = if (isSelected) {
-                    { Icon(EsdsIcons.Check.current, contentDescription = null) }
-                } else {
-                    null
-                },
             ) {
                 Text(label(option))
             }
-        }
-        if (note != null) {
-            Text(
-                text = note,
-                modifier = Modifier.fillMaxWidth().padding(horizontal = EsdsTheme.spacing.lg, vertical = EsdsTheme.spacing.sm),
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
         }
     }
 }
