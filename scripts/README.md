@@ -73,3 +73,13 @@ Add role names to `excludedRoles` (global) or to a specific group's `excluded` s
 ### Changing the token source file
 
 Replace `token-source/android_specific_tokens.json` with the new export — no script change needed.
+
+---
+
+## Icon lists
+
+`scripts/generateIconLists.main.kts` scans `Icons/…/imagevector/medium` and regenerates `catalog/shared/…/catalog/icons/AllMediumIcons.kt`, which exposes every `EsdsIcons.Medium` icon as `AllMediumIcons` (used by the catalog app's icon grid). Re-run it whenever icons change:
+
+```bash
+kotlin scripts/generateIconLists.main.kts
+```
