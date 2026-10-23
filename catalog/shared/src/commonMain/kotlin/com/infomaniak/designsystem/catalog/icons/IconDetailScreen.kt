@@ -160,7 +160,7 @@ private fun IconDetailContent(
         IconPreview(
             icon = selectedVector,
             gridMode = gridMode,
-            modifier = Modifier.sharedElement(key = icon.sharedElementKey),
+            sharedElementKey = icon.sharedElementKey,
         )
 
         Column(
@@ -184,9 +184,9 @@ private fun IconDetailContent(
     }
     }
 
-/** Big rendering of [icon] drawn over the grid of [gridMode]. */
+/** Big rendering of [icon] drawn over the grid of [gridMode]. Only the icon is shared with the grid screen, not its frame. */
 @Composable
-private fun IconPreview(icon: ImageVector, gridMode: IconGridMode, modifier: Modifier = Modifier) {
+private fun IconPreview(icon: ImageVector, gridMode: IconGridMode, sharedElementKey: String, modifier: Modifier = Modifier) {
     val gridColor = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.6f)
 
     Box(
@@ -197,7 +197,7 @@ private fun IconPreview(icon: ImageVector, gridMode: IconGridMode, modifier: Mod
             .size(PreviewSize)
             .drawBehind { drawGrid(cells = gridMode.cellCount(icon), color = gridColor) },
     ) {
-        Crossfade(targetState = icon) { vector ->
+        Crossfade(targetState = icon, modifier = Modifier.sharedElement(key = sharedElementKey)) { vector ->
             Icon(
                 imageVector = vector,
                 contentDescription = null,
