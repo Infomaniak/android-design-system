@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -15,7 +16,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
-import androidx.compose.material3.FabPosition
+import androidx.compose.material3.FloatingToolbarDefaults
 import androidx.compose.material3.HorizontalFloatingToolbar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -63,9 +64,15 @@ import com.infomaniak.designsystem.icons.symbols.GridThreeTwo
 import com.infomaniak.designsystem.icons.symbols.SquaresStacked
 import com.infomaniak.designsystem.icons.symbols.Symbol
 
-private val PreviewSize = 240.dp
-private val ToolbarClearance = 72.dp
+private val PreviewSize = 256.dp
 private val GridModeKey = stringPreferencesKey("icon_detail_grid_mode")
+
+private val LargestIconSize = 40.dp
+private val MaxContentWidth = 560.dp
+
+/** Space taken by the floating toolbar at the bottom of the screen. */
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
+private val ToolbarClearance = FloatingToolbarDefaults.ContainerSize + FloatingToolbarDefaults.ScreenOffset * 2
 
 private enum class IconGridMode(val label: String, val icon: Symbol, val cellCount: (ImageVector) -> Int) {
     /** One cell per unit of the 24×24 artboard the icons are designed on, whatever their size. */
@@ -74,8 +81,6 @@ private enum class IconGridMode(val label: String, val icon: Symbol, val cellCou
     /** One cell per dp of the selected size, e.g. 16×16 for ExtraSmall. */
     Pixels("Pixel grid", EsdsIcons.DotsNine, { it.sizeInDp }),
 }
-private val LargestIconSize = 40.dp
-private val MaxContentWidth = 560.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -90,7 +95,6 @@ internal fun IconDetailScreen(iconName: String, onBack: () -> Unit) {
     var selectedSize by rememberSaveable { mutableStateOf(Symbol.Size.Medium) }
     var gridModeName by rememberPreference(GridModeKey, IconGridMode.Design.name)
     val gridMode = IconGridMode.entries.firstOrNull { it.name == gridModeName } ?: IconGridMode.Design
-    val selectedVector = selectedSize.toImageVector(icon.symbol)
 
     val snackbarHostState = remember { SnackbarHostState() }
     val copyToClipboard = rememberCopyToClipboard(snackbarHostState)
@@ -106,46 +110,77 @@ internal fun IconDetailScreen(iconName: String, onBack: () -> Unit) {
                 },
             )
         },
-        snackbarHost = { SnackbarHost(snackbarHostState) },
-        // Floating at the bottom, within reach of the thumb, and pushed up by snackbars.
-        floatingActionButton = {
-            IconDetailToolbar(gridMode = gridMode, onGridModeChange = { gridModeName = it.name })
-        },
-        floatingActionButtonPosition = FabPosition.Center,
+        // Snackbars show up above the floating toolbar instead of covering it.
+        snackbarHost = { SnackbarHost(snackbarHostState, modifier = Modifier.padding(bottom = ToolbarClearance)) },
     ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-                .padding(innerPadding)
-                .padding(EsdsTheme.spacing.lg)
-                .padding(bottom = ToolbarClearance),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(EsdsTheme.spacing.xl),
-        ) {
-            IconPreview(icon = selectedVector, gridMode = gridMode, modifier = Modifier.sharedElement(key = icon.sharedElementKey))
-
-            Column(
-                modifier = Modifier.widthIn(max = MaxContentWidth),
-                verticalArrangement = Arrangement.spacedBy(EsdsTheme.spacing.lg),
-            ) {
-                SizeSelector(
-                    symbol = icon.symbol,
-                    selectedSize = selectedSize,
-                    onSizeSelect = { selectedSize = it },
-                )
-                IconData(
-                    rows = listOf(
-                        "Name" to icon.name,
-                        "Code" to "EsdsIcons.${icon.name}.${selectedSize.name}",
-                        "Size" to "${selectedVector.sizeInDp} dp",
-                    ),
-                    onCopy = copyToClipboard,
-                )
-            }
+        Box(modifier = Modifier.fillMaxSize()) {
+            IconDetailContent(
+                icon = icon,
+                selectedSize = selectedSize,
+                onSizeSelect = { selectedSize = it },
+                gridMode = gridMode,
+                onCopy = copyToClipboard,
+                contentPadding = innerPadding,
+            )
+            // Floating at the bottom, within reach of the thumb.
+            IconDetailToolbar(
+                gridMode = gridMode,
+                onGridModeChange = { gridModeName = it.name },
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(bottom = innerPadding.calculateBottomPadding() + FloatingToolbarDefaults.ScreenOffset),
+            )
         }
     }
 }
+
+@Composable
+private fun IconDetailContent(
+    icon: CatalogIcon,
+    selectedSize: Symbol.Size,
+    onSizeSelect: (Symbol.Size) -> Unit,
+    gridMode: IconGridMode,
+    onCopy: (String) -> Unit,
+    contentPadding: PaddingValues,
+) {
+    val selectedVector = selectedSize.toImageVector(icon.symbol)
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(contentPadding)
+            .padding(EsdsTheme.spacing.lg)
+            .padding(bottom = ToolbarClearance),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(EsdsTheme.spacing.xl),
+    ) {
+        IconPreview(
+            icon = selectedVector,
+            gridMode = gridMode,
+            modifier = Modifier.sharedElement(key = icon.sharedElementKey),
+        )
+
+        Column(
+            modifier = Modifier.widthIn(max = MaxContentWidth),
+            verticalArrangement = Arrangement.spacedBy(EsdsTheme.spacing.lg),
+        ) {
+            SizeSelector(
+                symbol = icon.symbol,
+                selectedSize = selectedSize,
+                onSizeSelect = onSizeSelect,
+            )
+            IconData(
+                rows = listOf(
+                    "Name" to icon.name,
+                    "Code" to "EsdsIcons.${icon.name}.${selectedSize.name}",
+                    "Size" to "${selectedVector.sizeInDp} dp",
+                ),
+                onCopy = onCopy,
+            )
+        }
+    }
+    }
 
 /** Big rendering of [icon] drawn over the grid of [gridMode]. */
 @Composable
@@ -182,8 +217,12 @@ private fun DrawScope.drawGrid(cells: Int, color: Color) {
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
-private fun IconDetailToolbar(gridMode: IconGridMode, onGridModeChange: (IconGridMode) -> Unit) {
-    HorizontalFloatingToolbar(expanded = true) {
+private fun IconDetailToolbar(
+    gridMode: IconGridMode,
+    onGridModeChange: (IconGridMode) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    HorizontalFloatingToolbar(expanded = true, modifier = modifier) {
         IconGridMode.entries.forEach { mode ->
             ToggleButton(
                 checked = mode == gridMode,
