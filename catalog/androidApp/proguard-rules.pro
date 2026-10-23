@@ -19,3 +19,11 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+# The catalog lists every icon by reflection on the sealed `Symbol` interface (see CatalogIcon.android.kt):
+# kotlin-reflect needs `Symbol`'s Kotlin metadata to find its sealed subclasses, and each subclass's name and INSTANCE.
+-keepattributes RuntimeVisibleAnnotations,InnerClasses,EnclosingMethod
+-keep class kotlin.Metadata { *; }
+-keep interface com.infomaniak.designsystem.icons.symbols.Symbol
+-keep class * implements com.infomaniak.designsystem.icons.symbols.Symbol {
+    public static ** INSTANCE;
+}
