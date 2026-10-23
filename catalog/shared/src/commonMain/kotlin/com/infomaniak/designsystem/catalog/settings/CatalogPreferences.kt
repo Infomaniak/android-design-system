@@ -15,6 +15,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import okio.Path.Companion.toPath
 
@@ -35,6 +36,9 @@ internal fun rememberCatalogDataStore(): DataStore<Preferences> {
     }
 }
 
+// Last loaded preferences, so screens opened later directly start from the saved values instead of the defaults.
+private var latestPreferences: Preferences? = null
+
 // Nullable so screens still work outside of the app (e.g. in @Preview), where preferences are only kept in memory.
 internal val LocalCatalogDataStore = staticCompositionLocalOf<DataStore<Preferences>?> { null }
 
@@ -43,7 +47,9 @@ internal val LocalCatalogDataStore = staticCompositionLocalOf<DataStore<Preferen
 internal fun <T> rememberPreference(key: Preferences.Key<T>, default: T): MutableState<T> {
     val dataStore = LocalCatalogDataStore.current ?: return rememberSaveable { mutableStateOf(default) }
     val scope = rememberCoroutineScope()
-    val state = remember(dataStore, key) { dataStore.data.map { it[key] ?: default } }.collectAsState(default)
+    val state = remember(dataStore, key) {
+        dataStore.data.onEach { latestPreferences = it }.map { it[key] ?: default }
+    }.collectAsState(initial = latestPreferences?.get(key) ?: default)
     return remember(state, dataStore, key, scope) { PreferenceState(state, dataStore, key, scope) }
 }
 

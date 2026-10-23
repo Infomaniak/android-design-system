@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
@@ -29,6 +30,8 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.ToggleButton
+import androidx.compose.material3.ToggleButtonDefaults
+import androidx.compose.material3.ToggleButtonShapes
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -227,6 +230,12 @@ private fun IconDetailToolbar(
             ToggleButton(
                 checked = mode == gridMode,
                 onCheckedChange = { onGridModeChange(mode) },
+                // Fully rounded so the selection stays concentric with the pill-shaped toolbar.
+                shapes = ToggleButtonShapes(
+                    shape = CircleShape,
+                    pressedShape = ToggleButtonDefaults.pressedShape,
+                    checkedShape = CircleShape,
+                ),
                 modifier = Modifier.semantics { role = Role.RadioButton },
                 icon = { Icon(mode.icon.Small, contentDescription = null) },
             ) {
