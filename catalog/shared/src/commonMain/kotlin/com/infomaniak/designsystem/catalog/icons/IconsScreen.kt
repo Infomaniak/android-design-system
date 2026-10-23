@@ -26,7 +26,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalHapticFeedback
@@ -42,7 +41,7 @@ import com.infomaniak.designsystem.core.theme.EsdsTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun IconsScreen(onIconClick: (ImageVector) -> Unit) {
+internal fun IconsScreen(onIconClick: (CatalogIcon) -> Unit) {
     val snackbarHostState = remember { SnackbarHostState() }
     val copyToClipboard = rememberCopyToClipboard(snackbarHostState)
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
@@ -51,7 +50,7 @@ internal fun IconsScreen(onIconClick: (ImageVector) -> Unit) {
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             TopAppBar(
-                title = { Text("Medium icons (${AllMediumIcons.size})") },
+                title = { Text("Icons (${AllIcons.size})") },
                 scrollBehavior = scrollBehavior,
             )
         },
@@ -71,11 +70,11 @@ internal fun IconsScreen(onIconClick: (ImageVector) -> Unit) {
             verticalArrangement = Arrangement.spacedBy(EsdsTheme.spacing.xs),
             horizontalArrangement = Arrangement.spacedBy(EsdsTheme.spacing.xs),
         ) {
-            items(AllMediumIcons, key = { it.name }) { icon ->
+            items(AllIcons, key = { it.name }) { icon ->
                 IconCell(
                     icon = icon,
                     onClick = { onIconClick(icon) },
-                    onLongClick = { copyToClipboard(icon.simpleName) },
+                    onLongClick = { copyToClipboard(icon.name) },
                 )
             }
         }
@@ -84,7 +83,7 @@ internal fun IconsScreen(onIconClick: (ImageVector) -> Unit) {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun IconCell(icon: ImageVector, onClick: () -> Unit, onLongClick: () -> Unit) {
+private fun IconCell(icon: CatalogIcon, onClick: () -> Unit, onLongClick: () -> Unit) {
     val haptics = LocalHapticFeedback.current
 
     Column(
@@ -103,14 +102,14 @@ private fun IconCell(icon: ImageVector, onClick: () -> Unit, onLongClick: () -> 
         verticalArrangement = Arrangement.spacedBy(EsdsTheme.spacing.sm),
     ) {
         Icon(
-            imageVector = icon,
+            imageVector = icon.symbol.Medium,
             contentDescription = null,
             modifier = Modifier
                 .sharedElement(key = icon.sharedElementKey)
                 .size(EsdsTheme.icon.sizeMd),
         )
         Text(
-            text = icon.simpleName,
+            text = icon.name,
             style = MaterialTheme.typography.labelSmall,
             textAlign = TextAlign.Center,
             minLines = 2,

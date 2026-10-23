@@ -20,5 +20,15 @@ kotlin {
             implementation(libs.kotlinx.serialization.core)
             implementation(libs.navigation3.ui)
         }
+        // Used to list every icon from the sealed `Symbol` interface.
+        androidMain.dependencies {
+            implementation(libs.kotlin.reflect)
+        }
+        jvmMain.dependencies {
+            implementation(libs.kotlin.reflect)
+        }
+        jvmTest.dependencies {
+            implementation(libs.kotlin.test)
+        }
     }
 }
