@@ -34,9 +34,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.infomaniak.designsystem.catalog.DesignSystemTheme
 import com.infomaniak.designsystem.catalog.clipboard.rememberCopyToClipboard
 import com.infomaniak.designsystem.catalog.navigation.sharedElement
+import com.infomaniak.designsystem.catalog.theme.CatalogTheme
 import com.infomaniak.designsystem.core.theme.EsdsTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -122,7 +122,7 @@ private fun IconCell(icon: CatalogIcon, onClick: () -> Unit, onLongClick: () -> 
 @Preview
 @Composable
 private fun IconsScreenPreview() {
-    DesignSystemTheme {
+    CatalogTheme {
         IconsScreen(onIconClick = {})
     }
 }

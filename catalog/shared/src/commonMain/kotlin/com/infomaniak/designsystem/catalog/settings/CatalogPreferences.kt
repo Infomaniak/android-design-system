@@ -13,6 +13,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
@@ -42,6 +43,14 @@ private var latestPreferences: Preferences? = null
 // Nullable so screens still work outside of the app (e.g. in @Preview), where preferences are only kept in memory.
 internal val LocalCatalogDataStore = staticCompositionLocalOf<DataStore<Preferences>?> { null }
 
+/** Whether the preferences have been loaded, to avoid briefly showing defaults (e.g. the wrong theme) on launch. */
+@Composable
+internal fun rememberPreferencesLoaded(): Boolean {
+    val dataStore = LocalCatalogDataStore.current ?: return true
+    return remember(dataStore) { dataStore.data.onEach { latestPreferences = it }.map { true } }
+        .collectAsState(initial = latestPreferences != null).value
+}
+
 /** User preference persisted under [key], [default] until it's loaded or if it was never set. */
 @Composable
 internal fun <T> rememberPreference(key: Preferences.Key<T>, default: T): MutableState<T> {
@@ -68,4 +77,28 @@ private class PreferenceState<T>(
     override fun component1(): T = value
 
     override fun component2(): (T) -> Unit = { value = it }
+}
+
+/** User preference persisted under [name], holding one of the [entries] of an enum. */
+@Composable
+internal fun <E : Enum<E>> rememberEnumPreference(name: String, default: E, entries: List<E>): MutableState<E> {
+    val nameState = rememberPreference(stringPreferencesKey(name), default.name)
+    return remember(nameState, entries) { EnumPreferenceState(nameState, default, entries) }
+}
+
+private class EnumPreferenceState<E : Enum<E>>(
+    private val nameState: MutableState<String>,
+    private val default: E,
+    private val entries: List<E>,
+) : MutableState<E> {
+    // Falls back to the default if the saved entry doesn't exist anymore.
+    override var value: E
+        get() = entries.firstOrNull { it.name == nameState.value } ?: default
+        set(value) {
+            nameState.value = value.name
+        }
+
+    override fun component1(): E = value
+
+    override fun component2(): (E) -> Unit = { value = it }
 }

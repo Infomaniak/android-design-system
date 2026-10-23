@@ -4,6 +4,7 @@ import androidx.navigation3.runtime.EntryProviderScope
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import com.infomaniak.designsystem.catalog.icons.IconsSection
+import com.infomaniak.designsystem.catalog.theme.ThemeNavKey
 import com.infomaniak.designsystem.icons.symbols.Symbol
 import kotlinx.serialization.modules.PolymorphicModuleBuilder
 
@@ -12,6 +13,7 @@ import kotlinx.serialization.modules.PolymorphicModuleBuilder
  *
  * To add one, implement this interface next to its screens (see [IconsSection]) and add it to [CatalogSections].
  * The navigation bar is shown automatically as soon as there is more than one section.
+ * Destinations shared by every section, like [ThemeNavKey], can be pushed on the back stack from any of them.
  */
 internal interface CatalogSection {
     val title: String

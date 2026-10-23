@@ -17,6 +17,8 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import androidx.savedstate.serialization.SavedStateConfiguration
+import com.infomaniak.designsystem.catalog.theme.ThemeNavKey
+import com.infomaniak.designsystem.catalog.theme.ThemeScreen
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
 
@@ -24,6 +26,7 @@ import kotlinx.serialization.modules.polymorphic
 private val CatalogSavedStateConfiguration = SavedStateConfiguration {
     serializersModule = SerializersModule {
         polymorphic(NavKey::class) {
+            subclass(ThemeNavKey::class, ThemeNavKey.serializer())
             CatalogSections.forEach { section -> with(section) { registerNavKeys() } }
         }
     }
@@ -62,6 +65,8 @@ internal fun CatalogNavDisplay() {
                     onBack = goBack,
                     entryProvider = entryProvider {
                         CatalogSections.forEach { section -> with(section) { entries(backStack) } }
+                        // Destinations shared by every section.
+                        entry<ThemeNavKey> { ThemeScreen(onBack = goBack) }
                     },
                 )
             }

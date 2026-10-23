@@ -3,16 +3,20 @@ package com.infomaniak.designsystem.catalog.icons
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
+import androidx.compose.foundation.indication
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -29,9 +33,9 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.ToggleButton
-import androidx.compose.material3.ToggleButtonShapes
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.VerticalDivider
+import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -48,29 +52,27 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.semantics.role
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.datastore.preferences.core.stringPreferencesKey
-import com.infomaniak.designsystem.catalog.DesignSystemTheme
 import com.infomaniak.designsystem.catalog.clipboard.rememberCopyToClipboard
 import com.infomaniak.designsystem.catalog.navigation.sharedElement
-import com.infomaniak.designsystem.catalog.settings.rememberPreference
+import com.infomaniak.designsystem.catalog.settings.rememberEnumPreference
+import com.infomaniak.designsystem.catalog.theme.CatalogTheme
 import com.infomaniak.designsystem.core.theme.EsdsTheme
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.symbols.ArrowLeft
+import com.infomaniak.designsystem.icons.symbols.BucketDrop
 import com.infomaniak.designsystem.icons.symbols.DotsNine
 import com.infomaniak.designsystem.icons.symbols.GridThreeTwo
 import com.infomaniak.designsystem.icons.symbols.SquaresStacked
 import com.infomaniak.designsystem.icons.symbols.Symbol
 
 private val PreviewSize = 264.dp
-private val GridModeKey = stringPreferencesKey("icon_detail_grid_mode")
 
 private val LargestIconSize = 40.dp
 private val MaxContentWidth = 560.dp
+private val ToolbarDividerHeight = 32.dp
 
 /** Space taken by the floating toolbar at the bottom of the screen. */
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
@@ -78,15 +80,15 @@ private val ToolbarClearance = FloatingToolbarDefaults.ContainerSize + FloatingT
 
 private enum class IconGridMode(val label: String, val icon: Symbol, val cellCount: (ImageVector) -> Int) {
     /** One cell per unit of the 24×24 artboard the icons are designed on, whatever their size. */
-    Design("Design grid", EsdsIcons.GridThreeTwo, { it.viewportWidth.toInt() }),
+    Design("Design", EsdsIcons.GridThreeTwo, { it.viewportWidth.toInt() }),
 
     /** One cell per dp of the selected size, e.g. 16×16 for ExtraSmall. */
-    Pixels("Pixel grid", EsdsIcons.DotsNine, { it.sizeInDp }),
+    Pixels("Pixel", EsdsIcons.DotsNine, { it.sizeInDp }),
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun IconDetailScreen(iconName: String, onBack: () -> Unit) {
+internal fun IconDetailScreen(iconName: String, onBack: () -> Unit, onThemeClick: () -> Unit) {
     val icon = remember(iconName) { findIcon(iconName) }
     if (icon == null) {
         // The icon may have been removed since the back stack was saved.
@@ -95,8 +97,7 @@ internal fun IconDetailScreen(iconName: String, onBack: () -> Unit) {
     }
 
     var selectedSize by rememberSaveable { mutableStateOf(Symbol.Size.Medium) }
-    var gridModeName by rememberPreference(GridModeKey, IconGridMode.Design.name)
-    val gridMode = IconGridMode.entries.firstOrNull { it.name == gridModeName } ?: IconGridMode.Design
+    var gridMode by rememberEnumPreference("icon_detail_grid_mode", IconGridMode.Design, IconGridMode.entries)
 
     val snackbarHostState = remember { SnackbarHostState() }
     val copyToClipboard = rememberCopyToClipboard(snackbarHostState)
@@ -127,7 +128,8 @@ internal fun IconDetailScreen(iconName: String, onBack: () -> Unit) {
             // Floating at the bottom, within reach of the thumb.
             IconDetailToolbar(
                 gridMode = gridMode,
-                onGridModeChange = { gridModeName = it.name },
+                onGridModeChange = { gridMode = it },
+                onThemeClick = onThemeClick,
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .padding(bottom = innerPadding.calculateBottomPadding() + FloatingToolbarDefaults.ScreenOffset),
@@ -222,21 +224,57 @@ private fun DrawScope.drawGrid(cells: Int, color: Color) {
 private fun IconDetailToolbar(
     gridMode: IconGridMode,
     onGridModeChange: (IconGridMode) -> Unit,
+    onThemeClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     HorizontalFloatingToolbar(expanded = true, modifier = modifier) {
         IconGridMode.entries.forEach { mode ->
-            ToggleButton(
-                checked = mode == gridMode,
-                onCheckedChange = { onGridModeChange(mode) },
-                // Always fully rounded so the selection stays concentric with the pill-shaped toolbar, without morphing.
-                shapes = ToggleButtonShapes(shape = CircleShape, pressedShape = CircleShape, checkedShape = CircleShape),
-                modifier = Modifier.semantics { role = Role.RadioButton },
-                icon = { Icon(mode.icon.Small, contentDescription = null) },
-            ) {
-                Text(mode.label)
-            }
+            ToolbarItem(
+                icon = mode.icon,
+                label = mode.label,
+                onClick = { onGridModeChange(mode) },
+                isSelected = mode == gridMode,
+                role = Role.RadioButton,
+            )
         }
+        VerticalDivider(modifier = Modifier.height(ToolbarDividerHeight).padding(horizontal = EsdsTheme.spacing.xs))
+        ToolbarItem(icon = EsdsIcons.BucketDrop, label = "Theme", onClick = onThemeClick, role = Role.Button)
+    }
+}
+
+/** Compact action with its [label] under its [icon], highlighted like a navigation bar item when [isSelected]. */
+@Composable
+private fun ToolbarItem(icon: Symbol, label: String, onClick: () -> Unit, role: Role, isSelected: Boolean = false) {
+    val interactionSource = remember { MutableInteractionSource() }
+    val indicatorColor by animateColorAsState(
+        if (isSelected) MaterialTheme.colorScheme.secondaryContainer else MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0f),
+    )
+    val iconColor by animateColorAsState(
+        if (isSelected) MaterialTheme.colorScheme.onSecondaryContainer else MaterialTheme.colorScheme.onSurfaceVariant,
+    )
+
+    Column(
+        modifier = Modifier
+            .selectable(selected = isSelected, onClick = onClick, role = role, interactionSource = interactionSource, indication = null)
+            .padding(horizontal = EsdsTheme.spacing.xs),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(EsdsTheme.spacing.xs),
+    ) {
+        // Like in a navigation bar, only the indicator reacts to touches.
+        Box(
+            modifier = Modifier
+                .clip(CircleShape)
+                .background(indicatorColor)
+                .indication(interactionSource, ripple())
+                .padding(horizontal = EsdsTheme.spacing.lg, vertical = EsdsTheme.spacing.xs),
+        ) {
+            Icon(icon.Medium, contentDescription = null, tint = iconColor)
+        }
+        Text(
+            text = label,
+            style = MaterialTheme.typography.labelMedium,
+            color = if (isSelected) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant,
+        )
     }
 }
 
@@ -311,7 +349,7 @@ private val Symbol.Size.shortName: String
 @Preview
 @Composable
 private fun IconDetailScreenPreview() {
-    DesignSystemTheme {
-        IconDetailScreen(iconName = "Bell", onBack = {})
+    CatalogTheme {
+        IconDetailScreen(iconName = "Bell", onBack = {}, onThemeClick = {})
     }
 }

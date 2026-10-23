@@ -4,6 +4,7 @@ import androidx.navigation3.runtime.EntryProviderScope
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import com.infomaniak.designsystem.catalog.navigation.CatalogSection
+import com.infomaniak.designsystem.catalog.theme.ThemeNavKey
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.symbols.SquaresFour
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -33,7 +34,11 @@ internal object IconsSection : CatalogSection {
             IconsScreen(onIconClick = { icon -> backStack.add(IconsNavKey.Detail(icon.name)) })
         }
         entry<IconsNavKey.Detail> { key ->
-            IconDetailScreen(iconName = key.iconName, onBack = { backStack.removeLastOrNull() })
+            IconDetailScreen(
+                iconName = key.iconName,
+                onBack = { backStack.removeLastOrNull() },
+                onThemeClick = { backStack.add(ThemeNavKey) },
+            )
         }
     }
 }
