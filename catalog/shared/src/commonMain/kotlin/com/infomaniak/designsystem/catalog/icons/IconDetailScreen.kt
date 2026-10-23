@@ -30,7 +30,6 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.ToggleButton
-import androidx.compose.material3.ToggleButtonDefaults
 import androidx.compose.material3.ToggleButtonShapes
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -230,12 +229,8 @@ private fun IconDetailToolbar(
             ToggleButton(
                 checked = mode == gridMode,
                 onCheckedChange = { onGridModeChange(mode) },
-                // Fully rounded so the selection stays concentric with the pill-shaped toolbar.
-                shapes = ToggleButtonShapes(
-                    shape = CircleShape,
-                    pressedShape = ToggleButtonDefaults.pressedShape,
-                    checkedShape = CircleShape,
-                ),
+                // Always fully rounded so the selection stays concentric with the pill-shaped toolbar, without morphing.
+                shapes = ToggleButtonShapes(shape = CircleShape, pressedShape = CircleShape, checkedShape = CircleShape),
                 modifier = Modifier.semantics { role = Role.RadioButton },
                 icon = { Icon(mode.icon.Small, contentDescription = null) },
             ) {
