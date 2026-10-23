@@ -10,8 +10,11 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        // Keeps the status bar transparent instead of adding a translucent scrim behind it.
-        if (SDK_INT >= 29) window.isStatusBarContrastEnforced = false
+        // Keeps the system bars fully transparent instead of adding a translucent scrim behind them.
+        if (SDK_INT >= 29) {
+            window.isStatusBarContrastEnforced = false
+            window.isNavigationBarContrastEnforced = false
+        }
 
         setContent {
             App()
