@@ -10,7 +10,10 @@ import kotlinx.coroutines.launch
 
 internal expect fun plainTextClipEntry(text: String): ClipEntry
 
-/** Returns a callback that copies the given text to the clipboard and confirms it with a snackbar. */
+/** Whether the system already confirms copies to the user, making our own confirmation redundant. */
+internal expect val systemConfirmsCopy: Boolean
+
+/** Returns a callback that copies the given text to the clipboard and confirms it with a snackbar, unless the system already does. */
 @Composable
 internal fun rememberCopyToClipboard(snackbarHostState: SnackbarHostState): (String) -> Unit {
     val clipboard = LocalClipboard.current
@@ -20,6 +23,7 @@ internal fun rememberCopyToClipboard(snackbarHostState: SnackbarHostState): (Str
         { text ->
             scope.launch {
                 clipboard.setClipEntry(plainTextClipEntry(text))
+                if (systemConfirmsCopy) return@launch
                 snackbarHostState.currentSnackbarData?.dismiss()
                 snackbarHostState.showSnackbar("Copied “$text”")
             }
