@@ -64,7 +64,7 @@ import com.infomaniak.designsystem.icons.symbols.GridThreeTwo
 import com.infomaniak.designsystem.icons.symbols.SquaresStacked
 import com.infomaniak.designsystem.icons.symbols.Symbol
 
-private val PreviewSize = 256.dp
+private val PreviewSize = 264.dp
 private val GridModeKey = stringPreferencesKey("icon_detail_grid_mode")
 
 private val LargestIconSize = 40.dp
