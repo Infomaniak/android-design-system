@@ -7,6 +7,8 @@ The library exposes two module types for consumption:
 - **Foundation** — Core theme infrastructure with token definitions and `EsdsTheme.Values` composition
 - **Theme*** — Theme implementations (e.g. `ThemeMail`, `ThemeCalendar`) that provide themed `EsdsTheme.Values` instances that can
   be consumed through composition local by providing it through `LocalEsdsTheme`
+- **Icons** — Non-themable icons accessible through `EsdsIcons`. Each icon comes in multiple sizes to account of optical sizing.
+  More details in icon's [README.md](Icons/README.md)
 
 ## Material tokens
 
