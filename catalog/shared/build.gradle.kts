@@ -10,6 +10,10 @@ plugins {
 kotlin {
     android {
         namespace = "com.infomaniak.designsystem.catalog.shared"
+        // Required by the catalog's newer material3 (see catalogAndroidxMaterial3).
+        compileSdk {
+            version = release(37) { minorApiLevel = 2 }
+        }
     }
 
     sourceSets {
@@ -19,9 +23,13 @@ kotlin {
 
             implementation(libs.kotlinx.serialization.core)
             implementation(libs.navigation3.ui)
+
+            // Expressive material3 APIs (e.g. SegmentedListItem), only used by the catalog.
+            implementation(libs.catalog.compose.multiplatform.material3)
         }
         // Used to list every icon from the sealed `Symbol` interface.
         androidMain.dependencies {
+            implementation(libs.catalog.androidx.compose.material3)
             implementation(libs.kotlin.reflect)
         }
         jvmMain.dependencies {

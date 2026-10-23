@@ -3,24 +3,24 @@ package com.infomaniak.designsystem.catalog.icons
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SegmentedListItem
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
@@ -190,38 +190,19 @@ private fun SizeSelector(symbol: Symbol, selectedSize: Symbol.Size, onSizeSelect
     }
 }
 
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 private fun IconData(rows: List<Pair<String, String>>, onCopy: (String) -> Unit) {
-    Surface(shape = EsdsTheme.radius.lg, color = MaterialTheme.colorScheme.surfaceContainerLow) {
-        Column {
-            rows.forEachIndexed { index, (label, value) ->
-                if (index > 0) HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable(onClickLabel = "Copy $label") { onCopy(value) }
-                        .padding(horizontal = EsdsTheme.spacing.lg, vertical = EsdsTheme.spacing.md),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(EsdsTheme.spacing.md),
-                ) {
-                    Text(
-                        text = label,
-                        modifier = Modifier.widthIn(min = 56.dp),
-                        style = MaterialTheme.typography.labelMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                    Text(
-                        text = value,
-                        modifier = Modifier.weight(1f),
-                        style = MaterialTheme.typography.bodyMedium,
-                        fontFamily = FontFamily.Monospace,
-                    )
-                    Icon(
-                        imageVector = EsdsIcons.SquaresStacked.Small,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
+    Column(verticalArrangement = Arrangement.spacedBy(ListItemDefaults.SegmentedGap)) {
+        rows.forEachIndexed { index, (label, value) ->
+            SegmentedListItem(
+                onClick = { onCopy(value) },
+                shapes = ListItemDefaults.segmentedShapes(index = index, count = rows.size),
+                colors = ListItemDefaults.segmentedColors(containerColor = MaterialTheme.colorScheme.surfaceContainerLow),
+                overlineContent = { Text(label) },
+                trailingContent = { Icon(EsdsIcons.SquaresStacked.Small, contentDescription = "Copy $label") },
+            ) {
+                Text(text = value, fontFamily = FontFamily.Monospace)
             }
         }
     }

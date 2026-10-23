@@ -7,6 +7,9 @@ agp = "9.4.1"
 composeBom = "2026.09.00"
 composeMultiplatform = "1.12.1"
 composeMaterial3 = "1.9.0"
+# Catalog only: Compose Multiplatform material3 1.13.0-beta01 is based on androidx material3 1.5.0-beta01.
+catalogComposeMaterial3 = "1.13.0-beta01"
+catalogAndroidxMaterial3 = "1.5.0-beta02"
 coreKtx = "1.19.1"
 junit = "4.13.2"
 kotlin = "2.4.20"
@@ -30,6 +33,8 @@ androidx-test-runner = { group = "androidx.test", name = "runner", version.ref =
 compose-multiplatform-foundation = { group = "org.jetbrains.compose.foundation", name = "foundation", version.ref = "composeMultiplatform" }
 compose-multiplatform-runtime = { group = "org.jetbrains.compose.runtime", name = "runtime", version.ref = "composeMultiplatform" }
 compose-multiplatform-material3 = { group = "org.jetbrains.compose.material3", name = "material3", version.ref = "composeMaterial3" }
+catalog-compose-multiplatform-material3 = { group = "org.jetbrains.compose.material3", name = "material3", version.ref = "catalogComposeMaterial3" }
+catalog-androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "catalogAndroidxMaterial3" }
 compose-multiplatform-ui = { group = "org.jetbrains.compose.ui", name = "ui", version.ref = "composeMultiplatform" }
 compose-multiplatform-ui-graphics = { group = "org.jetbrains.compose.ui", name = "ui-graphics", version.ref = "composeMultiplatform" }
 compose-multiplatform-ui-tooling-preview = { group = "org.jetbrains.compose.ui", name = "ui-tooling-preview", version.ref = "composeMultiplatform" }
