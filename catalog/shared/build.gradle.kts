@@ -21,6 +21,7 @@ kotlin {
             implementation(project(":Foundation"))
             implementation(project(":Icons"))
 
+            implementation(libs.androidx.datastore.preferences.core)
             implementation(libs.kotlinx.serialization.core)
             implementation(libs.navigation3.ui)
 

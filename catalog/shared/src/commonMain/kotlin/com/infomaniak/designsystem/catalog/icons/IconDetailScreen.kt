@@ -15,6 +15,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
+import androidx.compose.material3.FabPosition
+import androidx.compose.material3.HorizontalFloatingToolbar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItemDefaults
@@ -25,6 +27,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.ToggleButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -41,19 +44,36 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.datastore.preferences.core.stringPreferencesKey
 import com.infomaniak.designsystem.catalog.DesignSystemTheme
 import com.infomaniak.designsystem.catalog.clipboard.rememberCopyToClipboard
 import com.infomaniak.designsystem.catalog.navigation.sharedElement
+import com.infomaniak.designsystem.catalog.settings.rememberPreference
 import com.infomaniak.designsystem.core.theme.EsdsTheme
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.symbols.ArrowLeft
+import com.infomaniak.designsystem.icons.symbols.DotsNine
+import com.infomaniak.designsystem.icons.symbols.GridThreeTwo
 import com.infomaniak.designsystem.icons.symbols.SquaresStacked
 import com.infomaniak.designsystem.icons.symbols.Symbol
 
 private val PreviewSize = 240.dp
+private val ToolbarClearance = 72.dp
+private val GridModeKey = stringPreferencesKey("icon_detail_grid_mode")
+
+private enum class IconGridMode(val label: String, val icon: Symbol, val cellCount: (ImageVector) -> Int) {
+    /** One cell per unit of the 24×24 artboard the icons are designed on, whatever their size. */
+    Design("Design grid", EsdsIcons.GridThreeTwo, { it.viewportWidth.toInt() }),
+
+    /** One cell per dp of the selected size, e.g. 16×16 for ExtraSmall. */
+    Pixels("Pixel grid", EsdsIcons.DotsNine, { it.sizeInDp }),
+}
 private val LargestIconSize = 40.dp
 private val MaxContentWidth = 560.dp
 
@@ -68,6 +88,8 @@ internal fun IconDetailScreen(iconName: String, onBack: () -> Unit) {
     }
 
     var selectedSize by rememberSaveable { mutableStateOf(Symbol.Size.Medium) }
+    var gridModeName by rememberPreference(GridModeKey, IconGridMode.Design.name)
+    val gridMode = IconGridMode.entries.firstOrNull { it.name == gridModeName } ?: IconGridMode.Design
     val selectedVector = selectedSize.toImageVector(icon.symbol)
 
     val snackbarHostState = remember { SnackbarHostState() }
@@ -85,17 +107,23 @@ internal fun IconDetailScreen(iconName: String, onBack: () -> Unit) {
             )
         },
         snackbarHost = { SnackbarHost(snackbarHostState) },
+        // Floating at the bottom, within reach of the thumb, and pushed up by snackbars.
+        floatingActionButton = {
+            IconDetailToolbar(gridMode = gridMode, onGridModeChange = { gridModeName = it.name })
+        },
+        floatingActionButtonPosition = FabPosition.Center,
     ) { innerPadding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
                 .padding(innerPadding)
-                .padding(EsdsTheme.spacing.lg),
+                .padding(EsdsTheme.spacing.lg)
+                .padding(bottom = ToolbarClearance),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(EsdsTheme.spacing.xl),
         ) {
-            IconPreview(icon = selectedVector, modifier = Modifier.sharedElement(key = icon.sharedElementKey))
+            IconPreview(icon = selectedVector, gridMode = gridMode, modifier = Modifier.sharedElement(key = icon.sharedElementKey))
 
             Column(
                 modifier = Modifier.widthIn(max = MaxContentWidth),
@@ -119,9 +147,9 @@ internal fun IconDetailScreen(iconName: String, onBack: () -> Unit) {
     }
 }
 
-/** Big rendering of [icon] drawn over its pixel grid. */
+/** Big rendering of [icon] drawn over the grid of [gridMode]. */
 @Composable
-private fun IconPreview(icon: ImageVector, modifier: Modifier = Modifier) {
+private fun IconPreview(icon: ImageVector, gridMode: IconGridMode, modifier: Modifier = Modifier) {
     val gridColor = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.6f)
 
     Box(
@@ -130,7 +158,7 @@ private fun IconPreview(icon: ImageVector, modifier: Modifier = Modifier) {
             .background(MaterialTheme.colorScheme.surfaceContainer)
             .padding(EsdsTheme.spacing.lg)
             .size(PreviewSize)
-            .drawBehind { drawPixelGrid(cells = icon.viewportWidth.toInt(), color = gridColor) },
+            .drawBehind { drawGrid(cells = gridMode.cellCount(icon), color = gridColor) },
     ) {
         Crossfade(targetState = icon) { vector ->
             Icon(
@@ -143,12 +171,29 @@ private fun IconPreview(icon: ImageVector, modifier: Modifier = Modifier) {
     }
 }
 
-private fun DrawScope.drawPixelGrid(cells: Int, color: Color) {
+private fun DrawScope.drawGrid(cells: Int, color: Color) {
     val step = size.width / cells
     for (i in 0..cells) {
         val position = i * step
         drawLine(color, Offset(position, 0f), Offset(position, size.height), strokeWidth = 1f)
         drawLine(color, Offset(0f, position), Offset(size.width, position), strokeWidth = 1f)
+    }
+}
+
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
+@Composable
+private fun IconDetailToolbar(gridMode: IconGridMode, onGridModeChange: (IconGridMode) -> Unit) {
+    HorizontalFloatingToolbar(expanded = true) {
+        IconGridMode.entries.forEach { mode ->
+            ToggleButton(
+                checked = mode == gridMode,
+                onCheckedChange = { onGridModeChange(mode) },
+                modifier = Modifier.semantics { role = Role.RadioButton },
+                icon = { Icon(mode.icon.Small, contentDescription = null) },
+            ) {
+                Text(mode.label)
+            }
+        }
     }
 }
 
