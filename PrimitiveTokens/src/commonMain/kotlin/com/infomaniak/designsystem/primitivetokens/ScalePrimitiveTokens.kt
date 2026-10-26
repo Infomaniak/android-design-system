@@ -23,6 +23,7 @@ val Scale36: Dp = 36.dp
 val Scale40: Dp = 40.dp
 val Scale44: Dp = 44.dp
 val Scale48: Dp = 48.dp
+val Scale50: Dp = 50.dp
 val Scale56: Dp = 56.dp
 val Scale64: Dp = 64.dp
 val Scale80: Dp = 80.dp
