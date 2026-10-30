@@ -330,12 +330,20 @@ fun roleParameterName(jsonName: String): String {
     return pascal.replaceFirstChar { it.lowercaseChar() }
 }
 
+/** Material's "content color on top of X" prefix, matched as a whole word only ("Onyx" is not affected). */
+val onRolePrefix = Regex("""^On\s+""")
+
 /**
  * Flattens a nested role path into a single camelCase parameter name:
  * ["Feedback", "Important", "Warning"] -> "feedbackImportantWarning".
+ *
+ * A leading "On" word in any segment is hoisted to the front of the whole name to follow Material
+ * naming: ["Dataviz", "On Gray Container"] -> "onDatavizGrayContainer" (not "datavizOnGrayContainer").
  */
 fun flattenedParameterName(path: List<String>): String {
-    val pascal = path.joinToString("") { sanitize(it) }
+    val isOnRole = path.any { onRolePrefix.containsMatchIn(it.trim()) }
+    val segments = path.map { it.trim().replace(onRolePrefix, "") }
+    val pascal = (if (isOnRole) listOf("On") + segments else segments).joinToString("") { sanitize(it) }
     return pascal.replaceFirstChar { it.lowercaseChar() }
 }
 
@@ -391,6 +399,10 @@ fun resolveGroup(
         }
     }
     walk(root, emptyList())
+    val duplicates = resolved.groupingBy { it.parameter }.eachCount().filterValues { it > 1 }.keys
+    check(duplicates.isEmpty()) {
+        "Several '${group.jsonGroupName}' tokens of mode '${mode.jsonName}' flatten to the same name: $duplicates"
+    }
     resolved
 }
 
