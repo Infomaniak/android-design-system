@@ -12,23 +12,23 @@ internal object IntermediateKdriveDark {
   /*
     Extra-small icon size for dense, inline iconography.
    */
-  val IconSizeXs: Dp = Scale16
+  val IconSizeXs: Dp = Dimension16
   /*
     Small icon size for compact UI icons.
    */
-  val IconSizeSm: Dp = Scale20
+  val IconSizeSm: Dp = Dimension20
   /*
     Medium (default) icon size for standard UI icons.
    */
-  val IconSizeMd: Dp = Scale24
+  val IconSizeMd: Dp = Dimension24
   /*
     Large icon size for emphasized or feature icons.
    */
-  val IconSizeLg: Dp = Scale32
+  val IconSizeLg: Dp = Dimension32
   /*
     Extra-large icon size for prominent display icons.
    */
-  val IconSizeXl: Dp = Scale40
+  val IconSizeXl: Dp = Dimension40
   /*
     Fully transparent; invisible element.
    */
