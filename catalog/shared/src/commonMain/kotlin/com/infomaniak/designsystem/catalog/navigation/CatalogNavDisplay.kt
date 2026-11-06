@@ -16,6 +16,7 @@ import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
+import androidx.navigation3.ui.defaultPopTransitionSpec
 import androidx.savedstate.serialization.SavedStateConfiguration
 import com.infomaniak.designsystem.catalog.theme.ThemeNavKey
 import com.infomaniak.designsystem.catalog.theme.ThemeScreen
@@ -63,6 +64,9 @@ internal fun CatalogNavDisplay() {
                 NavDisplay(
                     backStack = backStack,
                     onBack = goBack,
+                    // The default predictive back shrinks the whole screen over the previous one, which clashes with
+                    // shared elements. The gesture scrubs through the same fade as a regular back instead.
+                    predictivePopTransitionSpec = { defaultPopTransitionSpec<NavKey>()() },
                     entryProvider = entryProvider {
                         CatalogSections.forEach { section -> with(section) { entries(backStack) } }
                         // Destinations shared by every section.
