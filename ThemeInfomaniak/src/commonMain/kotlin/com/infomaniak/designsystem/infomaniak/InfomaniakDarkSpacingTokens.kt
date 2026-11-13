@@ -8,6 +8,8 @@ import com.infomaniak.designsystem.core.tokens.*
 import com.infomaniak.designsystem.infomaniak.internal.IntermediateInfomaniakDark
 
 internal val InfomaniakDarkSpacingTokens = SpacingTokens(
+  minusMd = IntermediateInfomaniakDark.SpacingMinusMd,
+  minusSm = IntermediateInfomaniakDark.SpacingMinusSm,
   none = IntermediateInfomaniakDark.SpacingNone,
   twoXs = IntermediateInfomaniakDark.Spacing2xs,
   xs = IntermediateInfomaniakDark.SpacingXs,
