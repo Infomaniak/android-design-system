@@ -10,6 +10,14 @@ import androidx.compose.ui.unit.Dp
 @Immutable
 data class SpacingTokens(
   /*
+    Negative medium spacing for overlapping elements (e.g. stacked avatars).
+   */
+  val minusMd: Dp,
+  /*
+    Negative small spacing for tightly overlapping elements (e.g. small stacked avatars).
+   */
+  val minusSm: Dp,
+  /*
     No spacing; zero gap.
    */
   val none: Dp,
