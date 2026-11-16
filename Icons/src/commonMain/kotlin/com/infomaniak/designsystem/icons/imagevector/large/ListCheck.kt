@@ -1,4 +1,4 @@
-package com.infomaniak.designsystem.icons.imagevector.extrasmall
+package com.infomaniak.designsystem.icons.imagevector.large
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -17,21 +17,21 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-internal val EsdsIcons.ExtraSmall.CheckmarkList: ImageVector
+internal val EsdsIcons.Large.ListCheck: ImageVector
     get() {
-        if (_CheckmarkList != null) {
-            return _CheckmarkList!!
+        if (_ListCheck != null) {
+            return _ListCheck!!
         }
-        _CheckmarkList = ImageVector.Builder(
-            name = "ExtraSmall.CheckmarkList",
-            defaultWidth = 16.dp,
-            defaultHeight = 16.dp,
+        _ListCheck = ImageVector.Builder(
+            name = "Large.ListCheck",
+            defaultWidth = 32.dp,
+            defaultHeight = 32.dp,
             viewportWidth = 24f,
             viewportHeight = 24f,
         ).apply {
             path(
                 stroke = SolidColor(Color.Black),
-                strokeLineWidth = 2.25f,
+                strokeLineWidth = 1.5f,
                 strokeLineCap = StrokeCap.Round,
                 strokeLineJoin = StrokeJoin.Round,
             ) {
@@ -50,18 +50,18 @@ internal val EsdsIcons.ExtraSmall.CheckmarkList: ImageVector
             }
         }.build()
 
-        return _CheckmarkList!!
+        return _ListCheck!!
     }
 
 @Suppress("ObjectPropertyName")
-private var _CheckmarkList: ImageVector? = null
+private var _ListCheck: ImageVector? = null
 
 @Preview
 @Composable
 private fun Preview() {
     Box(modifier = Modifier.background(Color.White)) {
         Image(
-            imageVector = EsdsIcons.ExtraSmall.CheckmarkList,
+            imageVector = EsdsIcons.Large.ListCheck,
             contentDescription = null,
             modifier = Modifier.size(PreviewIconSize),
         )

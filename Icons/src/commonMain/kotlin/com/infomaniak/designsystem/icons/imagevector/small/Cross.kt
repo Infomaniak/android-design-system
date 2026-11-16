@@ -35,10 +35,14 @@ internal val EsdsIcons.Small.Cross: ImageVector
                 strokeLineCap = StrokeCap.Round,
                 strokeLineJoin = StrokeJoin.Round,
             ) {
-                moveTo(18f, 6f)
-                lineTo(6f, 18f)
-                moveTo(6f, 6f)
-                lineToRelative(12f, 12f)
+                moveToRelative(18f, 6f)
+                lineToRelative(-6f, 6f)
+                moveToRelative(0f, 0f)
+                lineToRelative(-6f, 6f)
+                moveToRelative(6f, -6f)
+                lineTo(6f, 6f)
+                moveToRelative(6f, 6f)
+                lineToRelative(6f, 6f)
             }
         }.build()
 
