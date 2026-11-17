@@ -8,6 +8,8 @@ import com.infomaniak.designsystem.core.tokens.*
 import com.infomaniak.designsystem.kchat.internal.IntermediateKchatLight
 
 internal val KchatLightSpacingTokens = SpacingTokens(
+  minusMd = IntermediateKchatLight.SpacingMinusMd,
+  minusSm = IntermediateKchatLight.SpacingMinusSm,
   none = IntermediateKchatLight.SpacingNone,
   twoXs = IntermediateKchatLight.Spacing2xs,
   xs = IntermediateKchatLight.SpacingXs,
