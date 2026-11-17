@@ -8,6 +8,8 @@ import com.infomaniak.designsystem.core.tokens.*
 import com.infomaniak.designsystem.core.defaultvalues.internal.IntermediateDefault
 
 internal val DefaultSpacingTokens = SpacingTokens(
+  minusMd = IntermediateDefault.SpacingMinusMd,
+  minusSm = IntermediateDefault.SpacingMinusSm,
   none = IntermediateDefault.SpacingNone,
   twoXs = IntermediateDefault.Spacing2xs,
   xs = IntermediateDefault.SpacingXs,
