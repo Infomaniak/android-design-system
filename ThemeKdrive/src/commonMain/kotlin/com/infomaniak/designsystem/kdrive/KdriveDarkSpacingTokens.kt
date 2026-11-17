@@ -8,6 +8,8 @@ import com.infomaniak.designsystem.core.tokens.*
 import com.infomaniak.designsystem.kdrive.internal.IntermediateKdriveDark
 
 internal val KdriveDarkSpacingTokens = SpacingTokens(
+  minusMd = IntermediateKdriveDark.SpacingMinusMd,
+  minusSm = IntermediateKdriveDark.SpacingMinusSm,
   none = IntermediateKdriveDark.SpacingNone,
   twoXs = IntermediateKdriveDark.Spacing2xs,
   xs = IntermediateKdriveDark.SpacingXs,
