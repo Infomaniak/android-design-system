@@ -8,6 +8,8 @@ import com.infomaniak.designsystem.core.tokens.*
 import com.infomaniak.designsystem.mail.internal.IntermediateMailLight
 
 internal val MailLightSpacingTokens = SpacingTokens(
+  minusMd = IntermediateMailLight.SpacingMinusMd,
+  minusSm = IntermediateMailLight.SpacingMinusSm,
   none = IntermediateMailLight.SpacingNone,
   twoXs = IntermediateMailLight.Spacing2xs,
   xs = IntermediateMailLight.SpacingXs,

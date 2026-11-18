@@ -8,6 +8,8 @@ import com.infomaniak.designsystem.core.tokens.*
 import com.infomaniak.designsystem.swisstransfer.internal.IntermediateSwisstransferDark
 
 internal val SwisstransferDarkSpacingTokens = SpacingTokens(
+  minusMd = IntermediateSwisstransferDark.SpacingMinusMd,
+  minusSm = IntermediateSwisstransferDark.SpacingMinusSm,
   none = IntermediateSwisstransferDark.SpacingNone,
   twoXs = IntermediateSwisstransferDark.Spacing2xs,
   xs = IntermediateSwisstransferDark.SpacingXs,
