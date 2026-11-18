@@ -35,21 +35,14 @@ internal val EsdsIcons.ExtraSmall.MapPin: ImageVector
                 strokeLineCap = StrokeCap.Round,
                 strokeLineJoin = StrokeJoin.Round,
             ) {
-                moveTo(12.601f, 21.799f)
-                curveTo(14.461f, 20.193f, 20f, 14.993f, 20f, 10f)
-                arcToRelative(8f, 8f, 0f, isMoreThanHalf = false, isPositiveArc = false, -16f, 0f)
-                curveToRelative(0f, 4.993f, 5.539f, 10.193f, 7.399f, 11.799f)
-                arcToRelative(1f, 1f, 0f, isMoreThanHalf = false, isPositiveArc = false, 1.202f, 0f)
-            }
-            path(
-                stroke = SolidColor(Color.Black),
-                strokeLineWidth = 2.25f,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
-            ) {
-                moveTo(12f, 13f)
-                arcToRelative(3f, 3f, 0f, isMoreThanHalf = true, isPositiveArc = false, 0f, -6f)
-                arcToRelative(3f, 3f, 0f, isMoreThanHalf = false, isPositiveArc = false, 0f, 6f)
+                moveTo(20f, 10f)
+                curveToRelative(0f, 4.993f, -5.539f, 10.193f, -7.399f, 11.799f)
+                arcToRelative(1f, 1f, 0f, isMoreThanHalf = false, isPositiveArc = true, -1.202f, 0f)
+                curveTo(9.539f, 20.193f, 4f, 14.993f, 4f, 10f)
+                arcToRelative(8f, 8f, 0f, isMoreThanHalf = true, isPositiveArc = true, 16f, 0f)
+                moveToRelative(-5f, 0f)
+                arcToRelative(3f, 3f, 0f, isMoreThanHalf = true, isPositiveArc = true, -6f, 0f)
+                arcToRelative(3f, 3f, 0f, isMoreThanHalf = false, isPositiveArc = true, 6f, 0f)
             }
         }.build()
 

@@ -17,13 +17,13 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-internal val EsdsIcons.Small.CheckmarkList: ImageVector
+internal val EsdsIcons.Small.SquareCorners: ImageVector
     get() {
-        if (_CheckmarkList != null) {
-            return _CheckmarkList!!
+        if (_SquareCorners != null) {
+            return _SquareCorners!!
         }
-        _CheckmarkList = ImageVector.Builder(
-            name = "Small.CheckmarkList",
+        _SquareCorners = ImageVector.Builder(
+            name = "Small.SquareCorners",
             defaultWidth = 20.dp,
             defaultHeight = 20.dp,
             viewportWidth = 24f,
@@ -35,33 +35,37 @@ internal val EsdsIcons.Small.CheckmarkList: ImageVector
                 strokeLineCap = StrokeCap.Round,
                 strokeLineJoin = StrokeJoin.Round,
             ) {
-                moveTo(13f, 5f)
-                horizontalLineToRelative(8f)
-                moveToRelative(-8f, 7f)
-                horizontalLineToRelative(8f)
-                moveToRelative(-8f, 7f)
-                horizontalLineToRelative(8f)
-                moveTo(3f, 17f)
-                lineToRelative(2f, 2f)
-                lineToRelative(4f, -4f)
                 moveTo(3f, 7f)
-                lineToRelative(2f, 2f)
-                lineToRelative(4f, -4f)
+                verticalLineTo(5f)
+                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = true, 2f, -2f)
+                horizontalLineToRelative(2f)
+                moveToRelative(10f, 0f)
+                horizontalLineToRelative(2f)
+                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = true, 2f, 2f)
+                verticalLineToRelative(2f)
+                moveToRelative(0f, 10f)
+                verticalLineToRelative(2f)
+                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = true, -2f, 2f)
+                horizontalLineToRelative(-2f)
+                moveTo(7f, 21f)
+                horizontalLineTo(5f)
+                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = true, -2f, -2f)
+                verticalLineToRelative(-2f)
             }
         }.build()
 
-        return _CheckmarkList!!
+        return _SquareCorners!!
     }
 
 @Suppress("ObjectPropertyName")
-private var _CheckmarkList: ImageVector? = null
+private var _SquareCorners: ImageVector? = null
 
 @Preview
 @Composable
 private fun Preview() {
     Box(modifier = Modifier.background(Color.White)) {
         Image(
-            imageVector = EsdsIcons.Small.CheckmarkList,
+            imageVector = EsdsIcons.Small.SquareCorners,
             contentDescription = null,
             modifier = Modifier.size(PreviewIconSize),
         )

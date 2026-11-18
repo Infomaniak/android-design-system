@@ -35,31 +35,17 @@ internal val EsdsIcons.ExtraSmall.ConcentricCircles: ImageVector
                 strokeLineCap = StrokeCap.Round,
                 strokeLineJoin = StrokeJoin.Round,
             ) {
-                moveTo(12f, 22f)
-                curveToRelative(5.523f, 0f, 10f, -4.477f, 10f, -10f)
-                reflectiveCurveTo(17.523f, 2f, 12f, 2f)
-                reflectiveCurveTo(2f, 6.477f, 2f, 12f)
-                reflectiveCurveToRelative(4.477f, 10f, 10f, 10f)
-            }
-            path(
-                stroke = SolidColor(Color.Black),
-                strokeLineWidth = 2.25f,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
-            ) {
-                moveTo(12f, 18f)
-                arcToRelative(6f, 6f, 0f, isMoreThanHalf = true, isPositiveArc = false, 0f, -12f)
-                arcToRelative(6f, 6f, 0f, isMoreThanHalf = false, isPositiveArc = false, 0f, 12f)
-            }
-            path(
-                stroke = SolidColor(Color.Black),
-                strokeLineWidth = 2.25f,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
-            ) {
-                moveTo(12f, 14f)
-                arcToRelative(2f, 2f, 0f, isMoreThanHalf = true, isPositiveArc = false, 0f, -4f)
-                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = false, 0f, 4f)
+                moveTo(22f, 12f)
+                curveToRelative(0f, 5.523f, -4.477f, 10f, -10f, 10f)
+                reflectiveCurveTo(2f, 17.523f, 2f, 12f)
+                reflectiveCurveTo(6.477f, 2f, 12f, 2f)
+                reflectiveCurveToRelative(10f, 4.477f, 10f, 10f)
+                moveToRelative(-4f, 0f)
+                arcToRelative(6f, 6f, 0f, isMoreThanHalf = true, isPositiveArc = true, -12f, 0f)
+                arcToRelative(6f, 6f, 0f, isMoreThanHalf = false, isPositiveArc = true, 12f, 0f)
+                moveToRelative(-4f, 0f)
+                arcToRelative(2f, 2f, 0f, isMoreThanHalf = true, isPositiveArc = true, -4f, 0f)
+                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = true, 4f, 0f)
             }
         }.build()
 
