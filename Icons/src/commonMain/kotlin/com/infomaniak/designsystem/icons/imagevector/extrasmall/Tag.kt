@@ -46,16 +46,9 @@ internal val EsdsIcons.ExtraSmall.Tag: ImageVector
                 lineToRelative(6.58f, -6.58f)
                 arcToRelative(2.426f, 2.426f, 0f, isMoreThanHalf = false, isPositiveArc = false, 0f, -3.42f)
                 close()
-            }
-            path(
-                stroke = SolidColor(Color.Black),
-                strokeLineWidth = 2.25f,
-                strokeLineCap = StrokeCap.Round,
-                strokeLineJoin = StrokeJoin.Round,
-            ) {
-                moveTo(7.5f, 8f)
-                arcToRelative(0.5f, 0.5f, 0f, isMoreThanHalf = true, isPositiveArc = false, 0f, -1f)
-                arcToRelative(0.5f, 0.5f, 0f, isMoreThanHalf = false, isPositiveArc = false, 0f, 1f)
+                moveTo(8f, 7.5f)
+                arcToRelative(0.5f, 0.5f, 0f, isMoreThanHalf = true, isPositiveArc = true, -1f, 0f)
+                arcToRelative(0.5f, 0.5f, 0f, isMoreThanHalf = false, isPositiveArc = true, 1f, 0f)
             }
         }.build()
 
