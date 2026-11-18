@@ -21,3 +21,5 @@ val Spacing40: Dp = 40.dp
 val Spacing48: Dp = 48.dp
 val Spacing64: Dp = 64.dp
 val Spacing100: Dp = 100.dp
+val SpacingMinus8: Dp = (-8).dp
+val SpacingMinus6: Dp = (-6).dp
