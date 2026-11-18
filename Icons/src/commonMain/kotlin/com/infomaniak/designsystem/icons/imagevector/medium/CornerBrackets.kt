@@ -36,13 +36,21 @@ internal val EsdsIcons.Medium.CornerBrackets: ImageVector
                 strokeLineJoin = StrokeJoin.Round,
             ) {
                 moveTo(6f, 2f)
-                verticalLineToRelative(14f)
+                verticalLineToRelative(4f)
+                moveToRelative(0f, 0f)
+                verticalLineToRelative(10f)
                 arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = false, 2f, 2f)
-                horizontalLineToRelative(14f)
-                moveToRelative(-4f, 4f)
-                verticalLineTo(8f)
-                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = false, -2f, -2f)
+                horizontalLineToRelative(10f)
+                moveTo(6f, 6f)
+                horizontalLineToRelative(10f)
+                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = true, 2f, 2f)
+                verticalLineToRelative(10f)
+                moveTo(6f, 6f)
                 horizontalLineTo(2f)
+                moveToRelative(16f, 12f)
+                horizontalLineToRelative(4f)
+                moveToRelative(-4f, 0f)
+                verticalLineToRelative(4f)
             }
         }.build()
 

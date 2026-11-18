@@ -41,8 +41,10 @@ internal val EsdsIcons.Medium.Strikethrough: ImageVector
                 moveTo(14f, 12f)
                 arcToRelative(4f, 4f, 0f, isMoreThanHalf = true, isPositiveArc = true, 0f, 8f)
                 horizontalLineTo(6f)
-                moveToRelative(-2f, -8f)
-                horizontalLineToRelative(16f)
+                moveToRelative(8f, -8f)
+                horizontalLineTo(4f)
+                moveToRelative(10f, 0f)
+                horizontalLineToRelative(6f)
             }
         }.build()
 

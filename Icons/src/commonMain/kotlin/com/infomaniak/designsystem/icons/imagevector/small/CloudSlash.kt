@@ -42,9 +42,13 @@ internal val EsdsIcons.Small.CloudSlash: ImageVector
                 moveToRelative(-2.926f, 2.753f)
                 arcTo(4.5f, 4.5f, 0f, isMoreThanHalf = false, isPositiveArc = true, 17.5f, 19f)
                 horizontalLineTo(9f)
-                arcTo(7f, 7f, 0f, isMoreThanHalf = false, isPositiveArc = true, 5.79f, 5.78f)
-                moveTo(2f, 2f)
-                lineToRelative(20f, 20f)
+                arcTo(7f, 7f, 0f, isMoreThanHalf = false, isPositiveArc = true, 5.783f, 5.783f)
+                moveToRelative(0f, 0f)
+                quadToRelative(0.004f, 0f, 0.007f, -0.003f)
+                moveToRelative(-0.007f, 0.003f)
+                lineTo(2f, 2f)
+                moveToRelative(3.783f, 3.783f)
+                lineTo(22f, 22f)
             }
         }.build()
 

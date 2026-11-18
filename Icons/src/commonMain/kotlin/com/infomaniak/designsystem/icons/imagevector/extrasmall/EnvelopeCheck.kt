@@ -1,4 +1,4 @@
-package com.infomaniak.designsystem.icons.imagevector.extralarge
+package com.infomaniak.designsystem.icons.imagevector.extrasmall
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -17,51 +17,58 @@ import androidx.compose.ui.unit.dp
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.PreviewIconSize
 
-internal val EsdsIcons.ExtraLarge.CheckmarkList: ImageVector
+internal val EsdsIcons.ExtraSmall.EnvelopeCheck: ImageVector
     get() {
-        if (_CheckmarkList != null) {
-            return _CheckmarkList!!
+        if (_EnvelopeCheck != null) {
+            return _EnvelopeCheck!!
         }
-        _CheckmarkList = ImageVector.Builder(
-            name = "ExtraLarge.CheckmarkList",
-            defaultWidth = 40.dp,
-            defaultHeight = 40.dp,
+        _EnvelopeCheck = ImageVector.Builder(
+            name = "ExtraSmall.EnvelopeCheck",
+            defaultWidth = 16.dp,
+            defaultHeight = 16.dp,
             viewportWidth = 24f,
             viewportHeight = 24f,
         ).apply {
             path(
                 stroke = SolidColor(Color.Black),
-                strokeLineWidth = 1.35f,
+                strokeLineWidth = 2.25f,
                 strokeLineCap = StrokeCap.Round,
                 strokeLineJoin = StrokeJoin.Round,
             ) {
-                moveTo(13f, 5f)
+                moveTo(22f, 13f)
+                verticalLineTo(7f)
+                moveToRelative(0f, 0f)
+                verticalLineTo(6f)
+                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = false, -2f, -2f)
+                horizontalLineTo(4f)
+                arcToRelative(2f, 2f, 0f, isMoreThanHalf = false, isPositiveArc = false, -2f, 2f)
+                verticalLineToRelative(1f)
+                moveToRelative(20f, 0f)
+                lineToRelative(-8.97f, 5.7f)
+                arcToRelative(1.94f, 1.94f, 0f, isMoreThanHalf = false, isPositiveArc = true, -2.06f, 0f)
+                lineTo(2f, 7f)
+                moveToRelative(0f, 0f)
+                verticalLineToRelative(11f)
+                curveToRelative(0f, 1.1f, 0.9f, 2f, 2f, 2f)
                 horizontalLineToRelative(8f)
-                moveToRelative(-8f, 7f)
-                horizontalLineToRelative(8f)
-                moveToRelative(-8f, 7f)
-                horizontalLineToRelative(8f)
-                moveTo(3f, 17f)
-                lineToRelative(2f, 2f)
-                lineToRelative(4f, -4f)
-                moveTo(3f, 7f)
+                moveToRelative(4f, -1f)
                 lineToRelative(2f, 2f)
                 lineToRelative(4f, -4f)
             }
         }.build()
 
-        return _CheckmarkList!!
+        return _EnvelopeCheck!!
     }
 
 @Suppress("ObjectPropertyName")
-private var _CheckmarkList: ImageVector? = null
+private var _EnvelopeCheck: ImageVector? = null
 
 @Preview
 @Composable
 private fun Preview() {
     Box(modifier = Modifier.background(Color.White)) {
         Image(
-            imageVector = EsdsIcons.ExtraLarge.CheckmarkList,
+            imageVector = EsdsIcons.ExtraSmall.EnvelopeCheck,
             contentDescription = null,
             modifier = Modifier.size(PreviewIconSize),
         )

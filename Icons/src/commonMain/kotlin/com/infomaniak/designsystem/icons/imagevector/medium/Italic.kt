@@ -36,11 +36,15 @@ internal val EsdsIcons.Medium.Italic: ImageVector
                 strokeLineJoin = StrokeJoin.Round,
             ) {
                 moveTo(19f, 4f)
-                horizontalLineToRelative(-9f)
-                moveToRelative(4f, 16f)
-                horizontalLineTo(5f)
-                moveTo(15f, 4f)
+                horizontalLineToRelative(-4f)
+                moveToRelative(0f, 0f)
+                horizontalLineToRelative(-5f)
+                moveToRelative(5f, 0f)
                 lineTo(9f, 20f)
+                moveToRelative(5f, 0f)
+                horizontalLineTo(9f)
+                moveToRelative(0f, 0f)
+                horizontalLineTo(5f)
             }
         }.build()
 

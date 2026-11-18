@@ -35,11 +35,11 @@ internal val EsdsIcons.Small.Circle: ImageVector
                 strokeLineCap = StrokeCap.Round,
                 strokeLineJoin = StrokeJoin.Round,
             ) {
-                moveTo(12f, 22f)
-                curveToRelative(5.523f, 0f, 10f, -4.477f, 10f, -10f)
-                reflectiveCurveTo(17.523f, 2f, 12f, 2f)
-                reflectiveCurveTo(2f, 6.477f, 2f, 12f)
-                reflectiveCurveToRelative(4.477f, 10f, 10f, 10f)
+                moveTo(22f, 12f)
+                curveToRelative(0f, 5.523f, -4.477f, 10f, -10f, 10f)
+                reflectiveCurveTo(2f, 17.523f, 2f, 12f)
+                reflectiveCurveTo(6.477f, 2f, 12f, 2f)
+                reflectiveCurveToRelative(10f, 4.477f, 10f, 10f)
             }
         }.build()
 
