@@ -8,6 +8,8 @@ import com.infomaniak.designsystem.core.tokens.*
 import com.infomaniak.designsystem.euria.internal.IntermediateEuriaDark
 
 internal val EuriaDarkSpacingTokens = SpacingTokens(
+  minusMd = IntermediateEuriaDark.SpacingMinusMd,
+  minusSm = IntermediateEuriaDark.SpacingMinusSm,
   none = IntermediateEuriaDark.SpacingNone,
   twoXs = IntermediateEuriaDark.Spacing2xs,
   xs = IntermediateEuriaDark.SpacingXs,

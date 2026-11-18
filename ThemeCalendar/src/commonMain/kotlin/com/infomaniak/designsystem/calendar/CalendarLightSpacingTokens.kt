@@ -8,6 +8,8 @@ import com.infomaniak.designsystem.core.tokens.*
 import com.infomaniak.designsystem.calendar.internal.IntermediateCalendarLight
 
 internal val CalendarLightSpacingTokens = SpacingTokens(
+  minusMd = IntermediateCalendarLight.SpacingMinusMd,
+  minusSm = IntermediateCalendarLight.SpacingMinusSm,
   none = IntermediateCalendarLight.SpacingNone,
   twoXs = IntermediateCalendarLight.Spacing2xs,
   xs = IntermediateCalendarLight.SpacingXs,
