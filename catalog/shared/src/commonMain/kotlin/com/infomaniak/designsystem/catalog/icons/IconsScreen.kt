@@ -9,6 +9,7 @@ import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,9 +28,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
@@ -53,6 +54,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -83,6 +85,7 @@ import com.infomaniak.designsystem.core.theme.EsdsTheme
 import com.infomaniak.designsystem.icons.EsdsIcons
 import com.infomaniak.designsystem.icons.symbols.Cross
 import com.infomaniak.designsystem.icons.symbols.MagnifyingGlass
+import kotlinx.coroutines.flow.first
 
 private val MaxSearchWidth = 560.dp
 private val ClearButtonSize = 48.dp
@@ -93,13 +96,22 @@ internal fun IconsScreen(onIconClick: (CatalogIcon) -> Unit) {
     val snackbarHostState = remember { SnackbarHostState() }
     val copyToClipboard = rememberCopyToClipboard(snackbarHostState)
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
-    val gridState = rememberLazyGridState()
 
     var isSearching by rememberSaveable { mutableStateOf(false) }
     var query by rememberSaveable { mutableStateOf("") }
     val icons = remember(query) { AllIcons.filter { it.name.contains(query.trim(), ignoreCase = true) } }
+    // A new query starts its results from the top, while coming back from a detail screen keeps the scroll position.
+    val gridState = rememberSaveable(query, saver = LazyGridState.Saver) { LazyGridState() }
 
-    LaunchedEffect(query) { gridState.scrollToItem(0) }
+    // The grid may have scrolled while the detail screen was open, so the opened icon is brought back into view for
+    // the shared element to animate back to it. Kept saveable, as the grid leaves the composition meanwhile.
+    var openedIconName by rememberSaveable(query) { mutableStateOf<String?>(null) }
+    LaunchedEffect(Unit) {
+        val name = openedIconName ?: return@LaunchedEffect
+        gridState.scrollIntoView(index = icons.indexOfFirst { it.name == name })
+        openedIconName = null
+    }
+
     NavigationBackHandler(
         state = rememberNavigationEventState(NavigationEventInfo.None),
         isBackEnabled = isSearching,
@@ -139,7 +151,10 @@ internal fun IconsScreen(onIconClick: (CatalogIcon) -> Unit) {
                 items(icons, key = { it.name }) { icon ->
                     IconCell(
                         icon = icon,
-                        onClick = { onIconClick(icon) },
+                        onClick = {
+                            openedIconName = icon.name
+                            onIconClick(icon)
+                        },
                         onLongClick = { copyToClipboard(icon.name) },
                     )
                 }
@@ -303,6 +318,21 @@ private fun IconCell(icon: CatalogIcon, onClick: () -> Unit, onLongClick: () -> 
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
         )
+    }
+}
+
+/** Scrolls the least needed for the item at [index] to be fully visible, i.e. outside of the content padding. */
+private suspend fun LazyGridState.scrollIntoView(index: Int) {
+    if (index < 0) return
+    // Layout is needed to know where the item is, which isn't there yet when the grid just came back.
+    snapshotFlow { layoutInfo }.first { it.totalItemsCount > 0 }
+
+    val item = layoutInfo.visibleItemsInfo.firstOrNull { it.index == index }
+    val viewportEnd = layoutInfo.viewportEndOffset - layoutInfo.afterContentPadding
+    when {
+        item == null -> scrollToItem(index)
+        item.offset.y < 0 -> scrollBy(item.offset.y.toFloat())
+        item.offset.y + item.size.height > viewportEnd -> scrollBy((item.offset.y + item.size.height - viewportEnd).toFloat())
     }
 }
 
