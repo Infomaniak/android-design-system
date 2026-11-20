@@ -7,6 +7,11 @@ plugins {
 android {
     namespace = "com.infomaniak.designsystem.catalog"
 
+    // Required by the catalog's newer material3 (see catalogAndroidxMaterial3).
+    compileSdk {
+        version = release(37) { minorApiLevel = 2 }
+    }
+
     defaultConfig {
         applicationId = "com.infomaniak.designsystem.catalog"
         targetSdk = 37
@@ -17,7 +22,8 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
