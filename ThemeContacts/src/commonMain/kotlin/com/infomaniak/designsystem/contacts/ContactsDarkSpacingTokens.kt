@@ -8,6 +8,8 @@ import com.infomaniak.designsystem.core.tokens.*
 import com.infomaniak.designsystem.contacts.internal.IntermediateContactsDark
 
 internal val ContactsDarkSpacingTokens = SpacingTokens(
+  minusMd = IntermediateContactsDark.SpacingMinusMd,
+  minusSm = IntermediateContactsDark.SpacingMinusSm,
   none = IntermediateContactsDark.SpacingNone,
   twoXs = IntermediateContactsDark.Spacing2xs,
   xs = IntermediateContactsDark.SpacingXs,
