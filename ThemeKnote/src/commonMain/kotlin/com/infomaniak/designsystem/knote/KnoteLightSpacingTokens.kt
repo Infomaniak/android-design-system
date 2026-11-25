@@ -8,6 +8,8 @@ import com.infomaniak.designsystem.core.tokens.*
 import com.infomaniak.designsystem.knote.internal.IntermediateKnoteLight
 
 internal val KnoteLightSpacingTokens = SpacingTokens(
+  minusMd = IntermediateKnoteLight.SpacingMinusMd,
+  minusSm = IntermediateKnoteLight.SpacingMinusSm,
   none = IntermediateKnoteLight.SpacingNone,
   twoXs = IntermediateKnoteLight.Spacing2xs,
   xs = IntermediateKnoteLight.SpacingXs,
